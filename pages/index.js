@@ -1,4 +1,7 @@
 import Head from 'next/head'
+import Link from 'next/link'
+import { Container, Grid, Button, Card, TextField, InputAdornment } from '@material-ui/core';
+import NameIcon from "@material-ui/icons/AccountBoxOutlined";
 
 export default function Home() {
   return (
@@ -12,10 +15,60 @@ export default function Home() {
         <h1 className="title">
           Welcome to <a href="https://nextjs.org">Next.js!</a>
         </h1>
-
-        <p className="description">
-          Get started by editing <code>pages/index.js</code>
-        </p>
+        
+        <Link href="/nosotros" >
+          <Button variant="contained" color="primary" >
+            NOSOTROS
+          </Button>
+        </Link>
+          <br/>
+        <Container>
+          <Card spacing={2}>
+            <Grid item xs={12} sm={12} >
+              <Grid container spacing={2}>
+                <Grid item xs={12} sm={6}>
+                    <TextField
+                      autoComplete="name"
+                      name="name"
+                      variant="filled"
+                      type="string"
+                      fullWidth
+                      id="name"
+                      label="Nombre Platillo"
+                      placeholder="Milanesa"
+                      InputProps={{
+                          startAdornment: (
+                          <InputAdornment position="start">
+                              <NameIcon />
+                          </InputAdornment>
+                          )
+                      }}
+                    />
+                </Grid>
+                <Grid item xs={12} sm={6}>
+                    <TextField
+                      autoComplete="price"
+                      name="price"
+                      variant="filled"
+                      type="number"
+                      min="0"
+                      fullWidth
+                      id="price"
+                      label="Precio"
+                      placeholder="$20"
+                      InputProps={{
+                          startAdornment: (
+                          <InputAdornment position="start">
+                              <NameIcon />
+                          </InputAdornment>
+                          )
+                      }}
+                    />
+                </Grid>
+              </Grid>
+            </Grid>
+          </Card>
+        </Container>
 
         <div className="grid">
           <a href="https://nextjs.org/docs" className="card">
