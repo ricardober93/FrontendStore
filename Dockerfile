@@ -1,19 +1,17 @@
-FROM node:12 AS build
+FROM node:12
 
-WORKDIR /var/www/app
+# Setting working directory. All the path will be relative to WORKDIR
+WORKDIR /usr/src/app
 
-COPY . /var/www/app
+# Installing dependencies
+COPY package*.json ./
 RUN npm install
 
-RUN npm run-script build
+# Copying source files
+COPY . .
 
-FROM nginx:1.17 as production-stage
+# Building app
+RUN npm run build
 
-COPY --from=build  /var/www/app/build /usr/share/nginx/html
-
-RUN rm /etc/nginx/conf.d/default.conf
-COPY nginx/nginx.conf /etc/nginx/conf.d
-
-EXPOSE 80
-
-CMD ["nginx", "-g", "daemon off;"]
+# Running the app
+CMD [ "npm", "run", "dev" ]
