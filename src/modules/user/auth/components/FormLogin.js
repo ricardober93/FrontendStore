@@ -13,8 +13,6 @@ import {
 import {  useFormik } from 'formik';
 import * as Yup from 'yup';
 
-
-
 function Login() {
 
         // formik para crear el formulario
@@ -67,7 +65,7 @@ function Login() {
                             justify="center"
                             alignItems="center"
                         >
-                            Welcome to Store
+                            Wellcome to Store
                         </Typography>
                                 <form onSubmit={formik.handleSubmit}>
                                     <FormControl fullWidth="true">
