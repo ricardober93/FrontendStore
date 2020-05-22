@@ -4,9 +4,9 @@ import Recovery from '../src/modules/user/auth/components/Recovery'
 
 function restore() {
     return (
-        <div>
+   
             <Recovery />
-        </div>
+     
     )
 }
 

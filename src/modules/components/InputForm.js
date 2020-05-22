@@ -7,6 +7,8 @@ import Input from "@material-ui/core/Input";
     return (
         <div>
              <Input 
+                style={{ marginTop: 20 }} 
+                fullWidth="true"
                 type={type? type : 'text'}
                 id={ id ? id : name} 
                 name={name} 

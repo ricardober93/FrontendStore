@@ -12,11 +12,8 @@ import {
  import { Alert } from '@material-ui/lab';
 import {  useFormik } from 'formik';
 import * as Yup from 'yup';
-<<<<<<< HEAD
 import InputForm from '../../../components/InputForm'
 
-=======
->>>>>>> 5db1701a249e6da6811fc39b245ed457d64ebe80
 
 function Login() {
 
@@ -44,7 +41,7 @@ function Login() {
 
 
     return (
-        <Container style={{ padding: 30 }}>
+        <Container height="100%" style={{ padding: 30 }}>
             {/* utilizar toda la altura de la pagina */}
                 <style global jsx>{`
                 html,
@@ -72,30 +69,16 @@ function Login() {
                         >
                             Wellcome to Store
                         </Typography>
-<<<<<<< HEAD
                                 <form style={{ marginTop: 20 }}      onSubmit={formik.handleSubmit}>
                                     <FormControl fullWidth="true">
                                         <InputLabel htmlFor="email">Email</InputLabel>
                                         <InputForm
-                                            fullWidth="true"
                                             name="email"
                                             onChange={formik.handleChange}
                                             onBlur={formik.handleBlur}
                                             value={formik.values.email}
                                         />
 
-=======
-                                <form onSubmit={formik.handleSubmit}>
-                                    <FormControl fullWidth="true">
-                                        <InputLabel htmlFor="email">Email</InputLabel>
-                                        <Input 
-                                        id="email" 
-                                        name="email" 
-                                        onChange={formik.handleChange}
-                                        onBlur={formik.handleBlur}
-                                        value={formik.values.email}
-                                        />
->>>>>>> 5db1701a249e6da6811fc39b245ed457d64ebe80
                                      {formik.touched.email && formik.errors.email ? (
                                         <Alert severity="error">{formik.errors.email}</Alert>
                                      ) : null}
@@ -103,12 +86,7 @@ function Login() {
                                                                     
                                     <FormControl fullWidth="true">
                                         <InputLabel htmlFor="password">Password</InputLabel>
-<<<<<<< HEAD
                                         <InputForm
-                                            fullWidth="true"
-=======
-                                        <Input
->>>>>>> 5db1701a249e6da6811fc39b245ed457d64ebe80
                                             type="password"
                                             id="password"
                                             name="password"
@@ -130,6 +108,9 @@ function Login() {
                                         Login
                                     </Button>
                                 </form>
+                                <Typography style={{ marginTop: 20 }}>
+                            Don´t have a account. Sing up
+                        </Typography>
                     </CardContent>
                 </Card>
             </Grid>
