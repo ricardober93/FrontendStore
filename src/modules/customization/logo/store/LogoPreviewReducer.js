@@ -1,8 +1,8 @@
-const logoImg = JSON.parse(localStorage.getItem("logo"));
+// const logoImg = JSON.parse(localStorage.getItem("logo"));
 
 //cada reducer tiene su propio state
 const initialState = {
-    logoPreview : logoImg ? logoImg : {},
+    logoPreview : {},
     error: null,
     loading: false
 }

@@ -8,7 +8,7 @@ import {
     Grid,
     Input
 } from "@material-ui/core";
-import Alert from '../../../layout/components/alert/Alert'
+import Alert from '../../../components/Alert'
 import { useDispatch} from 'react-redux';
 import {setLogoPreviewAction} from '../store/LogoPreviewAction'
 import {updateLogoPreview} from '../../provider/CustomizationProvider'

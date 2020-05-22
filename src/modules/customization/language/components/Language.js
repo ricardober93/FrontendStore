@@ -49,7 +49,7 @@ const Language = () => {
                     messages: messagesSpanish
                 }
                 dispatch(setLanguageAction(language, messagesSpanish));
-                localStorage.setItem('language', JSON.stringify(languageES))
+                // localStorage.setItem('language', JSON.stringify(languageES))
                 updateLanguage(language);
                 break;
             case "en":
@@ -58,7 +58,7 @@ const Language = () => {
                     messages: messagesEnglish
                 }
                 dispatch(setLanguageAction(language, messagesEnglish));
-                localStorage.setItem('language', JSON.stringify(languageEN))
+                // localStorage.setItem('language', JSON.stringify(languageEN))
                 updateLanguage(language);
                 break;
             case "pt":
@@ -67,7 +67,7 @@ const Language = () => {
                     messages: messagesPortuguese
                 }
                 dispatch(setLanguageAction(language, messagesPortuguese));
-                localStorage.setItem('language', JSON.stringify(languagePT))
+                // localStorage.setItem('language', JSON.stringify(languagePT))
                 updateLanguage(language);
                 break;
             default:

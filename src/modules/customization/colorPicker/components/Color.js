@@ -71,7 +71,7 @@ const Color = () => {
             textPrimary,
             textSecondary
         }
-        localStorage.setItem('colors', JSON.stringify(colorPicker))
+        // localStorage.setItem('colors', JSON.stringify(colorPicker))
         dispatch(setColorsAction(colorPicker));
         return updateColors(colorPicker);
     }

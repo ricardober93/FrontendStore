@@ -1,7 +1,7 @@
-const colors = JSON.parse(localStorage.getItem("colors"));
+//const colors = JSON.parse(localStorage.getItem("colors"));
 
 const initialState = {
-    colors: colors ? colors : {},
+    colors: {},
     error: null,
     loading: false
 }
