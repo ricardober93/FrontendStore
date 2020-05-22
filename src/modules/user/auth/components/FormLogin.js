@@ -12,6 +12,7 @@ import {
 import { Alert } from "@material-ui/lab";
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import InputForm from "../../../components/InputForm";
 
 function Login() {
   // formik para crear el formulario
@@ -33,8 +34,27 @@ function Login() {
     },
   });
 
+  // formik para crear el formulario
+  const formik = useFormik({
+    initialValues: {
+      email: "",
+      password: "",
+    },
+    // Yup para las validaciones
+    validationSchema: Yup.object({
+      email: Yup.string()
+        .email("Invalid email address")
+        .min(6, "much short")
+        .required("Required"),
+      password: Yup.string().min(8, "much short").required("Required"),
+    }),
+    onSubmit: (values) => {
+      console.log(values);
+    },
+  });
+
   return (
-    <Container style={{ padding: 30 }}>
+    <Container height="100%" style={{ padding: 30 }}>
       {/* utilizar toda la altura de la pagina */}
       <style global jsx>{`
         html,
@@ -57,16 +77,16 @@ function Login() {
             >
               Wellcome to Store
             </Typography>
-            <form onSubmit={formik.handleSubmit}>
+            <form style={{ marginTop: 20 }} onSubmit={formik.handleSubmit}>
               <FormControl fullWidth="true">
                 <InputLabel htmlFor="email">Email</InputLabel>
-                <Input
-                  id="email"
+                <InputForm
                   name="email"
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
                   value={formik.values.email}
                 />
+
                 {formik.touched.email && formik.errors.email ? (
                   <Alert severity="error">{formik.errors.email}</Alert>
                 ) : null}
@@ -74,7 +94,7 @@ function Login() {
 
               <FormControl fullWidth="true">
                 <InputLabel htmlFor="password">Password</InputLabel>
-                <Input
+                <InputForm
                   type="password"
                   id="password"
                   name="password"
@@ -96,6 +116,9 @@ function Login() {
                 Login
               </Button>
             </form>
+            <Typography style={{ marginTop: 20 }}>
+              Don´t have a account. Sing up
+            </Typography>
           </CardContent>
         </Card>
       </Grid>

@@ -12,13 +12,13 @@ import {
 import { Alert } from "@material-ui/lab";
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import React from "react";
 
-function Login() {
+function restoreData() {
   // formik para crear el formulario
   const formik = useFormik({
     initialValues: {
       email: "",
-      password: "",
     },
     // Yup para las validaciones
     validationSchema: Yup.object({
@@ -26,7 +26,6 @@ function Login() {
         .email("Invalid email address")
         .min(6, "much short")
         .required("Required"),
-      password: Yup.string().min(8, "much short").required("Required"),
     }),
     onSubmit: (values) => {
       console.log(values);
@@ -49,13 +48,16 @@ function Login() {
       <Grid container direction="row" justify="center" alignItems="center">
         <Card padding={2}>
           <CardContent>
+            <Typography variant="h4" component="h4">
+              Recuperar Contraseña
+            </Typography>
             <Typography
-              variant="h4"
-              component="h4"
-              justify="center"
-              alignItems="center"
+              style={{ marginTop: 20 }}
+              color="textSecondary"
+              gutterBottom
             >
-              Welcome to Store
+              Enter your email and we will send you instructions to restore your
+              password.
             </Typography>
             <form onSubmit={formik.handleSubmit}>
               <FormControl fullWidth="true">
@@ -71,21 +73,6 @@ function Login() {
                   <Alert severity="error">{formik.errors.email}</Alert>
                 ) : null}
               </FormControl>
-
-              <FormControl fullWidth="true">
-                <InputLabel htmlFor="password">Password</InputLabel>
-                <Input
-                  type="password"
-                  id="password"
-                  name="password"
-                  onChange={formik.handleChange}
-                  onBlur={formik.handleBlur}
-                  value={formik.values.password}
-                />
-                {formik.touched.password && formik.errors.password ? (
-                  <Alert severity="error">{formik.errors.password}</Alert>
-                ) : null}
-              </FormControl>
               <Button
                 type="submit"
                 fullWidth
@@ -93,8 +80,11 @@ function Login() {
                 color="primary"
                 style={{ marginTop: 20 }}
               >
-                Login
+                Restablecer contraseña
               </Button>
+              <Typography style={{ marginTop: 20 }} color="textSecondary">
+                Remember to look at your spam
+              </Typography>
             </form>
           </CardContent>
         </Card>
@@ -103,4 +93,4 @@ function Login() {
   );
 }
 
-export default Login;
+export default restoreData;

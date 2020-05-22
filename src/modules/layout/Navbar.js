@@ -118,9 +118,8 @@ export default function Header() {
             >
               <MenuIcon />
             </IconButton>
-            <Typography className={classes.title} noWrap>
-              <img src="/static/img/logo1.png" alt="logo1" />
-              <img src="/static/img/logo2.png" alt="logo2" />
+            <Typography className={classes.title} variant="h6" noWrap>
+              E-Commerce
             </Typography>
             <div className={classes.search}>
               <div className={classes.searchIcon}>
