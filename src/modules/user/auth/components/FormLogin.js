@@ -34,25 +34,6 @@ function Login() {
     },
   });
 
-  // formik para crear el formulario
-  const formik = useFormik({
-    initialValues: {
-      email: "",
-      password: "",
-    },
-    // Yup para las validaciones
-    validationSchema: Yup.object({
-      email: Yup.string()
-        .email("Invalid email address")
-        .min(6, "much short")
-        .required("Required"),
-      password: Yup.string().min(8, "much short").required("Required"),
-    }),
-    onSubmit: (values) => {
-      console.log(values);
-    },
-  });
-
   return (
     <Container height="100%" style={{ padding: 30 }}>
       {/* utilizar toda la altura de la pagina */}
