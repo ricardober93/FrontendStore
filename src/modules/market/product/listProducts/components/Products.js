@@ -2,15 +2,18 @@ import Product from "./Product";
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import GridList from "@material-ui/core/GridList";
-import GridListTile from "@material-ui/core/GridListTile";
 
 const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
     backgroundColor: theme.palette.background.paper,
+    padding: 60,
   },
   icon: {
     color: "rgba(255, 255, 255, 0.54)",
+  },
+  girdlist: {
+    justifyContent: "space-between",
   },
 }));
 
@@ -20,56 +23,56 @@ const products = [
     name: "nombre",
     category: "categoria",
     description:
-      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+      "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.",
   },
   {
     id: 2,
     name: "nombre",
     category: "categoria",
     description:
-      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+      "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.",
   },
   {
     id: 3,
     name: "nombre",
     category: "categoria",
     description:
-      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+      "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.",
   },
   {
     id: 4,
     name: "nombre",
     category: "categoria",
     description:
-      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+      "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.",
   },
   {
     id: 5,
     name: "nombre",
     category: "categoria",
     description:
-      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+      "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.",
   },
   {
     id: 6,
     name: "nombre",
     category: "categoria",
     description:
-      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+      "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.",
   },
   {
     id: 7,
     name: "nombre",
     category: "categoria",
     description:
-      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+      "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.",
   },
   {
     id: 8,
     name: "nombre",
     category: "categoria",
     description:
-      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+      "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.",
   },
 ];
 
@@ -77,12 +80,12 @@ export default function Products() {
   const classes = useStyles();
 
   return (
-    <div className={classes.root}>
-      <GridList cols={3}>
-        {products.map((product) => (
-          <Product key={product.id} product={product} />
-        ))}
-      </GridList>
-    </div>
+      <div container className={classes.root}>
+        <GridList className={classes.girdlist}>
+          {products.map((product) => (
+            <Product key={product.id} product={product} />
+          ))}
+        </GridList>
+      </div>
   );
 }

@@ -10,7 +10,11 @@ import Typography from "@material-ui/core/Typography";
 
 const useStyles = makeStyles({
   root: {
-    maxWidth: 345,
+    maxWidth: 250,
+    textAlign: "center",
+  },
+  image: {
+    padding: 15,
   },
 });
 
@@ -19,8 +23,9 @@ export default function Product({ key, product }) {
 
   return (
     <Card className={classes.root}>
-      <CardActionArea>
+      <CardActionArea className={classes.actionArea}>
         <CardMedia
+          className={classes.image}
           component="img"
           alt="Imagen"
           height="140"
@@ -40,9 +45,6 @@ export default function Product({ key, product }) {
         </CardContent>
       </CardActionArea>
       <CardActions>
-        <Button size="small" color="primary">
-          Share
-        </Button>
         <Button size="small" color="primary">
           Learn More
         </Button>
