@@ -1,19 +1,16 @@
 import React from "react";
-import IconButton from "@material-ui/core/IconButton";
-import Badge from "@material-ui/core/Badge";
-import MenuItem from "@material-ui/core/MenuItem";
-import Menu from "@material-ui/core/Menu";
-import AccountCircle from "@material-ui/icons/AccountCircle";
 import NotificationsIcon from "@material-ui/icons/Notifications";
+import { IconButton, Badge, MenuItem, Menu, Avatar } from "@material-ui/core";
 
 export default function MobileMenu({
-  isMobileMenuOpen,
   quatityNotifications,
   handleProfileMenuOpenFn,
   mobileMoreAnchorEl,
   mobileMenuId,
   handleMobileMenuCloseFn,
 }) {
+  const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
+
   return (
     <Menu
       anchorEl={mobileMoreAnchorEl}
@@ -43,7 +40,7 @@ export default function MobileMenu({
           aria-haspopup="true"
           color="inherit"
         >
-          <AccountCircle />
+          <Avatar alt="User name" src="/static/img/1.jpg" />
         </IconButton>
         <p>Profile</p>
       </MenuItem>
