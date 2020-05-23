@@ -1,14 +1,7 @@
-
-import FormLogin from '../src/modules/user/auth/components/FormLogin'
-
+import FormLogin from "../src/modules/user/auth/components/FormLogin";
 
 function login() {
-
-return (
-  
-        <FormLogin />
-
-    )
+  return <FormLogin />;
 }
 
-export default login
+export default login;

@@ -1,14 +1,8 @@
-import React from 'react'
-import Recovery from '../src/modules/user/auth/components/Recovery'
-
+import React from "react";
+import Recovery from "../src/modules/user/auth/components/Recovery";
 
 function restore() {
-    return (
-   
-            <Recovery />
-     
-    )
+  return <Recovery />;
 }
 
-export default restore
-
+export default restore;
