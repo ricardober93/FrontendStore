@@ -78,7 +78,7 @@ export default function Products() {
 
   return (
     <div className={classes.root}>
-      <GridList cols={3}>
+      <GridList cols={3}  alignItems="center">
         {products.map((product) => (
           <Product key={product.id} product={product} />
         ))}

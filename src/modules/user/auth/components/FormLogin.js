@@ -5,7 +5,6 @@ import {
   CardContent,
   FormControl,
   InputLabel,
-  Input,
   Button,
   Typography,
 } from "@material-ui/core";
@@ -35,26 +34,16 @@ function Login() {
   });
 
   return (
-    <Container height="100%" style={{ padding: 30 }}>
+    <Container
+    justify="center" alignItems="center">
       {/* utilizar toda la altura de la pagina */}
-      <style global jsx>{`
-        html,
-        body,
-        body > div:first-child,
-        div#__next,
-        div#__next > div,
-        div#__next > div > div {
-          height: 100%;
-        }
-      `}</style>
-      <Grid container direction="row" justify="center" alignItems="center">
+     
+      <Grid container direction="row" >
         <Card padding={2}>
           <CardContent>
             <Typography
               variant="h4"
               component="h4"
-              justify="center"
-              alignItems="center"
             >
               Wellcome to Store
             </Typography>
