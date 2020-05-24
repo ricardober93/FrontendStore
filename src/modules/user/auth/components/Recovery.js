@@ -34,6 +34,16 @@ import {
   
     return (
       <Container style={{ padding: 30 }}>
+         <style global jsx>{`
+        html,
+        body,
+        body > div:first-child,
+        div#__next,
+        div#__next > div,
+        div#__next > div > div {
+          height: 100%;
+        }
+      `}</style>
         {/* utilizar toda la altura de la pagina */}
         <Grid container direction="row" justify="center" alignItems="center">
           <Card padding={2}>
