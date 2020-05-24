@@ -18,7 +18,7 @@ export default function Product({ key, product }) {
   const classes = useStyles();
 
   return (
-    <Card className={classes.root}  style={{  margin: 30 }}>
+    <Card md={12} className={classes.root}  style={{  margin: 30 }}>
       <CardActionArea>
         <CardMedia
           component="img"
