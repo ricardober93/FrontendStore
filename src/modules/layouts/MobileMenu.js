@@ -1,19 +1,20 @@
 import React from "react";
-import NotificationsIcon from "@material-ui/icons/Notifications";
-import { IconButton, Badge, MenuItem, Menu, Avatar } from "@material-ui/core";
+import { IconButton, MenuItem, Menu } from "@material-ui/core";
+import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
+import Notification from "../components/Notification";
+import AvatarImage from "../components/AvatarImage";
 
 export default function MobileMenu({
-  quatityNotifications,
-  handleProfileMenuOpenFn,
-  mobileMoreAnchorEl,
   mobileMenuId,
+  numberOfNotifications,
+  mobileMoreAnchorElement,
   handleMobileMenuCloseFn,
 }) {
-  const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
+  const isMobileMenuOpen = Boolean(mobileMoreAnchorElement);
 
   return (
     <Menu
-      anchorEl={mobileMoreAnchorEl}
+      anchorEl={mobileMoreAnchorElement}
       anchorOrigin={{ vertical: "top", horizontal: "right" }}
       id={mobileMenuId}
       keepMounted
@@ -23,24 +24,24 @@ export default function MobileMenu({
     >
       <MenuItem>
         <IconButton aria-label="show new notifications" color="inherit">
-          {quatityNotifications ? (
-            <Badge badgeContent={quatityNotifications} color="secondary">
-              <NotificationsIcon />
-            </Badge>
-          ) : (
-            <NotificationsIcon />
-          )}
+          <ShoppingCartIcon style={{ color: "#665C84" }} />
+        </IconButton>
+        <p>Cart</p>
+      </MenuItem>
+      <MenuItem>
+        <IconButton aria-label="show new notifications" color="inherit">
+          <Notification numberOfNotifications={numberOfNotifications} />
         </IconButton>
         <p>Notifications</p>
       </MenuItem>
-      <MenuItem onClick={handleProfileMenuOpenFn}>
+      <MenuItem>
         <IconButton
           aria-label="account of current user"
           aria-controls="primary-search-account-menu"
           aria-haspopup="true"
           color="inherit"
         >
-          <Avatar alt="User name" src="/static/img/1.jpg" />
+          <AvatarImage />
         </IconButton>
         <p>Profile</p>
       </MenuItem>
