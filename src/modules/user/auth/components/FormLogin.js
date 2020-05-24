@@ -12,8 +12,23 @@ import { Alert } from "@material-ui/lab";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import InputForm from "../../../components/InputForm";
+import { makeStyles } from "@material-ui/core/styles";
+
+
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    height: '100%',
+    display:'grid',
+    alignContent: 'center',
+    justifyContent:'center',
+    
+  },
+ 
+}));
 
 function Login() {
+  const classes = useStyles();
   // formik para crear el formulario
   const formik = useFormik({
     initialValues: {
@@ -34,11 +49,18 @@ function Login() {
   });
 
   return (
-    <Container
-    justify="center" alignItems="center">
-      {/* utilizar toda la altura de la pagina */}
-     
-      <Grid container direction="row" >
+    <Container className={classes.root} style={{ padding: 30 }}>
+        <style global jsx>{`
+        html,
+        body,
+        main,
+        div#__next {
+          height: 96%;
+        },
+        
+      `}</style>
+    {/* utilizar toda la altura de la pagina */}     
+      <Grid container >
         <Card padding={2}>
           <CardContent>
             <Typography
@@ -78,7 +100,7 @@ function Login() {
               </FormControl>
               <Button
                 type="submit"
-                fullWidth
+                fullWidth="true"
                 variant="contained"
                 color="primary"
                 style={{ marginTop: 20 }}

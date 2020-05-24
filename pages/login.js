@@ -1,7 +1,12 @@
 import FormLogin from "../src/modules/user/auth/components/FormLogin";
-
+import Layout from "../src/modules/layouts/layout";
 function login() {
-  return <FormLogin />;
+
+  return (
+    <Layout>
+    <FormLogin />
+  </Layout> 
+  )
 }
 
 export default login;
