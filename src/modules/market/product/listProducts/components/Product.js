@@ -12,11 +12,23 @@ const useStyles = makeStyles({
   root: {
     maxWidth: 300,
     textAlign: 'center',
-    margin: 30,
-    backgroundColor: '#BFC3D8',
+    marginBottom: 30,
+    marginLeft: 10,
   },
   image: {
-    padding: 15,
+    borderRadius: 50,
+    marginBottom: 2,
+    overflow: 'hidden',
+    height: 230,
+  },
+  button: {
+    backgroundColor: '#DCE1F9',
+    padding: 10,
+    borderRadius: 15,
+  },
+  actions: {
+    display: 'flex',
+    justifyContent: 'center',
   },
 });
 
@@ -38,7 +50,7 @@ export default function Product({ key, product }) {
           <Typography gutterBottom variant="h5" component="h2">
             {product.name}
           </Typography>
-          <Typography gutterBottom variant="h5" component="h2">
+          <Typography gutterBottom variant="body2" component="h2">
             {product.category}
           </Typography>
           <Typography variant="body2" color="textSecondary" component="p">
@@ -46,8 +58,8 @@ export default function Product({ key, product }) {
           </Typography>
         </CardContent>
       </CardActionArea>
-      <CardActions>
-        <Button size="small" color="primary">
+      <CardActions className={classes.actions}>
+        <Button size="small" color="primary" className={classes.button}>
           Learn More
         </Button>
       </CardActions>
