@@ -12,13 +12,11 @@ const useStyles = makeStyles({
   root: {
     maxWidth: 300,
     textAlign: 'center',
-    marginBottom: 30,
-    marginLeft: 10,
+    margin: 'auto 50px 30px',
   },
   image: {
     borderRadius: 50,
     marginBottom: 2,
-    overflow: 'hidden',
     height: 230,
   },
   button: {
@@ -42,7 +40,6 @@ export default function Product({ key, product }) {
           className={classes.image}
           component="img"
           alt="Imagen"
-          height="140"
           image="https://misanimales.com/wp-content/uploads/2016/10/crecen-los-gatos.jpg"
           title="Imagen"
         />

@@ -1,11 +1,11 @@
 import Product from './Product';
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import Grid from '@material-ui/core/Grid';
+import { Grid, Container } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    margin: 10,
+    marginTop: 80,
   },
 }));
 
@@ -72,14 +72,14 @@ export default function Products() {
   const classes = useStyles();
 
   return (
-    <Grid container className={classes.root} spacing={2}>
-      <Grid item xs={12} >
-        <Grid container justify="center">
-          {products.map((product) => (
-            <Product key={product.id} product={product} />
-          ))}
+      <Grid container className={classes.root}>
+        <Grid item xs={12}>
+          <Grid container justify="center">
+            {products.map((product) => (
+              <Product key={product.id} product={product} />
+            ))}
+          </Grid>
         </Grid>
       </Grid>
-    </Grid>
   );
 }
