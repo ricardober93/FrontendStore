@@ -80,12 +80,10 @@ const useStyles = makeStyles((theme) => ({
 export default function Navbar() {
   const classes = useStyles();
   const [numberOfNotifications, setNumberOfNotificationsFn] = useState(10);
-  const [mobileMoreAnchorElement, setMobileMoreAnchorElementFn] = useState(
-    null
-  );
+  const [mobileMoreAnchorElement, setMobileMoreAnchorElementFn] = useState(0);
 
   const handleMobileMenuCloseFn = () => {
-    setMobileMoreAnchorElementFn(null);
+    setMobileMoreAnchorElementFn(0);
   };
 
   const handleMobileMenuOpenFn = (e) => {

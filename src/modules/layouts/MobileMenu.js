@@ -3,7 +3,7 @@ import { IconButton, MenuItem, Menu } from "@material-ui/core";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 import Notification from "../components/Notification";
 import AvatarImage from "../components/AvatarImage";
-
+import PropType from "prop-types";
 export default function MobileMenu({
   mobileMenuId,
   numberOfNotifications,
@@ -48,3 +48,10 @@ export default function MobileMenu({
     </Menu>
   );
 }
+
+MobileMenu.propTypes = {
+  mobileMenuId: PropType.string.isRequired,
+  numberOfNotifications: PropType.number.isRequired,
+  mobileMoreAnchorElement: PropType.number.isRequired,
+  handleMobileMenuCloseFn: PropType.func.isRequired,
+};
