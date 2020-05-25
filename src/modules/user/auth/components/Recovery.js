@@ -13,8 +13,22 @@ import {
   import { useFormik } from "formik";
   import * as Yup from "yup";
   import React from "react";
+  import { makeStyles } from "@material-ui/core/styles";
+
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    height: '100%',
+    display:'grid',
+    alignContent: 'center',
+    justifyContent:'center',
+    
+  },
+ 
+}));
   
   function restoreData() {
+    const classes = useStyles();
     // formik para crear el formulario
     const formik = useFormik({
       initialValues: {
@@ -33,16 +47,15 @@ import {
     });
   
     return (
-      <Container  justify="center" alignItems="center" style={{ padding: 30 }}>
+      <Container height="100%" className={classes.root} style={{ padding: 30 }}>
          <style global jsx>{`
         html,
         body,
-        body > div:first-child,
-        div#__next,
-        div#__next > div,
-        div#__next > div > div {
-          height: 100%;
-        }
+        main,
+        div#__next {
+          height: 97%;
+        },
+        
       `}</style>
         {/* utilizar toda la altura de la pagina */}
         <Grid container justify="center" alignItems="center">
@@ -75,7 +88,7 @@ import {
                 </FormControl>
                 <Button
                   type="submit"
-                  fullWidth
+                  fullWidth="true"
                   variant="contained"
                   color="primary"
                   style={{ marginTop: 20 }}

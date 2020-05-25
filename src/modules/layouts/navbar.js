@@ -102,7 +102,7 @@ export default function Header() {
 
 
   const handleProfileMenuOpenFn = (event) => {
-    console.log('click..');
+    
   };
 
   const handleMobileMenuCloseFn = () => {

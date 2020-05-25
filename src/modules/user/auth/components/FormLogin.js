@@ -48,7 +48,7 @@ function Login() {
   });
 
   return (
-    <Container className={classes.root} style={{ padding: 30 }}>
+    <Container height="100%" className={classes.root} style={{ padding: 30 }}>
         <style global jsx>{`
         html,
         body,
