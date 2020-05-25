@@ -13,7 +13,10 @@ const useStyles = makeStyles({
     maxWidth: 300,
     textAlign: 'center',
     margin: 'auto 50px 30px',
+    border: 0,
+    backgroundColor: '#fafafa',
   },
+
   image: {
     borderRadius: 50,
     marginBottom: 2,
@@ -34,7 +37,7 @@ export default function Product({ key, product }) {
   const classes = useStyles();
 
   return (
-    <Card className={classes.root}>
+    <Card className={classes.root} variant="outlined">
       <CardActionArea className={classes.actionArea}>
         <CardMedia
           className={classes.image}
@@ -54,12 +57,12 @@ export default function Product({ key, product }) {
             {product.description}
           </Typography>
         </CardContent>
+        <CardActions className={classes.actions}>
+          <Button size="small" color="primary" className={classes.button}>
+            Learn More
+          </Button>
+        </CardActions>
       </CardActionArea>
-      <CardActions className={classes.actions}>
-        <Button size="small" color="primary" className={classes.button}>
-          Learn More
-        </Button>
-      </CardActions>
     </Card>
   );
 }
