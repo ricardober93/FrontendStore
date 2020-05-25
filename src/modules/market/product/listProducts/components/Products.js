@@ -1,15 +1,11 @@
 import Product from './Product';
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import GridList from '@material-ui/core/GridList';
+import Grid from '@material-ui/core/Grid';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    display: 'flex',
-    padding: 60,
-  },
-  girdlist: {
-    justifyContent: 'space-between',
+    margin: 10,
   },
 }));
 
@@ -76,12 +72,14 @@ export default function Products() {
   const classes = useStyles();
 
   return (
-    <div container className={classes.root}>
-      <GridList className={classes.girdlist}>
-        {products.map((product) => (
-          <Product key={product.id} product={product} />
-        ))}
-      </GridList>
-    </div>
+    <Grid container className={classes.root} spacing={2}>
+      <Grid item xs={12} >
+        <Grid container justify="center">
+          {products.map((product) => (
+            <Product key={product.id} product={product} />
+          ))}
+        </Grid>
+      </Grid>
+    </Grid>
   );
 }
