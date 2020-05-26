@@ -11,16 +11,10 @@ import {
   IconButton,
   Container,
 } from "@material-ui/core";
-// componente de Notificacion
-import Notification from "../components/Notification";
-// componetne de Avatar
-import AvatarImage from "../components/AvatarImage";
-// componente de busquedas
-import Search from "../components/Search";
-// componetne de MoblieMenu
 import MobileMenu from "./MobileMenu";
-// componente de Drawer
-import DrawerMenu from "./DrawerMenu";
+import Notification from "../components/Notification";
+import AvatarImage from "../components/AvatarImage";
+import Search from "../components/Search";
 
 const useStyles = makeStyles((theme) => ({
   grow: {
@@ -85,13 +79,8 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Navbar() {
   const classes = useStyles();
-  const [open, setOpenFn] = useState(false);
   const [numberOfNotifications, setNumberOfNotificationsFn] = useState(10);
   const [mobileMoreAnchorElement, setMobileMoreAnchorElementFn] = useState(0);
-
-  const handleDrawerOpenandCloseFn = () => {
-    setOpenFn(!open);
-  };
 
   const handleMobileMenuCloseFn = () => {
     setMobileMoreAnchorElementFn(0);
@@ -100,6 +89,7 @@ export default function Navbar() {
   const handleMobileMenuOpenFn = (e) => {
     setMobileMoreAnchorElementFn(e.currentTarget);
   };
+
   const menuId = "primary-search-account-menu";
   const mobileMenuId = "primary-search-account-menu-mobile";
 
@@ -117,7 +107,6 @@ export default function Navbar() {
                 edge="start"
                 className={classes.menuButton}
                 aria-label="open drawer"
-                onClick={handleDrawerOpenandCloseFn}
               >
                 <MenuIcon />
               </IconButton>
@@ -155,12 +144,6 @@ export default function Navbar() {
             </Toolbar>
           </Container>
         </AppBar>
-        <DrawerMenu
-          variant="temporary"
-          anchor="left"
-          open={open}
-          onClick={handleDrawerOpenandCloseFn}
-        />
         <MobileMenu
           mobileMenuId={mobileMenuId}
           numberOfNotifications={numberOfNotifications}
