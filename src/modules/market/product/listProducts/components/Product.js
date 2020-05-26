@@ -16,7 +16,6 @@ const useStyles = makeStyles({
     border: 0,
     backgroundColor: '#fafafa',
   },
-
   image: {
     borderRadius: 50,
     marginBottom: 2,
@@ -33,7 +32,7 @@ const useStyles = makeStyles({
   },
 });
 
-export default function Product({ key, product }) {
+export default function Product({ product }) {
   const classes = useStyles();
 
   return (
