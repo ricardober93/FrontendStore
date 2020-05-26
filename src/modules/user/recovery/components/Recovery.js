@@ -67,8 +67,6 @@ const useStyles = makeStyles((theme) => ({
               </Typography>
               <Typography
                 style={{ marginTop: 20 }}
-                color="textSecondary"
-                gutterBottom
               >
                 { messages.messages_restore }
               </Typography>

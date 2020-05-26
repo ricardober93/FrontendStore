@@ -1,16 +1,13 @@
-
-import PanelCustomization from '../src/modules/customization/pages/PanelCustomization'
-import { Provider } from 'react-redux';
-import store from '../src/store';
-
+import PanelCustomization from "../src/modules/customization/pages/PanelCustomization";
+import { Provider } from "react-redux";
+import store from "../src/store";
 
 function customization() {
-
-return (
+  return (
     <Provider store={store}>
-        <PanelCustomization />
+      <PanelCustomization />
     </Provider>
-    )
+  );
 }
 
-export default customization
+export default customization;

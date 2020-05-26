@@ -1,5 +1,5 @@
-import React  from 'react';
-import PropTypes from 'prop-types';
+import React from "react";
+import PropTypes from "prop-types";
 
 import Input from "@material-ui/core/Input";
 
@@ -23,13 +23,12 @@ import Input from "@material-ui/core/Input";
 
 
 InputForm.propTypes = {
-    type:PropTypes.string,
-    id: PropTypes.string,
-    name: PropTypes.string.isRequired,
-    onChange: PropTypes.func.isRequired,
-    onBlur:PropTypes.func.isRequired,
-    value:PropTypes.string.isRequired
-}
+  type: PropTypes.string,
+  id: PropTypes.string,
+  name: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired,
+  onBlur: PropTypes.func.isRequired,
+  value: PropTypes.string.isRequired,
+};
 
 export default InputForm;
-
