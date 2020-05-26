@@ -59,7 +59,7 @@ function Login() {
         
       `}</style>
     {/* utilizar toda la altura de la pagina */}     
-      <Grid container >
+      <Grid container height="100%"  >
         <Card padding={2}>
           <CardContent>
             <Typography
