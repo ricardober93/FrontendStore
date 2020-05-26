@@ -56,12 +56,12 @@ export default function Product({ product }) {
             {product.description}
           </Typography>
         </CardContent>
-        <CardActions className={classes.actions}>
-          <Button size="small" color="primary" className={classes.button}>
-            Learn More
-          </Button>
-        </CardActions>
       </CardActionArea>
+      <CardActions className={classes.actions}>
+        <Button size="small" color="primary" className={classes.button}>
+          Learn More
+        </Button>
+      </CardActions>
     </Card>
   );
 }

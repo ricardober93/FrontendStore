@@ -54,42 +54,35 @@ const products = [
   },
   {
     id: 7,
-    name: 'nombre1',
+    name: 'nombr7',
     category: 'categoria',
     description:
       "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.",
   },
   {
     id: 8,
-    name: 'nombre2',
+    name: 'nombre8',
     category: 'categoria',
     description:
       "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.",
   },
   {
     id: 9,
-    name: 'nombre3',
+    name: 'nombre9',
     category: 'categoria',
     description:
       "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.",
   },
   {
     id: 10,
-    name: 'nombre4',
+    name: 'nombre10',
     category: 'categoria',
     description:
       "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.",
   },
   {
     id: 11,
-    name: 'nombre5',
-    category: 'categoria',
-    description:
-      "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.",
-  },
-  {
-    id: 12,
-    name: 'nombre6',
+    name: 'nombre11',
     category: 'categoria',
     description:
       "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.",
@@ -103,9 +96,12 @@ export default function Products() {
     <Grid container className={classes.root}>
       <Grid item xs={12} container justify="center">
         {products.length !== 0
-          ? products.map((product) => (
-              <Product key={product.id} product={product} />
-            ))
+          ? products.map(
+              (product) => (
+                console.log(product),
+                (<Product key={product.id} product={product} />)
+              )
+            )
           : null}
       </Grid>
     </Grid>
