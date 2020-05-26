@@ -1,117 +1,108 @@
 import React, { useState } from "react";
 import CssBaseline from "@material-ui/core/CssBaseline";
-import AppBar from "@material-ui/core/AppBar";
-import Toolbar from "@material-ui/core/Toolbar";
-import IconButton from "@material-ui/core/IconButton";
-import Typography from "@material-ui/core/Typography";
-import InputBase from "@material-ui/core/InputBase";
-import Badge from "@material-ui/core/Badge";
 import MenuIcon from "@material-ui/icons/Menu";
-import SearchIcon from "@material-ui/icons/Search";
-import AccountCircle from "@material-ui/icons/AccountCircle";
-import NotificationsIcon from "@material-ui/icons/Notifications";
 import MoreIcon from "@material-ui/icons/MoreVert";
-import { fade, makeStyles } from "@material-ui/core/styles";
-
-
-// MoblieMenu
+import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
+import { makeStyles } from "@material-ui/core/styles";
+import {
+  AppBar,
+  Toolbar,
+  Typography,
+  IconButton,
+  Container,
+} from "@material-ui/core";
+// componente de Notificacion
+import Notification from "../components/Notification";
+// componetne de Avatar
+import AvatarImage from "../components/AvatarImage";
+// componente de busquedas
+import Search from "../components/Search";
+// componetne de MoblieMenu
 import MobileMenu from "./MobileMenu";
-
-//Drawer
+// componente de Drawer
 import DrawerMenu from './DrawerMenu'
 
 const useStyles = makeStyles((theme) => ({
-  root: {display: 'flex'},
   grow: {
     flexGrow: 1,
+    color: "white",
+  },
+  navbar: {
+    backgroundColor: "white",
   },
   menuButton: {
     marginRight: theme.spacing(2),
+    color: "#665C84",
   },
   title: {
-    display: 'none',
-    [theme.breakpoints.up('sm')]: {
-      display: 'block',
+    color: "#665C84",
+    display: "none",
+    [theme.breakpoints.up("sm")]: {
+      display: "inline-block",
     },
   },
-  search: {
-    position: 'relative',
-    borderRadius: theme.shape.borderRadius,
-    backgroundColor: fade(theme.palette.common.white, 0.15),
-    '&:hover': {
-      backgroundColor: fade(theme.palette.common.white, 0.25),
-    },
-    marginRight: theme.spacing(2),
-    marginLeft: 0,
-    width: '100%',
-    [theme.breakpoints.up('sm')]: {
-      marginLeft: theme.spacing(3),
-      width: 'auto',
+  cart: {
+    overflow: "auto",
+    width: "auto",
+    padding: 0,
+    margin: 0,
+    marginRight: "20px",
+    [theme.breakpoints.down(600)]: {
+      display: "none",
     },
   },
-  searchIcon: {
-    padding: theme.spacing(0, 2),
-    height: '100%',
-    position: 'absolute',
-    pointerEvents: 'none',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  inputRoot: {
-    color: 'inherit',
-  },
-  inputInput: {
-    padding: theme.spacing(1, 1, 1, 0),
-    // vertical padding + font size from searchIcon
-    paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
-    transition: theme.transitions.create('width'),
-    width: '100%',
-    [theme.breakpoints.up('md')]: {
-      width: '20ch',
+  cartText: {
+    display: "inline-block",
+    padding: "1px 8px",
+    margin: 0,
+    marginTop: "10px",
+    marginRight: "4px",
+    float: "right",
+    borderRadius: "258px",
+    backgroundColor: "#F3F3F3",
+    color: "#BFBFBF",
+    fontWeight: "bold",
+    fontSize: "12px",
+    lineHeight: "16px",
+    [theme.breakpoints.down(600)]: {
+      display: "none",
     },
   },
   sectionDesktop: {
-    display: 'none',
-    [theme.breakpoints.up('md')]: {
-      display: 'flex',
+    display: "none",
+    [theme.breakpoints.up("sm")]: {
+      display: "flex",
     },
   },
   sectionMobile: {
-    display: 'flex',
-    [theme.breakpoints.up('md')]: {
-      display: 'none',
+    color: "#665C84",
+    display: "flex",
+    [theme.breakpoints.up("sm")]: {
+      display: "none",
     },
   },
 }));
 
 export default function Header() {
   const classes = useStyles();
-
-  const [open, setOpen] = useState(false);
-  const [anchorEl, setAnchorElFn] = useState(null);
-  const [mobileMoreAnchorEl, setMobileMoreAnchorElFn] = useState(null);
-  const [quatityNotifications, setQuatityNotificationsFn] = useState(0);
-
-  const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
+  const [open, setOpenFn] = useState(false);
+  const [numberOfNotifications, setNumberOfNotificationsFn] = useState(10);
+  const [mobileMoreAnchorElement, setMobileMoreAnchorElementFn] = useState(0);
 
 
   const handleDrawerOpenandCloseFn = () => {
-    setOpen(!open);
+    setOpenFn(!open);
   };
 
-
-  const handleProfileMenuOpenFn = (event) => {
-    
-  };
 
   const handleMobileMenuCloseFn = () => {
-    setMobileMoreAnchorElFn(null);
+    setMobileMoreAnchorElementFn(0);
   };
 
-  const handleMobileMenuOpenFn = (event) => {
-    setMobileMoreAnchorElFn(event.currentTarget);
+  const handleMobileMenuOpenFn = (e) => {
+    setMobileMoreAnchorElementFn(e.currentTarget);
   };
+
 
   const menuId = "primary-search-account-menu";
   const mobileMenuId = "primary-search-account-menu-mobile";
@@ -120,69 +111,54 @@ export default function Header() {
       <div> 
       <CssBaseline />
       <div className={classes.grow}>
-        <AppBar position="static">
-          <Toolbar>
-            <IconButton
-              edge="start"
-              className={classes.menuButton}
-              color="inherit"
-              aria-label="open drawer"
-              onClick={()=>  handleDrawerOpenandCloseFn() }
-            >
-              <MenuIcon />
-            </IconButton>
-            <Typography className={classes.title} variant="h6" noWrap>
-              E-comerce
-            </Typography>
-            <div className={classes.search}>
-              <div className={classes.searchIcon}>
-                <SearchIcon />
+        <AppBar className={classes.navbar} position="static">
+          <Container>
+            <div className={classes.cart}>
+              <p className={classes.cartText}>Calle 4 No. 65-13, Valledupar</p>
+            </div>
+            <Toolbar>
+              <IconButton
+                edge="start"
+                className={classes.menuButton}
+                aria-label="open drawer"
+                onClick={handleDrawerOpenandCloseFn}
+              >
+                <MenuIcon />
+              </IconButton>
+              <Typography className={classes.title} variant="h6" noWrap>
+                E-Commerce
+              </Typography>
+              <Search />
+              <div className={classes.grow} />
+              <div className={classes.sectionDesktop}>
+                <IconButton aria-label="cart">
+                  <ShoppingCartIcon />
+                </IconButton>
+                <IconButton aria-label="show new notifications">
+                  <Notification numberOfNotifications={numberOfNotifications} />
+                </IconButton>
+                <IconButton
+                  edge="end"
+                  aria-label="account of current user"
+                  aria-controls={menuId}
+                  aria-haspopup="true"
+                >
+                  <AvatarImage />
+                </IconButton>
               </div>
-              <InputBase
-                placeholder="Search…"
-                classes={{
-                  root: classes.inputRoot,
-                  input: classes.inputInput,
-                }}
-                inputProps={{ "aria-label": "search" }}
-              />
-            </div>
-            <div className={classes.grow} />
-            <div className={classes.sectionDesktop}>
-              <IconButton aria-label="show new notifications" color="inherit">
-                {quatityNotifications ? (
-                  <Badge badgeContent={quatityNotifications} color="secondary">
-                    <NotificationsIcon />
-                  </Badge>
-                ) : (
-                  <NotificationsIcon />
-                )}
-              </IconButton>
-              <IconButton
-                edge="end"
-                aria-label="account of current user"
-                aria-controls={menuId}
-                aria-haspopup="true"
-                onClick={handleProfileMenuOpenFn()}
-                color="inherit"
-              >
-                <AccountCircle />
-              </IconButton>
-            </div>
-            <div className={classes.sectionMobile}>
-              <IconButton
-                aria-label="show more"
-                aria-controls={mobileMenuId}
-                aria-haspopup="true"
-                onClick={handleMobileMenuOpenFn}
-                color="inherit"
-              >
-                <MoreIcon />
-              </IconButton>
-            </div>
-          </Toolbar>
-        </AppBar>
-      
+              <div className={classes.sectionMobile}>
+                <IconButton
+                  aria-label="show more"
+                  aria-controls={mobileMenuId}
+                  aria-haspopup="true"
+                  onClick={handleMobileMenuOpenFn}
+                >
+                  <MoreIcon />
+                </IconButton>
+              </div>
+            </Toolbar>
+          </Container>
+        </AppBar>     
 
           <DrawerMenu
             variant="temporary"
@@ -191,12 +167,10 @@ export default function Header() {
             onClick={handleDrawerOpenandCloseFn}
           />  
 
-        <MobileMenu
-          isMobileMenuOpen={isMobileMenuOpen}
-          quatityNotifications={quatityNotifications}
-          handleProfileMenuOpenFn={handleProfileMenuOpenFn}
-          mobileMoreAnchorEl={mobileMoreAnchorEl}
+<MobileMenu
           mobileMenuId={mobileMenuId}
+          numberOfNotifications={numberOfNotifications}
+          mobileMoreAnchorElement={mobileMoreAnchorElement}
           handleMobileMenuCloseFn={handleMobileMenuCloseFn}
         />
       </div>
