@@ -4,6 +4,8 @@ import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 import Notification from "../components/Notification";
 import AvatarImage from "../components/AvatarImage";
 import PropType from "prop-types";
+import { useSelector } from "react-redux";
+
 export default function MobileMenu({
   mobileMenuId,
   numberOfNotifications,
@@ -11,6 +13,7 @@ export default function MobileMenu({
   handleMobileMenuCloseFn,
 }) {
   const isMobileMenuOpen = Boolean(mobileMoreAnchorElement);
+  const messages = useSelector((state) => state.language.messages.mobile_menu);
 
   return (
     <Menu
@@ -26,13 +29,13 @@ export default function MobileMenu({
         <IconButton aria-label="show new notifications" color="inherit">
           <ShoppingCartIcon style={{ color: "#665C84" }} />
         </IconButton>
-        <p>Cart</p>
+        <p>{messages.cart}</p>
       </MenuItem>
       <MenuItem>
         <IconButton aria-label="show new notifications" color="inherit">
           <Notification numberOfNotifications={numberOfNotifications} />
         </IconButton>
-        <p>Notifications</p>
+        <p>{messages.notifications}</p>
       </MenuItem>
       <MenuItem>
         <IconButton
@@ -43,7 +46,7 @@ export default function MobileMenu({
         >
           <AvatarImage />
         </IconButton>
-        <p>Profile</p>
+        <p>{messages.profile}</p>
       </MenuItem>
     </Menu>
   );

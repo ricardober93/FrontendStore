@@ -1,6 +1,7 @@
 import SearchIcon from "@material-ui/icons/Search";
 import { InputBase } from "@material-ui/core";
 import { fade, makeStyles } from "@material-ui/core/styles";
+import { useSelector } from "react-redux";
 
 const useStyles = makeStyles((theme) => ({
   search: {
@@ -47,13 +48,15 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Search() {
   const classes = useStyles();
+  const messages = useSelector((state) => state.language.messages.search);
+
   return (
     <div className={classes.search}>
       <div className={classes.searchIcon}>
         <SearchIcon />
       </div>
       <InputBase
-        placeholder="Search…"
+        placeholder={messages.placeholder}
         classes={{
           root: classes.inputRoot,
           input: classes.inputInput,

@@ -1,5 +1,13 @@
 // ACA ESTARIAN MENSAJES EN Español
 export const messagesSpanish = {
+  mobile_menu: {
+    cart: "Carrito",
+    notifications: "Notificaciones",
+    profile: "Perfil",
+  },
+  search: {
+    placeholder: "Buscar...",
+  },
   panel_customization_title: "Panel de configuración",
   panel_customization_color_title: "Colores",
   panel_customization_color_subtitle:
@@ -40,6 +48,14 @@ export const messagesSpanish = {
 
 // ACA ESTARIAN MENSAJES EN INGLES
 export const messagesEnglish = {
+  mobile_menu: {
+    cart: "Cart",
+    notifications: "Notifications",
+    profile: "Profile",
+  },
+  search: {
+    placeholder: "Search...",
+  },
   panel_customization_title: "Configuration panel",
   panel_customization_color_title: "Colors",
   panel_customization_color_subtitle: "Platform color settings.",
@@ -77,6 +93,14 @@ export const messagesEnglish = {
 
 // ACA ESTARIAN MENSAJES EN PORTUGUES
 export const messagesPortuguese = {
+  mobile_menu: {
+    cart: "Carrinho",
+    notifications: "Notificações",
+    profile: "Perfil",
+  },
+  search: {
+    placeholder: "Pesquisar...",
+  },
   panel_customization_title: "Painel de configurações",
   panel_customization_color_title: "Cores",
   panel_customization_color_subtitle: "Configurações dos cores da plataforma.",

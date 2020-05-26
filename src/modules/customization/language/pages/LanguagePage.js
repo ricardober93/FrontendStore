@@ -1,12 +1,6 @@
-import React, { Fragment } from "react";
+import React from "react";
 import Language from "../components/Language";
 
-const LanguagePage = () => {
-  return (
-    <Fragment>
-      <Language />
-    </Fragment>
-  );
-};
-
-export default LanguagePage;
+export default function LanguagePage() {
+  return <Language />;
+}
