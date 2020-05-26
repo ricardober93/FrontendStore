@@ -1,4 +1,32 @@
 export const messagesSpanish = {
+    login:{
+      email_invalid:"Correo Invalido",
+      msg_shot:"Correo muy corto",
+      email_required:"requerido",
+      pass_short:"contraseña muy corta",
+      pass_requied:"requerida",
+      title:"Bienvenido",
+      btn_login:"iniciar sesión",
+      not_account:"No tienes una cuenta",
+      link_sing_up:"Registrate",
+
+    },
+    profile:{
+      title:"Perfil",
+      btn_changes_password:"Cambiar contraseña",
+      btn_method_paid:"Metodo de pago",
+      btn_save_changes:"Guardar cambios"
+    },
+    recovery:{
+      email_invalid:"Correo Invalido",
+      msg_shot:"Correo muy corto",
+      email_required:"requerido",
+      title:"Recuperar Contraseña",
+      messages_restore:"Entra a tu email y nosotros te enviaremos las instrucciones para restaurar la contraseña",
+      btn_resotre:"Restablecer contraseña",
+      check_span:"Recuerda revisar tu carpeta de spam",
+    },
+
     mobile_menu: {
       cart: "Carrito",
       notifications: "Notificaciones",

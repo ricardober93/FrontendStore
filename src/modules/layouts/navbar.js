@@ -20,7 +20,7 @@ import Search from "../components/Search";
 // componetne de MoblieMenu
 import MobileMenu from "./MobileMenu";
 // componente de Drawer
-import DrawerMenu from './DrawerMenu'
+import DrawerMenu from "./DrawerMenu";
 
 const useStyles = makeStyles((theme) => ({
   grow: {
@@ -89,11 +89,9 @@ export default function Header() {
   const [numberOfNotifications, setNumberOfNotificationsFn] = useState(10);
   const [mobileMoreAnchorElement, setMobileMoreAnchorElementFn] = useState(0);
 
-
   const handleDrawerOpenandCloseFn = () => {
     setOpenFn(!open);
   };
-
 
   const handleMobileMenuCloseFn = () => {
     setMobileMoreAnchorElementFn(0);
@@ -103,12 +101,11 @@ export default function Header() {
     setMobileMoreAnchorElementFn(e.currentTarget);
   };
 
-
   const menuId = "primary-search-account-menu";
   const mobileMenuId = "primary-search-account-menu-mobile";
 
   return (
-      <div> 
+    <div>
       <CssBaseline />
       <div className={classes.grow}>
         <AppBar className={classes.navbar} position="static">
@@ -158,16 +155,16 @@ export default function Header() {
               </div>
             </Toolbar>
           </Container>
-        </AppBar>     
+        </AppBar>
 
-          <DrawerMenu
-            variant="temporary"
-            anchor="left"
-            open={open}
-            onClick={handleDrawerOpenandCloseFn}
-          />  
+        <DrawerMenu
+          variant="temporary"
+          anchor="left"
+          open={open}
+          onClick={handleDrawerOpenandCloseFn}
+        />
 
-<MobileMenu
+        <MobileMenu
           mobileMenuId={mobileMenuId}
           numberOfNotifications={numberOfNotifications}
           mobileMoreAnchorElement={mobileMoreAnchorElement}

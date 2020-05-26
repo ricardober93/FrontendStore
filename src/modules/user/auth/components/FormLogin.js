@@ -13,7 +13,7 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import InputForm from "../../../components/InputForm";
 import { makeStyles } from "@material-ui/core/styles";
-
+import { useSelector } from "react-redux";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -28,6 +28,7 @@ const useStyles = makeStyles((theme) => ({
 
 function Login() {
   const classes = useStyles();
+  const messages = useSelector((state) => state.language.messages.login);
   // formik para crear el formulario
   const formik = useFormik({
     initialValues: {
@@ -37,10 +38,10 @@ function Login() {
     // Yup para las validaciones
     validationSchema: Yup.object({
       email: Yup.string()
-        .email("Invalid email address")
-        .min(6, "much short")
-        .required("Required"),
-      password: Yup.string().min(8, "much short").required("Required"),
+        .email(messages.email_invalid)
+        .min(6, messages.msg_shot)
+        .required(messages.email_required),
+      password: Yup.string().min(8, messages.pass_short).required(messages.pass_requied),
     }),
     onSubmit: (values) => {
       console.log(values);
@@ -66,7 +67,7 @@ function Login() {
               variant="h4"
               component="h4"
             >
-              Wellcome to Store
+             { messages.title }
             </Typography>
             <form style={{ marginTop: 20 }} onSubmit={formik.handleSubmit}>
               <FormControl fullWidth="true">
@@ -104,11 +105,11 @@ function Login() {
                 color="primary"
                 style={{ marginTop: 20 }}
               >
-                Login
+                { messages.btn_login }
               </Button>
             </form>
             <Typography style={{ marginTop: 20 }}>
-              Don´t have a account. Sing up
+            { messages.not_account }. { messages.link_sing_up }
             </Typography>
           </CardContent>
         </Card>

@@ -8,7 +8,8 @@ import {
   TextField,
   Paper,
 } from "@material-ui/core";
-import { green, purple } from "@material-ui/core/colors";
+import { green } from "@material-ui/core/colors";
+import { useSelector } from "react-redux";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -54,6 +55,7 @@ const useStyles = makeStyles((theme) => ({
 export default function Profile() {
   const [spacing, setSpacing] = React.useState(2);
   const classes = useStyles();
+  const messages = useSelector((state) => state.language.messages.profile);
   return (
     <Grid container className={classes.root} spacing={2}>
       <Grid item xs={12}>
@@ -67,7 +69,7 @@ export default function Profile() {
             <Paper className={classes.paper}>
               <div className={classes.div}>
                 <Typography variant="h4" colorPrimary>
-                  Profile
+                  { messages.title }
                 </Typography>
                 <Avatar
                   alt="Remy Sharp"
@@ -79,14 +81,14 @@ export default function Profile() {
                   color="primary"
                   className={classes.btn}
                 >
-                  Change Password
+                  { messages.btn_changes_password }
                 </Button>
                 <Button
                   variant="contained"
                   color="secondary"
                   className={classes.btn}
                 >
-                  Paid Method
+                  { messages.btn_method_paid }
                 </Button>
               </div>
             </Paper>
@@ -105,7 +107,7 @@ export default function Profile() {
           <Grid item>
             <div className={classes.paper}>
               <Button variant="contained" className={classes.palette}>
-                Save changes
+                { messages.btn_save_changes }
               </Button>
             </div>
           </Grid>

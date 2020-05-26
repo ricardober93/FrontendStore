@@ -1,12 +1,16 @@
 import FormLogin from "../src/modules/user/auth/components/FormLogin";
 import Layout from "../src/modules/layouts/layout";
-function login() {
+import { Provider } from "react-redux";
+import store from "../src/store";
 
+function login() {
   return (
-    <Layout>
-    <FormLogin />
-  </Layout> 
-  )
+    <Provider store={store}>
+      <Layout>
+        <FormLogin />
+      </Layout>
+    </Provider>
+  );
 }
 
 export default login;

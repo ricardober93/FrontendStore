@@ -14,7 +14,7 @@ import {
   import * as Yup from "yup";
   import React from "react";
   import { makeStyles } from "@material-ui/core/styles";
-
+  import { useSelector } from "react-redux";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -29,6 +29,7 @@ const useStyles = makeStyles((theme) => ({
   
   function restoreData() {
     const classes = useStyles();
+    const messages = useSelector((state) => state.language.messages.recovery);
     // formik para crear el formulario
     const formik = useFormik({
       initialValues: {
@@ -37,9 +38,9 @@ const useStyles = makeStyles((theme) => ({
       // Yup para las validaciones
       validationSchema: Yup.object({
         email: Yup.string()
-          .email("Invalid email address")
-          .min(6, "much short")
-          .required("Required"),
+          .email(messages.email_invalid)
+          .min(6, messages.msg_shot)
+          .required(messages.email_required),
       }),
       onSubmit: (values) => {
         console.log(values);
@@ -62,15 +63,14 @@ const useStyles = makeStyles((theme) => ({
           <Card padding={2}>
             <CardContent>
               <Typography variant="h4" component="h4">
-                Recuperar Contraseña
+                { messages.title }
               </Typography>
               <Typography
                 style={{ marginTop: 20 }}
                 color="textSecondary"
                 gutterBottom
               >
-                Enter your email and we will send you instructions to restore your
-                password.
+                { messages.messages_restore }
               </Typography>
               <form onSubmit={formik.handleSubmit}>
                 <FormControl fullWidth="true">
@@ -93,10 +93,10 @@ const useStyles = makeStyles((theme) => ({
                   color="primary"
                   style={{ marginTop: 20 }}
                 >
-                  Restablecer contraseña
+                  { messages.btn_resotre }
                 </Button>
                 <Typography style={{ marginTop: 20 }} color="textSecondary">
-                  Remember to look at your spam
+                { messages.check_span }
                 </Typography>
               </form>
             </CardContent>
