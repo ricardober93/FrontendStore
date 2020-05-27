@@ -23,6 +23,9 @@ const useStyles = makeStyles((theme) => ({
     justifyContent:'center',
     
   },
+  fullw:{
+    width:'100%'
+  },
  
 }));
 
@@ -49,7 +52,7 @@ function Login() {
   });
 
   return (
-    <Container height="100%" className={classes.root} style={{ padding: 30 }}>
+    <Container className={classes.root} style={{ padding: 30 }}>
         <style global jsx>{`
         html,
         body,
@@ -70,7 +73,7 @@ function Login() {
              { messages.title }
             </Typography>
             <form style={{ marginTop: 20 }} onSubmit={formik.handleSubmit}>
-              <FormControl fullWidth="true">
+              <FormControl className={classes.fullw}>
                 <InputLabel htmlFor="email">Email</InputLabel>
                 <InputForm
                   name="email"
@@ -84,7 +87,7 @@ function Login() {
                 ) : null}
               </FormControl>
 
-              <FormControl fullWidth="true">
+              <FormControl className={classes.fullw}>
                 <InputLabel htmlFor="password">Password</InputLabel>
                 <InputForm
                   type="password"
@@ -100,7 +103,7 @@ function Login() {
               </FormControl>
               <Button
                 type="submit"
-                fullWidth="true"
+                className={classes.fullw}
                 variant="contained"
                 color="primary"
                 style={{ marginTop: 20 }}
@@ -109,7 +112,7 @@ function Login() {
               </Button>
             </form>
             <Typography style={{ marginTop: 20 }}>
-            { messages.not_account }. { messages.link_sing_up }
+            { messages.not_account }.{ messages.link_sing_up }
             </Typography>
           </CardContent>
         </Card>
