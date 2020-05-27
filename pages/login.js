@@ -4,7 +4,7 @@ import { Provider } from "react-redux";
 import store from "../src/store";
 
 
-export default function profile() {
+export default function login() {
   return (
     <Provider store={store}>
         <FormLogin />
