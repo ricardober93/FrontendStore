@@ -13,8 +13,23 @@ import {
   import { useFormik } from "formik";
   import * as Yup from "yup";
   import React from "react";
+  import { makeStyles } from "@material-ui/core/styles";
+  import { useSelector } from "react-redux";
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    height: '100%',
+    display:'grid',
+    alignContent: 'center',
+    justifyContent:'center',
+    
+  },
+ 
+}));
   
   function restoreData() {
+    const classes = useStyles();
+    const messages = useSelector((state) => state.language.messages.recovery);
     // formik para crear el formulario
     const formik = useFormik({
       initialValues: {
@@ -23,9 +38,9 @@ import {
       // Yup para las validaciones
       validationSchema: Yup.object({
         email: Yup.string()
-          .email("Invalid email address")
-          .min(6, "much short")
-          .required("Required"),
+          .email(messages.email_invalid)
+          .min(6, messages.msg_shot)
+          .required(messages.email_required),
       }),
       onSubmit: (values) => {
         console.log(values);
@@ -33,31 +48,27 @@ import {
     });
   
     return (
-      <Container style={{ padding: 30 }}>
+      <Container height="100%" className={classes.root} style={{ padding: 30 }}>
+         <style global jsx>{`
+        html,
+        body,
+        main,
+        div#__next {
+          height: 97%;
+        },
+        
+      `}</style>
         {/* utilizar toda la altura de la pagina */}
-        <style global jsx>{`
-          html,
-          body,
-          body > div:first-child,
-          div#__next,
-          div#__next > div,
-          div#__next > div > div {
-            height: 100%;
-          }
-        `}</style>
-        <Grid container direction="row" justify="center" alignItems="center">
+        <Grid container justify="center" alignItems="center">
           <Card padding={2}>
             <CardContent>
               <Typography variant="h4" component="h4">
-                Recuperar Contraseña
+                { messages.title }
               </Typography>
               <Typography
                 style={{ marginTop: 20 }}
-                color="textSecondary"
-                gutterBottom
               >
-                Enter your email and we will send you instructions to restore your
-                password.
+                { messages.messages_restore }
               </Typography>
               <form onSubmit={formik.handleSubmit}>
                 <FormControl fullWidth="true">
@@ -75,15 +86,15 @@ import {
                 </FormControl>
                 <Button
                   type="submit"
-                  fullWidth
+                  fullWidth="true"
                   variant="contained"
                   color="primary"
                   style={{ marginTop: 20 }}
                 >
-                  Restablecer contraseña
+                  { messages.btn_resotre }
                 </Button>
                 <Typography style={{ marginTop: 20 }} color="textSecondary">
-                  Remember to look at your spam
+                { messages.check_span }
                 </Typography>
               </form>
             </CardContent>

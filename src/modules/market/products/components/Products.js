@@ -1,8 +1,7 @@
 import Product from "./Product";
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import { GridList} from "@material-ui/core/";
-
+import { GridList } from "@material-ui/core/";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -78,12 +77,11 @@ export default function Products() {
 
   return (
     <div className={classes.root}>
-      <GridList cols={3}>
+      <GridList cols={3}  alignItems="center"  md={12}>
         {products.map((product) => (
           <Product key={product.id} product={product} />
         ))}
       </GridList>
-
     </div>
   );
 }

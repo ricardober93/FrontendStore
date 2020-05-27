@@ -1,1 +1,1 @@
-export const SET_COLOR_PICKER = "SET_COLOR_PICKER"
+export const SET_COLOR_PICKER = "SET_COLOR_PICKER";

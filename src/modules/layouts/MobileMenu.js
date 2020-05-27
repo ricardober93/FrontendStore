@@ -1,22 +1,23 @@
 import React from "react";
-import IconButton from "@material-ui/core/IconButton";
-import Badge from "@material-ui/core/Badge";
-import MenuItem from "@material-ui/core/MenuItem";
-import Menu from "@material-ui/core/Menu";
-import AccountCircle from "@material-ui/icons/AccountCircle";
-import NotificationsIcon from "@material-ui/icons/Notifications";
+import { IconButton, MenuItem, Menu } from "@material-ui/core";
+import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
+import Notification from "../components/Notification";
+import AvatarImage from "../components/AvatarImage";
+import PropType from "prop-types";
+import { useSelector } from "react-redux";
 
 export default function MobileMenu({
-  isMobileMenuOpen,
-  quatityNotifications,
-  handleProfileMenuOpenFn,
-  mobileMoreAnchorEl,
   mobileMenuId,
+  numberOfNotifications,
+  mobileMoreAnchorElement,
   handleMobileMenuCloseFn,
 }) {
+  const isMobileMenuOpen = Boolean(mobileMoreAnchorElement);
+  const messages = useSelector((state) => state.language.messages.mobile_menu);
+
   return (
     <Menu
-      anchorEl={mobileMoreAnchorEl}
+      anchorEl={mobileMoreAnchorElement}
       anchorOrigin={{ vertical: "top", horizontal: "right" }}
       id={mobileMenuId}
       keepMounted
@@ -26,27 +27,34 @@ export default function MobileMenu({
     >
       <MenuItem>
         <IconButton aria-label="show new notifications" color="inherit">
-          {quatityNotifications ? (
-            <Badge badgeContent={quatityNotifications} color="secondary">
-              <NotificationsIcon />
-            </Badge>
-          ) : (
-            <NotificationsIcon />
-          )}
+          <ShoppingCartIcon style={{ color: "#665C84" }} />
         </IconButton>
-        <p>Notifications</p>
+        <p>{messages.cart}</p>
       </MenuItem>
-      <MenuItem onClick={handleProfileMenuOpenFn}>
+      <MenuItem>
+        <IconButton aria-label="show new notifications" color="inherit">
+          <Notification numberOfNotifications={numberOfNotifications} />
+        </IconButton>
+        <p>{messages.notifications}</p>
+      </MenuItem>
+      <MenuItem>
         <IconButton
           aria-label="account of current user"
           aria-controls="primary-search-account-menu"
           aria-haspopup="true"
           color="inherit"
         >
-          <AccountCircle />
+          <AvatarImage />
         </IconButton>
-        <p>Profile</p>
+        <p>{messages.profile}</p>
       </MenuItem>
     </Menu>
   );
 }
+
+MobileMenu.propTypes = {
+  mobileMenuId: PropType.string.isRequired,
+  numberOfNotifications: PropType.number.isRequired,
+  mobileMoreAnchorElement: PropType.number.isRequired,
+  handleMobileMenuCloseFn: PropType.func.isRequired,
+};
