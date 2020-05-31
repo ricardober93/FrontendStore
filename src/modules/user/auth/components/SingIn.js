@@ -1,146 +1,177 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import {
-    Container,
-    Grid,
-    Card,
-    CardContent,
-    FormControl,
-    InputLabel,
-    Input,
-    Button,
-    Typography,
-} from '@material-ui/core';
-import { Alert } from '@material-ui/lab';
-import { useFormik } from 'formik';
-import * as Yup from 'yup';
+  Container,
+  Grid,
+  Card,
+  CardContent,
+  FormControl,
+  InputLabel,
+  Input,
+  Button,
+  Typography,
+} from "@material-ui/core";
+import { Alert } from "@material-ui/lab";
+import { useFormik } from "formik";
+import * as Yup from "yup";
+import { makeStyles } from "@material-ui/core/styles";
+import { useSelector } from "react-redux";
+import ArrowBackIcon from "@material-ui/icons/ArrowBack";
+import Router from 'next/router'
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    height: "100%",
+    display: "grid",
+    alignContent: "center",
+    justifyContent: "center",
+    padding: theme.spacing(3),
+  },
+  formControl: {
+    width: "100%",
+    marginTop: theme.spacing(2),
+  },
+  form: {
+    marginTop: "20px",
+    height: "90%",
+  },
+  card: {
+    padding: theme.spacing(4),
+    borderRadius: "20px",
+    height: "420px",
+    minHeight: '420px',
+    maxHeight: "480px",
+    width: "380px",
+  },
+  btn: {
+    backgroundColor: "#665C84 !important",
+    width: "100%",
+    padding: "8px 30px",
+    marginTop: theme.spacing(5),
+    color: "#ffffff",
+    "&:hover": {
+      backgroundColor: "#FFBA5A !important",
+      color: "#000000",
+    },
+  },
+  singUp: {
+    color: "#8B8B8B",
+    fontSize: "14px",
+    marginTop: theme.spacing(2),
+  },
+  span: {
+    fontWeight: "bold",
+    cursor:'pointer'
+  },
+  back:{
+      cursor:'pointer'
+  }
+}));
 
 const Signin = () => {
+  const classes = useStyles();
+  //State del componente
+  const [user, saveUser] = useState({
+    name: "",
+    password: "",
+    email: "",
+  });
+  const formik = useFormik({
+    initialValues: {
+      email: "",
+      name: "",
+      password: "",
+    },
+    validationSchema: Yup.object({
+      name: Yup.string().required("Required"),
+      email: Yup.string()
+        .email("Invalid email address")
+        .min(6, "much short")
+        .required("Required"),
+      password: Yup.string().min(8, "much short").required("Required"),
+    }),
+    onSubmit: (values) => {
+      saveUser({
+        ...user,
+        name: values.name,
+        email: values.email,
+        password: values.password,
+      });
+    },
+  });
+  return (
+    <Container className={classes.root}>
+      <style global jsx>{`
+        html,
+        body,
+        main,
+        div#__next {
+          height: 100%;
+          background: #2193b0;  /* fallback for old browsers */
+          background: -webkit-linear-gradient(to right, #6dd5ed, #2193b0);  /* Chrome 10-25, Safari 5.1-6 */
+          background: linear-gradient(to right, #6dd5ed, #2193b0); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 
-    //State del componente
-    const [user, saveUser] = useState({
-        name: '',
-        lastname: '',
-        password: '',
-        email: '',
-
-
-    })
-    const formik = useFormik({
-        initialValues: {
-            email: '',
-            lastname: '',
-            name: '',
-            password: '',
         },
-        validationSchema: Yup.object({
-            name: Yup.string()
-                .required('Required'),
-            lastname: Yup.string()
-                .required('Required'),
-            email: Yup.string()
-                .email('Invalid email address')
-                .min(6, 'much short')
-                .required('Required'),
-            password: Yup.string()
-                .min(8, 'much short')
-                .required('Required')
-        }),
-        onSubmit: values => {
-            saveUser({
-                ...user,
-                name: values.name,
-                lastname: values.name,
-                email: values.email,
-                password: values.password
-            }
-            );
-        },
-
-    });
-    return (<Container style={{ padding: 40 }}>
-        <Grid
-            container justify={'center'}
-        >
-            <Grid item={true} item lg={6}>
-                <Card padding={2}>
-                    <CardContent>
-                        <Typography
-                            variant="h5"
-                            component="h4"
-                            justify="center"
-                            align="center"
-                        >
-                            Register
-                    </Typography>
-                        <form onSubmit={formik.handleSubmit}>
-                            <FormControl fullWidth={true}>
-                                <InputLabel htmlFor="name">Name</InputLabel>
-                                <Input
-                                    id="name"
-                                    name="name"
-                                    onChange={formik.handleChange}
-                                    onBlur={formik.handleBlur}
-                                    value={formik.values.name}
-                                />
-                                {formik.touched.name && formik.errors.name ? (
-                                    <Alert severity="error">{formik.errors.name}</Alert>
-                                ) : null}
-                            </FormControl>
-                            <FormControl fullWidth={true}>
-                                <InputLabel htmlFor="lastname">Lastname</InputLabel>
-                                <Input
-                                    id="lastname"
-                                    name="lastname"
-                                    onChange={formik.handleChange}
-                                    onBlur={formik.handleBlur}
-                                    value={formik.values.lastname}
-                                />
-                                {formik.touched.lastname && formik.errors.lastname ? (
-                                    <Alert severity="error">{formik.errors.lastname}</Alert>
-                                ) : null}
-                            </FormControl>
-                            <FormControl fullWidth={true}>
-                                <InputLabel htmlFor="email">Email</InputLabel>
-                                <Input
-                                    id="email"
-                                    name="email"
-                                    onChange={formik.handleChange}
-                                    onBlur={formik.handleBlur}
-                                    value={formik.values.email}
-                                />
-                                {formik.touched.password && formik.errors.password ? (
-                                    <Alert severity="error">{formik.errors.email}</Alert>
-                                ) : null}
-                            </FormControl>
-                            <FormControl fullWidth={true}>
-                                <InputLabel htmlFor="password">Password</InputLabel>
-                                <Input
-                                    id="password"
-                                    name="password"
-                                    type="password"
-                                    onChange={formik.handleChange}
-                                    onBlur={formik.handleBlur}
-                                    value={formik.values.password}
-                                />
-                                {formik.touched.password && formik.errors.password ? (
-                                    <Alert severity="error">{formik.errors.password}</Alert>
-                                ) : null}
-                            </FormControl>
-                            <Button
-                                type="submit"
-                                fullWidth
-                                variant="contained"
-                                color="primary"
-                                style={{ marginTop: 20 }}
-                            >
-                                Register
-                                </Button>
-                        </form>
-                    </CardContent>
-                </Card>
-            </Grid>
-        </Grid>
-    </Container>);
-}
+        
+      `}</style>
+      <Grid container>
+        <Card className={classes.card}>
+          <CardContent>
+            <Typography variant="h5" component="h4">
+              <ArrowBackIcon className={classes.back} onClick={() => Router.push('/')} /> Register
+            </Typography>
+            <form className={classes.form} onSubmit={formik.handleSubmit}>
+              <FormControl className={classes.formControl}>
+                <InputLabel htmlFor="name">Name</InputLabel>
+                <Input
+                  id="name"
+                  name="name"
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                  value={formik.values.name}
+                />
+                {formik.touched.name && formik.errors.name ? (
+                  <Alert severity="error">{formik.errors.name}</Alert>
+                ) : null}
+              </FormControl>             
+              <FormControl className={classes.formControl}>
+                <InputLabel htmlFor="email">Email</InputLabel>
+                <Input
+                  id="email"
+                  name="email"
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                  value={formik.values.email}
+                />
+                {formik.touched.password && formik.errors.password ? (
+                  <Alert severity="error">{formik.errors.email}</Alert>
+                ) : null}
+              </FormControl>
+              <FormControl className={classes.formControl}>
+                <InputLabel htmlFor="password">Password</InputLabel>
+                <Input
+                  id="password"
+                  name="password"
+                  type="password"
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                  value={formik.values.password}
+                />
+                {formik.touched.password && formik.errors.password ? (
+                  <Alert severity="error">{formik.errors.password}</Alert>
+                ) : null}
+              </FormControl>
+              <Button type="submit" variant="contained" className={classes.btn}>
+                Register
+              </Button>
+            </form>
+            <Typography className={classes.singUp}>
+            Tienes Cuenta. <span onClick={() => Router.push('/login')}  className={classes.span}>Inicia Sesión</span> 
+            </Typography>
+          </CardContent>
+        </Card>
+      </Grid>
+    </Container>
+  );
+};
 
 export default Signin;
