@@ -10,5 +10,5 @@ export default combineReducers({
   language: LanguageReducer,
   logo: LogoReducer,
   logoPreview: LogoPreviewReducer,
-  user: AuthReducer
+  user: AuthReducer,
 });

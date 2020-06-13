@@ -1,6 +1,4 @@
-
-
-export const signInAction = async(user) => ({
-        type: "SIGN_IN",
-        payload:user ,
+export const signInAction = (token) => ({
+        type: 'SING_IN',
+        payload:token ,
 })

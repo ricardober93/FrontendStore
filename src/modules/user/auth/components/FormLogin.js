@@ -1,3 +1,5 @@
+import React, {useState} from 'react'
+
 import {
   Container,
   Grid,
@@ -77,6 +79,8 @@ function Login() {
   const classes = useStyles();
   const messages = useSelector((state) => state.language.messages.login);
 
+  const [Error, setError] = useState("")
+
   // formik para crear el formulario
   const formik = useFormik({
     initialValues: {
@@ -94,11 +98,13 @@ function Login() {
     onSubmit: async (values) => {
       try {
         let user = await AuthLoginfn(values)
-        console.log(user)
-        dispatch(signInAction(user))
+        dispatch(signInAction(user.token))
       } catch (error) {
-        console.log(error)
+        setError(error)
+        Router.push('/login')
       }
+      Router.push('/')
+
     },
   });
 
@@ -127,6 +133,11 @@ function Login() {
             >
             <ArrowBackIcon className={classes.back} onClick={() => Router.push('/')} /> { messages.title }
             </Typography>
+            {
+              Error ?
+              <Alert severity="error">{formik.errors.password}</Alert>
+              : null
+            }
             <form className={classes.form} onSubmit={formik.handleSubmit}>
               <FormControl className={classes.formControl}>
                 <InputLabel htmlFor="email">Email</InputLabel>
