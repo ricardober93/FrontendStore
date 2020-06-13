@@ -17,6 +17,11 @@ import { useSelector } from "react-redux";
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import Router from 'next/router'
 
+import {useDispatch} from 'react-redux'
+import { signInAction } from "../store/AuthAction";
+import { AuthLoginfn } from "../providers/AuthProvider";
+
+
 const useStyles = makeStyles((theme) => ({
   root: {
     height: '100%',
@@ -68,8 +73,10 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function Login() {
+  const dispatch = useDispatch()
   const classes = useStyles();
   const messages = useSelector((state) => state.language.messages.login);
+
   // formik para crear el formulario
   const formik = useFormik({
     initialValues: {
@@ -82,10 +89,16 @@ function Login() {
         .email(messages.email_invalid)
         .min(6, messages.msg_shot)
         .required(messages.email_required),
-      password: Yup.string().min(8, messages.pass_short).required(messages.pass_requied),
+      password: Yup.string().min(6, messages.pass_short).required(messages.pass_requied),
     }),
-    onSubmit: (values) => {
-      console.log(values);
+    onSubmit: async (values) => {
+      try {
+        let user = await AuthLoginfn(values)
+        console.log(user)
+        dispatch(signInAction(user))
+      } catch (error) {
+        console.log(error)
+      }
     },
   });
 
