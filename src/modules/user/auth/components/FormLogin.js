@@ -98,12 +98,16 @@ function Login() {
     onSubmit: async (values) => {
       try {
         let user = await AuthLoginfn(values)
-        dispatch(signInAction(user.token))
+        if (user) {
+          dispatch(signInAction(user.token, user.token))
+        Router.push('/')
+        }
       } catch (error) {
         setError(error)
+        console.log(Error)
         Router.push('/login')
       }
-      Router.push('/')
+      
 
     },
   });
@@ -135,7 +139,7 @@ function Login() {
             </Typography>
             {
               Error ?
-              <Alert severity="error">{formik.errors.password}</Alert>
+              <Alert severity="error">{}</Alert>
               : null
             }
             <form className={classes.form} onSubmit={formik.handleSubmit}>

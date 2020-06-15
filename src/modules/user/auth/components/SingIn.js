@@ -18,6 +18,9 @@ import { useSelector } from "react-redux";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 import Router from 'next/router'
 
+import {AuthSignUpfn} from '../providers/AuthProvider'
+import {useDispatch} from 'react-redux'
+import { signUpAction } from "../store/AuthAction";
 const useStyles = makeStyles((theme) => ({
   root: {
     height: "100%",
@@ -69,15 +72,21 @@ const useStyles = makeStyles((theme) => ({
 
 const Signin = () => {
   const classes = useStyles();
+  const dispatch = useDispatch()
+  const messages = useSelector((state) => state.language.messages.login);
   //State del componente
   const [user, saveUser] = useState({
     name: "",
+    lastname: "",
     password: "",
     email: "",
+    role:1
   });
+  const [Error, setError] = useState("")
   const formik = useFormik({
     initialValues: {
       email: "",
+      lastname: "",
       name: "",
       password: "",
     },
@@ -85,17 +94,29 @@ const Signin = () => {
       name: Yup.string().required("Required"),
       email: Yup.string()
         .email("Invalid email address")
-        .min(6, "much short")
+        .min(3, "much short")
         .required("Required"),
-      password: Yup.string().min(8, "much short").required("Required"),
+      password: Yup.string().min(6, "much short").required("Required"),
     }),
-    onSubmit: (values) => {
+    onSubmit: async (values) => {
       saveUser({
         ...user,
         name: values.name,
+        lastname: values.lastname,
         email: values.email,
         password: values.password,
       });
+     try {
+      let res = await AuthSignUpfn(user)
+      if (res) {
+        console.log(res)
+        // dispatch(signUpAction(res)) 
+      }
+     } catch (error) {
+      setError(error)
+      console.log(Error)
+      Router.push('/singin')
+     }
     },
   });
   return (
@@ -132,7 +153,20 @@ const Signin = () => {
                 {formik.touched.name && formik.errors.name ? (
                   <Alert severity="error">{formik.errors.name}</Alert>
                 ) : null}
-              </FormControl>             
+              </FormControl>
+              <FormControl className={classes.formControl}>
+                <InputLabel htmlFor="Lastname">Last Name</InputLabel>
+                <Input
+                  id="Lastname"
+                  name="Lastname"
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                  value={formik.values.Lastname}
+                />
+                {formik.touched.Lastname && formik.errors.Lastname ? (
+                  <Alert severity="error">{formik.errors.Lastname}</Alert>
+                ) : null}
+              </FormControl>         
               <FormControl className={classes.formControl}>
                 <InputLabel htmlFor="email">Email</InputLabel>
                 <Input

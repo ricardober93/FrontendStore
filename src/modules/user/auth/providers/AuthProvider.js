@@ -1,11 +1,11 @@
 import axios from 'axios'
 
-const URL =  "http://localhost:8000";
+const URL =  "http://localhost:8000" ;
 
 export const AuthLoginfn = async(values) => {
   let res = await axios({
     method: 'post',
-    url: 'http://localhost:8000/signin',
+    url: `${URL}/signin`,
     data: {
       email:values.email,
       password:values.password,
@@ -15,17 +15,18 @@ export const AuthLoginfn = async(values) => {
     return  res.data.data
 }
 
-export const AuthSignUpfn = async ( values ) => {
+export const AuthSignUpfn = async ( user ) => {
   let res = await axios({
     method: 'post',
-    url: 'http://localhost:8000/signup',
+    url: `${URL}/signup`,
     data: {
-      name:values.name,
-      lastname:values.lastname,
-      email:values.email,
-      password:values.password
+      name:user.name,
+      lastname:user.lastname,
+      email:user.email,
+      password:user.password,
+      role:user.role
     },
-    headers:  {'Content-Type': 'application/json' }
+    // headers:  {'Content-Type': 'application/json' }
   })
   
   return res.data.data
