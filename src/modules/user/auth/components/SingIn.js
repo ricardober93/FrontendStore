@@ -16,10 +16,10 @@ import * as Yup from "yup";
 import { makeStyles } from "@material-ui/core/styles";
 import { useSelector } from "react-redux";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
-import Router from 'next/router'
+import Router from "next/router";
 
-import {AuthSignUpfn} from '../providers/AuthProvider'
-import {useDispatch} from 'react-redux'
+import { AuthSignUpfn } from "../providers/AuthProvider";
+import { useDispatch } from "react-redux";
 import { signUpAction } from "../store/AuthAction";
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -41,7 +41,7 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(4),
     borderRadius: "20px",
     height: "420px",
-    minHeight: '420px',
+    minHeight: "420px",
     maxHeight: "480px",
     width: "380px",
   },
@@ -63,16 +63,16 @@ const useStyles = makeStyles((theme) => ({
   },
   span: {
     fontWeight: "bold",
-    cursor:'pointer'
+    cursor: "pointer",
   },
-  back:{
-      cursor:'pointer'
-  }
+  back: {
+    cursor: "pointer",
+  },
 }));
 
 const Signin = () => {
   const classes = useStyles();
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const messages = useSelector((state) => state.language.messages.login);
   //State del componente
   const [user, saveUser] = useState({
@@ -80,9 +80,9 @@ const Signin = () => {
     lastname: "",
     password: "",
     email: "",
-    role:1
+    role: 1,
   });
-  const [Error, setError] = useState("")
+  const [Error, setError] = useState("");
   const formik = useFormik({
     initialValues: {
       email: "",
@@ -106,17 +106,17 @@ const Signin = () => {
         email: values.email,
         password: values.password,
       });
-     try {
-      let res = await AuthSignUpfn(user)
-      if (res) {
-        console.log(res)
-        // dispatch(signUpAction(res)) 
+      try {
+        let res = await AuthSignUpfn(user);
+        if (res) {
+          console.log(res);
+          // dispatch(signUpAction(res))
+        }
+      } catch (error) {
+        setError(error);
+        console.log(Error);
+        Router.push("/singin");
       }
-     } catch (error) {
-      setError(error)
-      console.log(Error)
-      Router.push('/singin')
-     }
     },
   });
   return (
@@ -136,10 +136,20 @@ const Signin = () => {
       `}</style>
       <Grid container>
         <Card className={classes.card}>
+          {Error ? (
+            <Alert onClose={() => {}} severity="error">
+              {}
+            </Alert>
+          ) : null}
           <CardContent>
             <Typography variant="h5" component="h4">
-              <ArrowBackIcon className={classes.back} onClick={() => Router.push('/')} /> Register
+              <ArrowBackIcon
+                className={classes.back}
+                onClick={() => Router.push("/")}
+              />{" "}
+              Register
             </Typography>
+
             <form className={classes.form} onSubmit={formik.handleSubmit}>
               <FormControl className={classes.formControl}>
                 <InputLabel htmlFor="name">Name</InputLabel>
@@ -166,7 +176,7 @@ const Signin = () => {
                 {formik.touched.Lastname && formik.errors.Lastname ? (
                   <Alert severity="error">{formik.errors.Lastname}</Alert>
                 ) : null}
-              </FormControl>         
+              </FormControl>
               <FormControl className={classes.formControl}>
                 <InputLabel htmlFor="email">Email</InputLabel>
                 <Input
@@ -199,7 +209,13 @@ const Signin = () => {
               </Button>
             </form>
             <Typography className={classes.singUp}>
-            Tienes Cuenta. <span onClick={() => Router.push('/login')}  className={classes.span}>Inicia Sesión</span> 
+              Tienes Cuenta.{" "}
+              <span
+                onClick={() => Router.push("/login")}
+                className={classes.span}
+              >
+                Inicia Sesión
+              </span>
             </Typography>
           </CardContent>
         </Card>

@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, { useState } from "react";
 
 import {
   Container,
@@ -16,70 +16,67 @@ import * as Yup from "yup";
 import InputForm from "../../../components/InputForm";
 import { makeStyles } from "@material-ui/core/styles";
 import { useSelector } from "react-redux";
-import ArrowBackIcon from '@material-ui/icons/ArrowBack';
-import Router from 'next/router'
+import ArrowBackIcon from "@material-ui/icons/ArrowBack";
+import Router from "next/router";
 
-import {useDispatch} from 'react-redux'
+import { useDispatch } from "react-redux";
 import { signInAction } from "../store/AuthAction";
 import { AuthLoginfn } from "../providers/AuthProvider";
 
-
 const useStyles = makeStyles((theme) => ({
   root: {
-    height: '100%',
-    display:'grid',
-    alignContent: 'center',
-    justifyContent:'center', 
-    padding: theme.spacing(3) 
+    height: "100%",
+    display: "grid",
+    alignContent: "center",
+    justifyContent: "center",
+    padding: theme.spacing(3),
   },
-  formControl:{
-    width:'100%',
-    marginTop:theme.spacing(2),
+  formControl: {
+    width: "100%",
+    marginTop: theme.spacing(2),
   },
-  form:{
-    marginTop:'20px',
-    height: '90%'
+  form: {
+    marginTop: "20px",
+    height: "90%",
   },
-  card:{
+  card: {
     padding: theme.spacing(4),
-    borderRadius:'20px',
-    height:'380px',
-    maxHeight: '400px',
-    width:'350px',
+    borderRadius: "20px",
+    height: "380px",
+    maxHeight: "400px",
+    width: "350px",
   },
-  btn:{
-    backgroundColor: '#665C84 !important',
-    width: '100%',
-    padding: '8px 30px',
+  btn: {
+    backgroundColor: "#665C84 !important",
+    width: "100%",
+    padding: "8px 30px",
     marginTop: theme.spacing(5),
-    color: '#ffffff',
-    '&:hover': { 
-      backgroundColor: '#FFBA5A !important',
-      color: '#000000',
+    color: "#ffffff",
+    "&:hover": {
+      backgroundColor: "#FFBA5A !important",
+      color: "#000000",
     },
   },
-  singUp:{
-    color: '#8B8B8B',
-    fontSize: '14px',
+  singUp: {
+    color: "#8B8B8B",
+    fontSize: "14px",
     marginTop: theme.spacing(2),
   },
   span: {
     fontWeight: "bold",
-    cursor:'pointer'
+    cursor: "pointer",
   },
-  back:{
-      cursor:'pointer'
-  }
-  
- 
+  back: {
+    cursor: "pointer",
+  },
 }));
 
 function Login() {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const classes = useStyles();
   const messages = useSelector((state) => state.language.messages.login);
 
-  const [Error, setError] = useState("")
+  const [Error, setError] = useState("");
 
   // formik para crear el formulario
   const formik = useFormik({
@@ -93,28 +90,28 @@ function Login() {
         .email(messages.email_invalid)
         .min(6, messages.msg_shot)
         .required(messages.email_required),
-      password: Yup.string().min(6, messages.pass_short).required(messages.pass_requied),
+      password: Yup.string()
+        .min(6, messages.pass_short)
+        .required(messages.pass_requied),
     }),
     onSubmit: async (values) => {
       try {
-        let user = await AuthLoginfn(values)
+        let user = await AuthLoginfn(values);
         if (user) {
-          dispatch(signInAction(user.token, user.token))
-        Router.push('/')
+          dispatch(signInAction(user.token, user.token));
+          Router.push("/");
         }
       } catch (error) {
-        setError(error)
-        console.log(Error)
-        Router.push('/login')
+        setError(error);
+        console.log(Error);
+        Router.push("/login");
       }
-      
-
     },
   });
 
   return (
     <Container className={classes.root}>
-        <style global jsx>{`
+      <style global jsx>{`
         html,
         body,
         main,
@@ -127,21 +124,23 @@ function Login() {
         },
         
       `}</style>
-    {/* utilizar toda la altura de la pagina */}     
+      {/* utilizar toda la altura de la pagina */}
       <Grid container>
         <Card className={classes.card}>
+          {Error ? (
+            <Alert onClose={() => {}} severity="error">
+              {}
+            </Alert>
+          ) : null}
           <CardContent>
-            <Typography
-              variant="h4"
-              component="h4"
-            >
-            <ArrowBackIcon className={classes.back} onClick={() => Router.push('/')} /> { messages.title }
+            <Typography variant="h4" component="h4">
+              <ArrowBackIcon
+                className={classes.back}
+                onClick={() => Router.push("/")}
+              />{" "}
+              {messages.title}
             </Typography>
-            {
-              Error ?
-              <Alert severity="error">{}</Alert>
-              : null
-            }
+
             <form className={classes.form} onSubmit={formik.handleSubmit}>
               <FormControl className={classes.formControl}>
                 <InputLabel htmlFor="email">Email</InputLabel>
@@ -171,16 +170,18 @@ function Login() {
                   <Alert severity="error">{formik.errors.password}</Alert>
                 ) : null}
               </FormControl>
-              <Button
-                type="submit"
-                className={classes.btn}
-                variant="contained"
-              >
-                { messages.btn_login }
+              <Button type="submit" className={classes.btn} variant="contained">
+                {messages.btn_login}
               </Button>
             </form>
             <Typography className={classes.singUp}>
-            { messages.not_account }. <span onClick={() => Router.push('/singin')} className={classes.span}>{ messages.link_sing_up }</span> 
+              {messages.not_account}.{" "}
+              <span
+                onClick={() => Router.push("/singin")}
+                className={classes.span}
+              >
+                {messages.link_sing_up}
+              </span>
             </Typography>
           </CardContent>
         </Card>

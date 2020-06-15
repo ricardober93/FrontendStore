@@ -8,11 +8,11 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function AvatarImage() {
+export default function AvatarImage(props) {
   const classes = useStyles();
   return (
     <Avatar
-      className={classes.small}
+      className={props ? props.classes : classes.small}
       alt="User name"
       src="/static/img/user.jpg"
     />
