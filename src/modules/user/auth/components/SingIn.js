@@ -9,15 +9,21 @@ import {
   Input,
   Button,
   Typography,
+  Collapse,
+  IconButton,
 } from "@material-ui/core";
-import { Alert } from "@material-ui/lab";
+import { Alert, AlertTitle } from "@material-ui/lab";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { makeStyles } from "@material-ui/core/styles";
 import { useSelector } from "react-redux";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
-import Router from 'next/router'
+import CloseIcon from "@material-ui/icons/Close";
+import { useRouter } from 'next/router'
 
+import { AuthSignUpfn } from "../providers/AuthProvider";
+import { useDispatch } from "react-redux";
+import { signUpAction } from "../store/AuthAction";
 const useStyles = makeStyles((theme) => ({
   root: {
     height: "100%",
@@ -38,7 +44,7 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(4),
     borderRadius: "20px",
     height: "420px",
-    minHeight: '420px',
+    minHeight: "420px",
     maxHeight: "480px",
     width: "380px",
   },
@@ -60,42 +66,51 @@ const useStyles = makeStyles((theme) => ({
   },
   span: {
     fontWeight: "bold",
-    cursor:'pointer'
+    cursor: "pointer",
   },
-  back:{
-      cursor:'pointer'
-  }
+  back: {
+    cursor: "pointer",
+  },
 }));
 
 const Signin = () => {
   const classes = useStyles();
-  //State del componente
-  const [user, saveUser] = useState({
-    name: "",
-    password: "",
-    email: "",
+  const dispatch = useDispatch();
+  const router = useRouter()
+  const messages = useSelector((state) => state.language.messages.login);
+  const [open, setOpen] = React.useState(false);
+  const [errors, setError] = useState({
+    error: false,
+    msg:''
   });
   const formik = useFormik({
     initialValues: {
       email: "",
+      lastname: "",
       name: "",
       password: "",
     },
     validationSchema: Yup.object({
-      name: Yup.string().required("Required"),
       email: Yup.string()
-        .email("Invalid email address")
-        .min(6, "much short")
-        .required("Required"),
-      password: Yup.string().min(8, "much short").required("Required"),
+        .email(messages.email_invalid)
+        .min(6, messages.msg_shot)
+        .required(messages.email_required),
+      password: Yup.string()
+        .min(6, messages.pass_short)
+        .required(messages.pass_requied),
     }),
-    onSubmit: (values) => {
-      saveUser({
-        ...user,
-        name: values.name,
-        email: values.email,
-        password: values.password,
-      });
+    onSubmit: async (values) => {
+      try {
+        let res = await AuthSignUpfn(values);
+          // dispatch(signUpAction(res.data.data))
+          router.push({
+            pathname: '/login',
+            query: { msg: res.msg },
+          })
+      } catch (error) {
+        setError(error);
+        router.push("/singin");
+      }
     },
   });
   return (
@@ -115,10 +130,38 @@ const Signin = () => {
       `}</style>
       <Grid container>
         <Card className={classes.card}>
+        {errors ? (
+            <Collapse in={open}>
+              <Alert
+              severity="error"
+                action={
+                  <IconButton
+                    aria-label="close"
+                    color="inherit"
+                    severity="error"
+                    size="small"
+                    onClick={() => {
+                      setOpen(false);
+                    }}
+                  >
+                    <CloseIcon fontSize="inherit" />
+                  </IconButton>
+                }
+              >
+               <AlertTitle>Error</AlertTitle>
+                {errors.msg}
+              </Alert>
+            </Collapse>
+          ) : null}
           <CardContent>
             <Typography variant="h5" component="h4">
-              <ArrowBackIcon className={classes.back} onClick={() => Router.push('/')} /> Register
+              <ArrowBackIcon
+                className={classes.back}
+                onClick={() => Router.push("/")}
+              />{" "}
+              Register
             </Typography>
+
             <form className={classes.form} onSubmit={formik.handleSubmit}>
               <FormControl className={classes.formControl}>
                 <InputLabel htmlFor="name">Name</InputLabel>
@@ -132,7 +175,20 @@ const Signin = () => {
                 {formik.touched.name && formik.errors.name ? (
                   <Alert severity="error">{formik.errors.name}</Alert>
                 ) : null}
-              </FormControl>             
+              </FormControl>
+              <FormControl className={classes.formControl}>
+                <InputLabel htmlFor="Lastname">Last Name</InputLabel>
+                <Input
+                  id="lastname"
+                  name="lastname"
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                  value={formik.values.lastname}
+                />
+                {formik.touched.lastname && formik.errors.lastname ? (
+                  <Alert severity="error">{formik.errors.lastname}</Alert>
+                ) : null}
+              </FormControl>
               <FormControl className={classes.formControl}>
                 <InputLabel htmlFor="email">Email</InputLabel>
                 <Input
@@ -165,7 +221,13 @@ const Signin = () => {
               </Button>
             </form>
             <Typography className={classes.singUp}>
-            Tienes Cuenta. <span onClick={() => Router.push('/login')}  className={classes.span}>Inicia Sesión</span> 
+              Tienes Cuenta.{" "}
+              <span
+                onClick={() => Router.push("/login")}
+                className={classes.span}
+              >
+                Inicia Sesión
+              </span>
             </Typography>
           </CardContent>
         </Card>
