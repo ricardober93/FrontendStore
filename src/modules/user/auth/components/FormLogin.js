@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import {
   Container,
@@ -22,7 +22,7 @@ import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 import CloseIcon from "@material-ui/icons/Close";
 import Router from "next/router";
 import head from 'next/head'
-
+import { useRouter } from 'next/router'
 import { useDispatch } from "react-redux";
 import { signInAction } from "../store/AuthAction";
 import { AuthLoginfn } from './../providers/AuthProvider'
@@ -78,10 +78,11 @@ const useStyles = makeStyles((theme) => ({
 function Login() {
   const dispatch = useDispatch();
   const classes = useStyles();
+  const router = useRouter()
   const messages = useSelector((state) => state.language.messages.login);
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
   const [errors, setError] = useState([]);
-
+  const [openQuery, setOpenQuery] = useState(false);
   // formik para crear el formulario
   const formik = useFormik({
     initialValues: {
@@ -104,7 +105,7 @@ function Login() {
         console.log(data.data.data.token);
         if (data) {
           dispatch(signInAction(data.data.data.token));
-          Router.push("/");
+          router.push("/");
       }
     }catch (msg) {
         setError(msg);
@@ -114,6 +115,12 @@ function Login() {
     },
   });
 
+ useEffect(() => {
+   if (router.query.msg) {
+    setOpenQuery(true)
+   }
+
+ }, [errors])
   return (
     <Container className={classes.root}>
       <style global jsx>
@@ -132,6 +139,29 @@ function Login() {
       {/* utilizar toda la altura de la pagina */}
       <Grid container>
         <Card className={classes.card}>
+        {
+          router.query ?
+          <Collapse in={openQuery}>
+              <Alert
+              severity="success"
+                action={
+                  <IconButton
+                    aria-label="close"
+                    severity="success"
+                    size="small"
+                    onClick={() => {
+                      setOpenQuery(false);
+                    }}
+                  >
+                    <CloseIcon fontSize="inherit" />
+                  </IconButton>
+                }
+              >
+                {router.query.msg}
+              </Alert>
+            </Collapse>
+            : nll
+        }
           {errors ? (
             <Collapse in={open}>
               <Alert

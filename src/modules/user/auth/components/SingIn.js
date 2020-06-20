@@ -19,7 +19,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import { useSelector } from "react-redux";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 import CloseIcon from "@material-ui/icons/Close";
-import Router from "next/router";
+import { useRouter } from 'next/router'
 
 import { AuthSignUpfn } from "../providers/AuthProvider";
 import { useDispatch } from "react-redux";
@@ -76,6 +76,7 @@ const useStyles = makeStyles((theme) => ({
 const Signin = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
+  const router = useRouter()
   const messages = useSelector((state) => state.language.messages.login);
   const [open, setOpen] = React.useState(false);
   const [errors, setError] = useState({
@@ -100,12 +101,15 @@ const Signin = () => {
     }),
     onSubmit: async (values) => {
       try {
-         await AuthSignUpfn(values);
+        let res = await AuthSignUpfn(values);
           // dispatch(signUpAction(res.data.data))
-          Router.push("/login" ,{msg : 'Usuario Creado'});
+          router.push({
+            pathname: '/login',
+            query: { msg: res.msg },
+          })
       } catch (error) {
         setError(error);
-        Router.push("/singin");
+        router.push("/singin");
       }
     },
   });
