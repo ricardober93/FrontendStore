@@ -9,19 +9,23 @@ import {
   InputLabel,
   Button,
   Typography,
+  Collapse,
+  IconButton,
 } from "@material-ui/core";
-import { Alert } from "@material-ui/lab";
+import { Alert, AlertTitle } from "@material-ui/lab";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import InputForm from "../../../components/InputForm";
 import { makeStyles } from "@material-ui/core/styles";
 import { useSelector } from "react-redux";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
+import CloseIcon from "@material-ui/icons/Close";
 import Router from "next/router";
+import head from 'next/head'
 
 import { useDispatch } from "react-redux";
 import { signInAction } from "../store/AuthAction";
-import { AuthLoginfn } from "../providers/AuthProvider";
+import { AuthLoginfn } from './../providers/AuthProvider'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -75,8 +79,8 @@ function Login() {
   const dispatch = useDispatch();
   const classes = useStyles();
   const messages = useSelector((state) => state.language.messages.login);
-
-  const [Error, setError] = useState("");
+  const [open, setOpen] = React.useState(false);
+  const [errors, setError] = useState([]);
 
   // formik para crear el formulario
   const formik = useFormik({
@@ -96,22 +100,24 @@ function Login() {
     }),
     onSubmit: async (values) => {
       try {
-        let user = await AuthLoginfn(values);
-        if (user) {
-          dispatch(signInAction(user.token, user.token));
+        let data = await AuthLoginfn(values);
+        console.log(data.data.data.token);
+        if (data) {
+          dispatch(signInAction(data.data.data.token));
           Router.push("/");
-        }
-      } catch (error) {
-        setError(error);
-        console.log(Error);
-        Router.push("/login");
+      }
+    }catch (msg) {
+        setError(msg);
+        console.log(errors);
+        setOpen(true);
       }
     },
   });
 
   return (
     <Container className={classes.root}>
-      <style global jsx>{`
+      <style global jsx>
+        {`
         html,
         body,
         main,
@@ -121,16 +127,32 @@ function Login() {
           background: -webkit-linear-gradient(to right, #6dd5ed, #2193b0);  /* Chrome 10-25, Safari 5.1-6 */
           background: linear-gradient(to right, #6dd5ed, #2193b0); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 
-        },
-        
-      `}</style>
+        },`}
+      </style>
       {/* utilizar toda la altura de la pagina */}
       <Grid container>
         <Card className={classes.card}>
-          {Error ? (
-            <Alert onClose={() => {}} severity="error">
-              {}
-            </Alert>
+          {errors ? (
+            <Collapse in={open}>
+              <Alert
+              severity="error"
+                action={
+                  <IconButton
+                    aria-label="close"
+                    severity="error"
+                    size="small"
+                    onClick={() => {
+                      setOpen(false);
+                    }}
+                  >
+                    <CloseIcon fontSize="inherit" />
+                  </IconButton>
+                }
+              >
+              <AlertTitle>Error</AlertTitle>
+                {errors.msg}
+              </Alert>
+            </Collapse>
           ) : null}
           <CardContent>
             <Typography variant="h4" component="h4">

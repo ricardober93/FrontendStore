@@ -9,13 +9,16 @@ import {
   Input,
   Button,
   Typography,
+  Collapse,
+  IconButton,
 } from "@material-ui/core";
-import { Alert } from "@material-ui/lab";
+import { Alert, AlertTitle } from "@material-ui/lab";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { makeStyles } from "@material-ui/core/styles";
 import { useSelector } from "react-redux";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
+import CloseIcon from "@material-ui/icons/Close";
 import Router from "next/router";
 
 import { AuthSignUpfn } from "../providers/AuthProvider";
@@ -74,15 +77,11 @@ const Signin = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
   const messages = useSelector((state) => state.language.messages.login);
-  //State del componente
-  const [user, saveUser] = useState({
-    name: "",
-    lastname: "",
-    password: "",
-    email: "",
-    role: 1,
+  const [open, setOpen] = React.useState(false);
+  const [errors, setError] = useState({
+    error: false,
+    msg:''
   });
-  const [Error, setError] = useState("");
   const formik = useFormik({
     initialValues: {
       email: "",
@@ -91,30 +90,21 @@ const Signin = () => {
       password: "",
     },
     validationSchema: Yup.object({
-      name: Yup.string().required("Required"),
       email: Yup.string()
-        .email("Invalid email address")
-        .min(3, "much short")
-        .required("Required"),
-      password: Yup.string().min(6, "much short").required("Required"),
+        .email(messages.email_invalid)
+        .min(6, messages.msg_shot)
+        .required(messages.email_required),
+      password: Yup.string()
+        .min(6, messages.pass_short)
+        .required(messages.pass_requied),
     }),
     onSubmit: async (values) => {
-      saveUser({
-        ...user,
-        name: values.name,
-        lastname: values.lastname,
-        email: values.email,
-        password: values.password,
-      });
       try {
-        let res = await AuthSignUpfn(user);
-        if (res) {
-          console.log(res);
-          // dispatch(signUpAction(res))
-        }
+         await AuthSignUpfn(values);
+          // dispatch(signUpAction(res.data.data))
+          Router.push("/login" ,{msg : 'Usuario Creado'});
       } catch (error) {
         setError(error);
-        console.log(Error);
         Router.push("/singin");
       }
     },
@@ -136,10 +126,28 @@ const Signin = () => {
       `}</style>
       <Grid container>
         <Card className={classes.card}>
-          {Error ? (
-            <Alert onClose={() => {}} severity="error">
-              {}
-            </Alert>
+        {errors ? (
+            <Collapse in={open}>
+              <Alert
+              severity="error"
+                action={
+                  <IconButton
+                    aria-label="close"
+                    color="inherit"
+                    severity="error"
+                    size="small"
+                    onClick={() => {
+                      setOpen(false);
+                    }}
+                  >
+                    <CloseIcon fontSize="inherit" />
+                  </IconButton>
+                }
+              >
+               <AlertTitle>Error</AlertTitle>
+                {errors.msg}
+              </Alert>
+            </Collapse>
           ) : null}
           <CardContent>
             <Typography variant="h5" component="h4">
@@ -167,14 +175,14 @@ const Signin = () => {
               <FormControl className={classes.formControl}>
                 <InputLabel htmlFor="Lastname">Last Name</InputLabel>
                 <Input
-                  id="Lastname"
-                  name="Lastname"
+                  id="lastname"
+                  name="lastname"
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
-                  value={formik.values.Lastname}
+                  value={formik.values.lastname}
                 />
-                {formik.touched.Lastname && formik.errors.Lastname ? (
-                  <Alert severity="error">{formik.errors.Lastname}</Alert>
+                {formik.touched.lastname && formik.errors.lastname ? (
+                  <Alert severity="error">{formik.errors.lastname}</Alert>
                 ) : null}
               </FormControl>
               <FormControl className={classes.formControl}>

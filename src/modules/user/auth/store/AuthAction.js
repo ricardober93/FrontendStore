@@ -1,9 +1,9 @@
-export const signInAction = (token, user) => ({
+export const signInAction = (token) => ({
         type: 'SING_IN',
-        payload:{token,user} ,
+        payload:token ,
 })
 
 export const signUpAction = (user) => ({
         type: 'SING_Up',
-        payload:{user} ,
+        payload:user ,
 })
