@@ -2,6 +2,7 @@ import Product from "./Product";
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { GridList } from "@material-ui/core/";
+import Spinner from '../components/Spinner'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -11,6 +12,17 @@ const useStyles = makeStyles((theme) => ({
   icon: {
     color: "rgba(255, 255, 255, 0.54)",
   },
+  gridList: {
+      width: '100%',
+      alignContent: 'center',
+      justifyContent: 'center'
+  },
+  center: {
+    width: '100%',
+    display: 'grid',
+    alignContent: 'center',
+    justifyContent: 'center'
+  }
 }));
 
 const products = [
@@ -77,11 +89,17 @@ export default function Products() {
 
   return (
     <div className={classes.root}>
-      <GridList cols={3} alignItems="center" md={12}>
-        {products.map((product) => (
+        { products ?
+          <GridList className={classes.gridList} col={3} md={8} sm={12}>
+          { products.map((product) => (
           <Product key={product.id} product={product} />
-        ))}
-      </GridList>
+          ))}
+          </GridList> :
+          <section  className={classes.center}>
+          <Spinner/>
+          </section>
+        }
+
     </div>
   );
 }
