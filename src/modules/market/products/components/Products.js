@@ -8,6 +8,7 @@ const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
     backgroundColor: theme.palette.background.paper,
+    padding: theme.spacing(3)
   },
   icon: {
     color: "rgba(255, 255, 255, 0.54)",
@@ -15,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
   gridList: {
       width: '100%',
       alignContent: 'center',
-      justifyContent: 'center'
+      justifyContent: 'center',
   },
   center: {
     width: '100%',
