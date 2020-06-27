@@ -30,20 +30,23 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Description = () => {
+const Description = (props) => {
+
+  const { product } = props;
   const classes = useStyles();
-  const [value, setValue] = useState(0);
+  const [value, setValue] = useState(product.raiting);
   const [quantity, setQuantity] = useState(0);
 
   return (
     <Container>
       <Grid container>
         <Grid xs={12} sm={6}>
-          <ProductImage />
+          <ProductImage product={product} />
         </Grid>
         <Grid xs={12} sm={6}>
-          <Typography>Categoria</Typography>
-          <Typography variant="h3">Nombre del producto 3RD</Typography>
+          <Typography>Categoria: {product.category.name}</Typography>
+          <Typography>Marca: {product.brand.name}</Typography>
+          <Typography variant="h3">{product.name}</Typography>
           <Box mb={3} borderColor="transparent">
             <Rating
               name="simple-controlled"
@@ -53,7 +56,7 @@ const Description = () => {
               }}
             />
           </Box>
-          <Typography variant="subtitle1">Nombre del producto 3RD</Typography>
+          <Typography variant="subtitle1">{product.description}</Typography>
           <Grid container>
             <Grid mt={3} xs={12} sm={2}>
               <Typography variant="subtitle1">Cantidad</Typography>
@@ -61,14 +64,14 @@ const Description = () => {
             <Grid xs={12} sm={4}>
               <ButtonGroup disableElevation variant="contained" color="primary">
                 <Button
-                  startIcon={<AddCircleOutlineIcon />}
+                  startIcon={<RemoveCircleOutlineIcon />}
                   onClick={() => {
                     quantity > 0 ? setQuantity(quantity - 1) : null;
                   }}
                 ></Button>
                 <Button>{quantity}</Button>
                 <Button
-                  startIcon={<RemoveCircleOutlineIcon />}
+                  startIcon={<AddCircleOutlineIcon />}
                   onClick={() => setQuantity(quantity + 1)}
                 ></Button>
               </ButtonGroup>
