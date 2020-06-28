@@ -26,70 +26,14 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const products = [
-  {
-    id: 1,
-    name: "nombre",
-    category: "categoria",
-    description:
-      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-  },
-  {
-    id: 2,
-    name: "nombre",
-    category: "categoria",
-    description:
-      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-  },
-  {
-    id: 3,
-    name: "nombre",
-    category: "categoria",
-    description:
-      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-  },
-  {
-    id: 4,
-    name: "nombre",
-    category: "categoria",
-    description:
-      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-  },
-  {
-    id: 5,
-    name: "nombre",
-    category: "categoria",
-    description:
-      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-  },
-  {
-    id: 6,
-    name: "nombre",
-    category: "categoria",
-    description:
-      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-  },
-  {
-    id: 7,
-    name: "nombre",
-    category: "categoria",
-    description:
-      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-  },
-  {
-    id: 8,
-    name: "nombre",
-    category: "categoria",
-    description:
-      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-  },
-];
+export default function Products(props) {
 
-export default function Products() {
+  const { products } = props;
   const classes = useStyles();
 
   return (
     <div className={classes.root}>
+<<<<<<< HEAD
         { products ?
           <GridList className={classes.gridList} col={3} md={8} sm={12}>
           { products.map((product) => (
@@ -101,6 +45,13 @@ export default function Products() {
           </section>
         }
 
+=======
+      <GridList cols={3} alignItems="center" md={12}>
+        {products.map((product) => (
+          <Product key={product._id} product={product} />
+        ))}
+      </GridList>
+>>>>>>> 2640e4fcbc179105ddacc2c224181434e5a8e8a9
     </div>
   );
 }

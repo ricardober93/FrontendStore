@@ -57,11 +57,13 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const ProductImage = () => {
+const ProductImage = (props) => {
+
+  const { product } = props;
   const classes = useStyles();
   const theme = useTheme();
   const [activeStep, setActiveStep] = React.useState(0);
-  const maxSteps = tutorialSteps.length;
+  const maxSteps = product.image.length;
 
   const handleNext = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
@@ -86,13 +88,13 @@ const ProductImage = () => {
           onChangeIndex={handleStepChange}
           enableMouseEvents
         >
-          {tutorialSteps.map((step, index) => (
-            <div align="center" key={step.label}>
+          {product.image.map((image, index) => (
+            <div align="center" key={image}>
               {Math.abs(activeStep - index) <= 2 ? (
                 <img
                   className={classes.img}
-                  src={step.imgPath}
-                  alt={step.label}
+                  src={image}
+                  alt={image}
                 />
               ) : null}
             </div>

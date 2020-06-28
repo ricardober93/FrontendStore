@@ -86,21 +86,36 @@ export default function Product({ key, product }) {
   const star = <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24"><path d="M12 .587l3.668 7.568 8.332 1.151-6.064 5.828 1.48 8.279-7.416-3.967-7.417 3.967 1.481-8.279-6.064-5.828 8.332-1.151z"/></svg>
 
   return (
+<<<<<<< HEAD
     <Link href="/product/[product_id]" as={`/product/${product.id}`}>
       <Card className={classes.root}>
+=======
+    <Link href="/product/[product_id]" as={`/product/${product._id}`}>
+      <Card className={classes.root} style={{ margin: 30 }}>
+>>>>>>> 2640e4fcbc179105ddacc2c224181434e5a8e8a9
         <CardActionArea>
           <CardMedia className={classes.img}
             component="img"
             alt="Imagen"
+<<<<<<< HEAD
             image="https://misanimales.com/wp-content/uploads/2016/10/crecen-los-gatos.jpg"
+=======
+            height="140"
+            image={product.image_preview}
+>>>>>>> 2640e4fcbc179105ddacc2c224181434e5a8e8a9
             title="Imagen"
           />
           <CardContent>
             <Typography gutterBottom className={classes.title}>
               {product.name}
             </Typography>
+<<<<<<< HEAD
             <Typography gutterBottom className={classes.category}>
               {product.category}
+=======
+            <Typography gutterBottom variant="h5" component="h2">
+              {product.category.name}
+>>>>>>> 2640e4fcbc179105ddacc2c224181434e5a8e8a9
             </Typography>
             <Typography className={classes.description} variant="body2" color="textSecondary" component="p">
               { descriptionFn(product.description) + '...'}
