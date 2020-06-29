@@ -35,7 +35,7 @@ export default function Products(props) {
     <div className={classes.root}>
       <GridList cols={3} className={classes.gridList} md={12}>
         {products.map((product) =>
-          !product ? (
+          product ? (
             <Product key={product._id} product={product} />
           ) : (
             <>
