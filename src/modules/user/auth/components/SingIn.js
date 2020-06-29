@@ -30,22 +30,19 @@ const useStyles = makeStyles((theme) => ({
     display: "grid",
     alignContent: "center",
     justifyContent: "center",
-    padding: theme.spacing(3),
+    padding: theme.spacing(1),
   },
   formControl: {
     width: "100%",
-    marginTop: theme.spacing(2),
+    marginTop: theme.spacing(1),
   },
   form: {
-    marginTop: "20px",
-    height: "90%",
+    marginTop: "10px",
+    height: "100%",
   },
   card: {
     padding: theme.spacing(4),
     borderRadius: "20px",
-    height: "420px",
-    minHeight: "420px",
-    maxHeight: "480px",
     width: "380px",
   },
   btn: {
