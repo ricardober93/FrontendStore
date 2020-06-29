@@ -12,125 +12,59 @@ import Link from "next/link";
 
 const useStyles = makeStyles({
   root: {
-    maxWidth: 250,
-    height: 330,
-    borderRadius: '20px',
-    margin: '15px',
+    Width: 320,
+    height: 340,
   },
   img:{
-    height: '130px',
-    width:250,
-    borderRadius: '20px',
+    height: 250,
+    width:'100%',
   },
   title:{
     width: '100%' ,
     fontSize: '1.6em',
     textTransform: 'uppercase',
-    textAlign: 'center',
-    fontWeight: 'Bold',
+    textAlign: 'left',
+    fontWeight: 'bold',
     marginTop:'0px',
     marginBottom:'0px'
   },
-  popularidad: {
-    width:'100%',
-    display:'flex',
-    justifyContent: 'center',
-    alignContent:'center',
+  price: {
     fontSize: '1.3em',
-    fontWeight: 'semibold',
-    marginTop:'3px'
-  },
-  star: {
-    display:'flex',
-    alignItems:'center',
-    justifyItems:'center',
-    marginRight:'6px'
-  },
-  number: {
-    margin: 0,
-    display:'flex',
-    alignItems:'center',
-    },
-  category: {
-    fontSize: '.9em',
-    textTransform: 'capitalize',
-    textAlign: 'center',
+    textAlign: 'left',
     fontWeight: 'regular',
-    marginTop: '2px'
   },
-  description: {
-    fontSize: '.8em',
-    textAlign: 'center'
-  },
-  action: {
-    backgroundColor: '#665C84',
-    textAlign:'center',
-    color: 'white',
-  },
-  button:{
-    width:'100%',
-    color: 'white',
-    display: 'flex',
-    justifyItems:'center'
-  }
 });
 
 
 export default function Product({ key, product }) {
   const classes = useStyles();
 
-  const descriptionFn = (string) => {
-    return string.substr(0,120)
-  }
+  // const descriptionFn = (string) => {
+  //   return string.substr(0,120)
+  // }
 
   const star = <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24"><path d="M12 .587l3.668 7.568 8.332 1.151-6.064 5.828 1.48 8.279-7.416-3.967-7.417 3.967 1.481-8.279-6.064-5.828 8.332-1.151z"/></svg>
 
   return (
-<<<<<<< HEAD
-    <Link href="/product/[product_id]" as={`/product/${product.id}`}>
-      <Card className={classes.root}>
-=======
     <Link href="/product/[product_id]" as={`/product/${product._id}`}>
       <Card className={classes.root} style={{ margin: 30 }}>
->>>>>>> 2640e4fcbc179105ddacc2c224181434e5a8e8a9
         <CardActionArea>
           <CardMedia className={classes.img}
             component="img"
             alt="Imagen"
-<<<<<<< HEAD
-            image="https://misanimales.com/wp-content/uploads/2016/10/crecen-los-gatos.jpg"
-=======
             height="140"
             image={product.image_preview}
->>>>>>> 2640e4fcbc179105ddacc2c224181434e5a8e8a9
             title="Imagen"
           />
           <CardContent>
             <Typography gutterBottom className={classes.title}>
               {product.name}
             </Typography>
-<<<<<<< HEAD
-            <Typography gutterBottom className={classes.category}>
-              {product.category}
-=======
-            <Typography gutterBottom variant="h5" component="h2">
-              {product.category.name}
->>>>>>> 2640e4fcbc179105ddacc2c224181434e5a8e8a9
+            <Typography gutterBottom  className={classes.price} variant="h5" component="h2">
+              $ 120.000
             </Typography>
-            <Typography className={classes.description} variant="body2" color="textSecondary" component="p">
-              { descriptionFn(product.description) + '...'}
-            </Typography>
-            <div className={classes.popularidad}>
-                <span className={classes.star}> {star}{star}{star}{star}{star} </span>
-                <p className={classes.number} >4.5</p>
-            </div>
           </CardContent>
         </CardActionArea>
-        <CardActions  className={classes.action}>
-          <Button className={classes.button} size="small">
-            Ver más
-          </Button>
-        </CardActions>
       </Card>
     </Link>
   );
