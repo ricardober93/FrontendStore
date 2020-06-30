@@ -1,47 +1,87 @@
 import React from "react";
+import Link from 'next/link'
 import { makeStyles } from "@material-ui/core/styles";
-
+import {Grid} from "@material-ui/core/";
+import { Search } from "@material-ui/icons";
 const useStyles = makeStyles((theme) => ({
   header: {
     display: "grid",
     height: 120,
     width:'100%',
-    alignContent: 'center',
-    justifyContent:'center',
+    marginRight: theme.spacing(2)
   },
   headerMenu:{
     width:500,
     display:'flex',
-    alignContent:'space-around'
-  }
+    alignContent:'center',
+    justifyContent:'space-around',
+    justifySelf:'flex-end',
+    padding: theme.spacing(2.3),
+    marginRight: theme.spacing(3)
+  },
+  mainMenu:{
+    width:'50%',
+    listStyle:'none',
+    display:'flex',
+    justifyContent:'space-around',
+    alignContent:'center',
+  },
+  item:{
+    color:'#969696',
+    fontSize: '1.3em',
+    textDecoration: 'none',
+    textTransform: 'none',
+    display:'flex',
+    alignSelf:'center'
+  },
+  search:{
+    width: '50%',
+    backgroundColor: '#EAEAEA',
+    borderRadius: 20,
+    display:'flex',
+    justifyContent: 'center',
+    alignContent: 'center'
+  },
+  searchInput:{
+    border:'none',
+    height: '100%',
+    width:'70%',
+    borderRadius: 20,
+    color: '#969696',
+    fontSize: '14px',
+    fontWeight: 'bold',
+    backgroundColor: '#EAEAEA',
+  },
+  Icon: {
+    height: 40,
+    color: "#665C84",
+  },
 }));
 
 export default function Nav() {
   const classes = useStyles();
   return (
-    <nav className={classes.header}>
-      <ul className={classes.headerMenu}>
-        <li className="items">
-          <a className="item active" href="#home">
-            Home
-          </a>
-        </li>
-        <li className="items">
-          <a className="item" href="#setting">
-            Setting
-          </a>
-        </li>
-      </ul>
-      <div className="search">
+    <Grid container className={classes.header}>
+      <nav className={classes.headerMenu}>
+      <div className={classes.mainMenu}>
+        <Link href="#">
+            <li  className={classes.item}>Home</li>
+        </Link>
+        <Link href="#"  >
+            <li className={classes.item}>Setting</li>
+        </Link>
+      </div>
+      <div className={classes.search}>
         <input
-          className="search__input"
+          className={classes.searchInput}
           type="search"
           name=""
-          placeholder="&nbsp; Search Report"
+          placeholder="Search Report"
         />
-        <i className="fas fa-search"></i>
+        <Search className={classes.Icon}/>
       </div>
-      <div className="navbar-responsive">
+      </nav>
+      <div className="navbarResponsive">
           <label id="non-display" for="toggle-main">
             <i className="fas fa-bars"></i>
           </label>
@@ -61,6 +101,6 @@ export default function Nav() {
             </a>
           </nav>
         </div>
-    </nav>
+    </Grid>
   );
 }
