@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 import Input from "@material-ui/core/Input";
 
- const InputForm = ({id, type, name, onChange, onBlur, value , variant, placeholder}) => {
+ const InputForm = ({id, type, name, onChange, onBlur, value , placeholder}) => {
     return (
         <div>
              <Input 
@@ -17,7 +17,6 @@ import Input from "@material-ui/core/Input";
                 onBlur={ onBlur } 
                 value={value}
                 placeholder={placeholder? placeholder : null}
-                variant={variant ? variant : null}
                 />
         </div>
     )
