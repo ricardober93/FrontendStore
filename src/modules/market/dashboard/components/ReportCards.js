@@ -7,19 +7,20 @@ const useStyles = makeStyles((theme) => ({
     height: 300,
     width: 230,
     display: "grid",
-    gridGap: 20,
+    gridGap: 10,
     alignSelf: "center",
+    justifyContent:'center'
   },
   card: {
-    height: 60,
+    height: 40,
+    width: 180,
     display: "flex",
     alignContent: "center",
     backgroundColor: "#ffffff",
     borderRadius: 30,
   },
   boxIcon: {
-    width: 60,
-    padding: 10,
+    width: 40,
     display: "flex",
     alignContent: "center",
     justifyContent: "center",
@@ -27,11 +28,14 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: 30,
   },
   Icon: {
-    height: 40,
+    height: 20,
+    display: "flex",
+    alignSelf: "center",
+    justifySelf: "center",
     color: "white",
   },
   textCard: {
-    padding: theme.spacing(1.5),
+    paddingLeft: theme.spacing(1.5),
     display:'grid',
     gridGap:0,
     },
@@ -41,7 +45,7 @@ const useStyles = makeStyles((theme) => ({
     },
     text2: {
       margin:0,
-      fontSize:18,
+      fontSize:15,
       fontWeight: 'regular'
     }
 }));

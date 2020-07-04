@@ -1,10 +1,12 @@
-import Layout from "../components/Layout";
+import Dashboard from "../components/Dashboard";
+import NabvarHome from "../components/NabvarHome";
 
 
 export default function OverView() {
   return (
-      <Layout>
+      <Dashboard>
+      <NabvarHome />
         Chart.js
-      </Layout>
+      </Dashboard>
   );
 }

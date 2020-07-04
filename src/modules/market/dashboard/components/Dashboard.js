@@ -5,19 +5,18 @@ import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({
   gridContainer: {
-    display: "grid",
-    gridTemplateColumns: "4fr 5fr",
-    gridGap:0,
+    display: "flex",
+
     height: "100vh",
     width: "100vw",
   },
   Column2:{
       display:'grid',
-      width: 780,
+      width: '100%',
       alignSelf:'start'
   }
 }));
-export default function Layout({children}) {
+export default function Dashboard({children}) {
     const classes = useStyles();
   return (
     <section className={classes.gridContainer}>

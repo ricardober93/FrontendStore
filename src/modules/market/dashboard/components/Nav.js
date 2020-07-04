@@ -6,7 +6,7 @@ import { Search } from "@material-ui/icons";
 const useStyles = makeStyles((theme) => ({
   header: {
     display: "grid",
-    height: 120,
+    height: 60,
     width:'100%',
     marginRight: theme.spacing(2)
   },
@@ -81,26 +81,6 @@ export default function Nav() {
         <Search className={classes.Icon}/>
       </div>
       </nav>
-      <div className="navbarResponsive">
-          <label id="non-display" for="toggle-main">
-            <i className="fas fa-bars"></i>
-          </label>
-          <input type="checkbox" id="toggle-main" />
-          <nav className="main__navigation">
-            <a className="nav__link active" href="#overview">
-              Overview
-            </a>
-            <a className="nav__link" href="#products">
-              Products
-            </a>
-            <a className="nav__link" href="#shipping">
-              Shipping
-            </a>
-            <a className="nav__link" href="#payment">
-              Payment
-            </a>
-          </nav>
-        </div>
     </Grid>
   );
 }
