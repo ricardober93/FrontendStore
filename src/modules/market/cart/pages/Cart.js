@@ -4,11 +4,12 @@ import { Container } from '@material-ui/core';
 import Product from '../components/Product';
 import EmptyCart from '../components/EmptyCart';
 import Subtotal from '../components/Subtotal';
+import '../styles/Cart.css';
 
 const Cart = () => {
 
   const productsInCart = useSelector(state => state.cart.products);
-  const messages = useSelector(state => state.language.messages);
+  const messages = useSelector(state => state.language.messages.cart);
   const [subtotal, setSubtotal] = useState([]);
   const [total, setTotal] = useState(productsInCart.reduce((sum, product) => parseFloat(sum) + parseFloat(product.subtotal), 0));
 
@@ -28,7 +29,7 @@ const Cart = () => {
     <Fragment>
       <Container>
         <h2 className="my-4">
-          {messages['cart_text_my']} <strong>{messages['cart_text_cart']}</strong>
+          {messages['my']} <strong>{messages['cart']}</strong>
         </h2>
 
         { productsInCart.length !== 0 

@@ -15,8 +15,8 @@ import { updateCartAction, removeProductCartAction } from '../../store/CartActio
 
 const Product = ({ product, setSubtotal, subtotal, setTotal }) => {
 
-  const messages = useSelector(state => state.language.messages);
-  const productsInCart = useSelector(state => state.cart.productsCart);
+  const messages = useSelector(state => state.language.messages.cart);
+  const productsInCart = useSelector(state => state.cart.products);
   const dispatch = useDispatch();
   const [quantity, setQuantity] = useState(product.quantity);
 
@@ -92,11 +92,11 @@ const Product = ({ product, setSubtotal, subtotal, setTotal }) => {
 
   const confirmRemoveProduct = (id) => {
     SweetAlert(
-      messages['cart_product_delete_question'],
+      messages['delete_question'],
       '',
       'warning',
-      messages['cart_product_delete_confirm'],
-      messages['cart_product_delete_cancel'],
+      messages['delete_confirm'],
+      messages['delete_cancel'],
       'confirmRemoveProduct',
       id
     )
@@ -104,26 +104,26 @@ const Product = ({ product, setSubtotal, subtotal, setTotal }) => {
 
   const confirmBuyProduct = () => {
     SweetAlert(
-      messages['cart_product_buy_question'],
+      messages['buy_question'],
       '',
       'warning',
-      messages['cart_product_buy_confirm'],
-      messages['cart_product_buy_cancel'],
+      messages['buy_confirm'],
+      messages['buy_cancel'],
       'confirmBuyProduct'
     )
   };
 
   const showSubtotal = () => {
     let index = productsInCart.indexOf(product);
-    subtotal.splice(index, 1, (product.subtotal * product.quantity).toFixed(2))
+    subtotal.splice(index, 1, (product.price * product.quantity).toFixed(2))
     setSubtotal(subtotal)
-    return (product.subtotal * product.quantity).toFixed(2)
+    return (product.price * product.quantity).toFixed(2)
   };
 /*  
     <Button
       className="btn btn-primary mr-1"
       onClick={() => confirmBuyProduct()}
-    >{messages['cart_product_buy']}</Button>
+    >{messages['buy']}</Button>
     */
 
   return (
@@ -132,7 +132,7 @@ const Product = ({ product, setSubtotal, subtotal, setTotal }) => {
         <Col md={3}>
           <Image
             className="img-fluid rounded mb-3 mb-md-0"
-            src={product.images[0].image}
+            src={product.image_preview}
             width={250}
             height={250}
             alt=""
@@ -149,7 +149,7 @@ const Product = ({ product, setSubtotal, subtotal, setTotal }) => {
                 startIcon={<RemoveCircleOutlineIcon />}
                 onClick={decrement}
               ></Button>
-              <Button>{quantity}</Button>
+              <Button>{product.quantity}</Button>
               <Button
                 startIcon={<AddCircleOutlineIcon />}
                 onClick={increment}
@@ -157,7 +157,7 @@ const Product = ({ product, setSubtotal, subtotal, setTotal }) => {
               <button
                 className="btn btn-danger ml-3"
                 onClick={() => confirmRemoveProduct(product.id)}
-              >{messages['cart_product_delete']}</button>
+              >{messages['delete']}</button>
             </ButtonGroup>
           </Grid>
           

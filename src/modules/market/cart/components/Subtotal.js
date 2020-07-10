@@ -37,8 +37,8 @@ const Subtotal = ({productsInCart, total}) => {
         ddn: '11',
         phone: '44131539'
     })
-    const messages = useSelector(state => state.languages.messages);
-    const user = useSelector(state => state.security.user);
+    const messages = useSelector(state => state.language.messages.cart);
+    const user = useSelector(state => state.user.user);
 
     const handleChange = (event) => {
         setForm({
@@ -64,8 +64,6 @@ const Subtotal = ({productsInCart, total}) => {
             user_id: user.id
         }
 
-        console.log(data)
-
         //CartProvider.createCart(data);
 
         //window.location.href = "https://api.whatsapp.com/send?phone="+ store.ddi + store.ddn + store.phone + "&text=HOME-MARKET%0A%0AHola%20acabo%20de%20realizar%20un%20pedido%0A%0ATipo%20de%20entrega:%20" + form.send + "%0A%0ANombre:%20" + form.name + "%0ADireccion:%20" + form.address + "%0ATOTAL: $%20" + total +"%0A%0A" + cartText;
@@ -90,7 +88,7 @@ const Subtotal = ({productsInCart, total}) => {
                     <MenuItem value={'Retiro en Sucursal'}>Retiro en Sucursal</MenuItem>
                 </Select>
             </FormControl>
-            <Button type="button" onClick={confirmBuy} className="btn btn-success col-md-2 mb-3 float-right">{messages['cart_product_buy']}</Button>
+            <Button type="button" onClick={confirmBuy} className="btn btn-success col-md-2 mb-3 float-right">{messages['buy']}</Button>
             { formSuccess ? <Typography variant="h6" color="error">*Campos obligatorios</Typography> : null}
             <br/>
             <br/>

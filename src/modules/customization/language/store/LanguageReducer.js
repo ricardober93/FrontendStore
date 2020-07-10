@@ -1,10 +1,10 @@
 import { messagesSpanish } from "../messages";
 
-// const currentLanguage = JSON.parse(localStorage.getItem("language"));
+const currentLanguage = JSON.parse(localStorage.getItem("language"));
 
 const initialState = {
-  language: "es",
-  messages: messagesSpanish,
+  language: currentLanguage ? currentLanguage.language : "es",
+  messages: currentLanguage ? currentLanguage.messages : messagesSpanish,
 };
 
 export default function (state = initialState, action) {
