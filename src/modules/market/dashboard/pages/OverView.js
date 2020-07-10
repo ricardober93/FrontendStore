@@ -1,3 +1,4 @@
+import React from 'react';
 import Dashboard from "../components/Dashboard";
 import NabvarHome from "../components/NabvarHome";
 import { Bar } from 'react-chartjs-2';

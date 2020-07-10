@@ -1,3 +1,4 @@
+import React from 'react';
 import NotificationsIcon from "@material-ui/icons/Notifications";
 import { Badge } from "@material-ui/core";
 import PropTypes from "prop-types";

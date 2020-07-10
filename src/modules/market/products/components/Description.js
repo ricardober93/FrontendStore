@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
+import { useSelector, useDispatch } from "react-redux";
 import {
   Container,
   Grid,
@@ -13,6 +14,8 @@ import ProductImage from "./ProductImage";
 import AddShoppingCartIcon from "@material-ui/icons/AddShoppingCart";
 import AddCircleOutlineIcon from "@material-ui/icons/AddCircleOutline";
 import RemoveCircleOutlineIcon from "@material-ui/icons/RemoveCircleOutline";
+import { setCartAction, setCartReloadAction } from "../../store/CartAction";
+import Swal from 'sweetalert2';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -34,8 +37,79 @@ const Description = (props) => {
 
   const { product } = props;
   const classes = useStyles();
+  const cart = useSelector((state) => state.cart);
   const [value, setValue] = useState(product.raiting);
-  const [quantity, setQuantity] = useState(0);
+  const [quantity, setQuantity] = useState(1);
+  const [redirect, setRedirect] = useState(false);
+  let repeat = false
+
+  /* useEffect(() => {
+    if(cart.total !== 0 && !cartUpdate){
+      setCartUpdate(true)
+      let update = JSON.parse(localStorage.getItem('cart'))
+      if(update){
+        update.products = [ ...update.products, cart.products[0]]
+        update.total = update.total + cart.products[0].subtotal
+        localStorage.setItem('cart', JSON.stringify(update)) 
+      } else {
+        localStorage.setItem('cart', JSON.stringify(cart))
+      }
+    }
+  }, [cart]) */
+
+
+  //utilizar useDispatch y te crea una funcion
+  const dispatch = useDispatch();
+
+  const decrement = () => {
+    if (quantity > 0) {
+      setQuantity(quantity - 1);
+    }
+  };
+
+  const addCart = () => {
+
+    cart.products.map(productCart => {
+      if(productCart._id === product._id){
+        repeat = true
+      }
+    })
+
+    if(!repeat){
+      product.quantity = quantity
+      product.subtotal = quantity * product.price
+      dispatch(setCartAction(product));
+    } else {
+      alert('Ya esta en el carrito')
+      setQuantity(1)
+    }
+
+  };
+
+  const confirmOrder = () => {
+
+    Swal.fire({
+      title: 'Quieres ir al carrito?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Si, ir al carrito!',
+      cancelButtonText: 'No, seguir ordenando!'
+    }).then((result) => {
+      if (result.value) {
+        Swal.fire(
+          'Deleted!',
+          'Your file has been deleted.',
+          'success'
+        )
+      } else {
+        setRedirect(true);
+      }
+    })
+
+  };
 
   return (
     <Container>
@@ -65,9 +139,7 @@ const Description = (props) => {
               <ButtonGroup disableElevation variant="contained" color="primary">
                 <Button
                   startIcon={<RemoveCircleOutlineIcon />}
-                  onClick={() => {
-                    quantity > 0 ? setQuantity(quantity - 1) : null;
-                  }}
+                  onClick={() => decrement}
                 ></Button>
                 <Button>{quantity}</Button>
                 <Button
@@ -81,12 +153,13 @@ const Description = (props) => {
                 variant="contained"
                 startIcon={<AddShoppingCartIcon />}
                 color="primary"
+                onClick={addCart}
               >
                 Agregar al carrito
               </Button>
             </Grid>
             <Grid xs={12} sm={12}>
-              <Button variant="contained" fullWidth color="primary">
+              <Button onClick={confirmOrder} variant="contained" fullWidth color="primary">
                 Comprar
               </Button>
             </Grid>

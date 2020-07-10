@@ -1,5 +1,5 @@
 import React from "react";
-import Link from 'next/link'
+import {Link} from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import {Grid} from "@material-ui/core/";
 import { Search } from "@material-ui/icons";
@@ -64,10 +64,10 @@ export default function Nav() {
     <Grid container className={classes.header}>
       <nav className={classes.headerMenu}>
       <div className={classes.mainMenu}>
-        <Link href="/">
+        <Link to="/">
             <a  className={classes.item}>Home</a>
         </Link>
-        <Link href="#"  >
+        <Link to="#"  >
             <li className={classes.item}>Setting</li>
         </Link>
       </div>

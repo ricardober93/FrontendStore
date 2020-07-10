@@ -1,5 +1,5 @@
 import React from "react";
-import Link from "next/link";
+import {Link} from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import { Grid } from "@material-ui/core/";
 const useStyles = makeStyles((theme) => ({
@@ -32,16 +32,16 @@ export default function NabvarHome() {
   return (
     <Grid className={classes.container}>
       <nav className={classes.Menu}>
-        <Link href="/dashboard">
+        <Link to="/dashboard">
           <a className={classes.item}>Overview</a>
         </Link>
-        <Link href="/dashboard-product">
+        <Link to="/dashboard-product">
           <a className={classes.item}>Products</a>
         </Link>
-        <Link href="dashboard-shipping">
+        <Link to="dashboard-shipping">
           <a className={classes.item}>Shipping</a>
         </Link>
-        <Link href="#">
+        <Link to="#">
           <a className={classes.item}>Payment</a>
         </Link>
       </nav>

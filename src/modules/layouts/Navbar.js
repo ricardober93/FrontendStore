@@ -4,6 +4,7 @@ import MenuIcon from "@material-ui/icons/Menu";
 import MoreIcon from "@material-ui/icons/MoreVert";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 import { makeStyles } from "@material-ui/core/styles";
+import { Link }  from 'react-router-dom'
 import {
   AppBar,
   Toolbar,
@@ -126,9 +127,11 @@ export default function Navbar() {
               <Search />
               <div className={classes.grow} />
               <div className={classes.sectionDesktop}>
-                <IconButton aria-label="cart">
-                  <ShoppingCartIcon />
-                </IconButton>
+                <Link to="/cart">
+                  <IconButton aria-label="cart">
+                    <ShoppingCartIcon />
+                  </IconButton>
+                </Link>
                 <IconButton aria-label="show new notifications">
                   <Notification numberOfNotifications={numberOfNotifications} />
                 </IconButton>

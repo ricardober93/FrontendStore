@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Layout from "../../../layouts/Layout";
+import {Container} from '@material-ui/core'
 import Products from "../components/Products";
 import { getProducts } from "../providers/ProductProvider";
 
@@ -18,8 +18,8 @@ export default function ListProduct() {
   }
 
   return (
-    <Layout>
+    <Container>
       { products.length > 0 ? <Products products={products} /> : null}
-    </Layout>
+    </Container>
   );
 }

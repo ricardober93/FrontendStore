@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-
 import {
   Container,
   Grid,
@@ -12,6 +11,7 @@ import {
   Collapse,
   IconButton,
 } from "@material-ui/core";
+import { Redirect } from 'react-router'
 import { Alert, AlertTitle } from "@material-ui/lab";
 import { useFormik } from "formik";
 import * as Yup from "yup";
@@ -20,9 +20,6 @@ import { makeStyles } from "@material-ui/core/styles";
 import { useSelector } from "react-redux";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 import CloseIcon from "@material-ui/icons/Close";
-import Router from "next/router";
-import head from 'next/head'
-import { useRouter } from 'next/router'
 import { useDispatch } from "react-redux";
 import { signInAction } from "../store/AuthAction";
 import { AuthLoginfn } from './../providers/AuthProvider'
@@ -74,13 +71,14 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function Login() {
+
   const dispatch = useDispatch();
   const classes = useStyles();
-  const router = useRouter()
   const messages = useSelector((state) => state.language.messages.login);
   const [open, setOpen] = useState(false);
   const [errors, setError] = useState([]);
   const [openQuery, setOpenQuery] = useState(false);
+
   // formik para crear el formulario
   const formik = useFormik({
     initialValues: {
@@ -103,7 +101,7 @@ function Login() {
         console.log(data.data.data.token);
         if (data) {
           dispatch(signInAction(data.data.data.token));
-          router.push("/");
+          window.location.href = '/'
       }
     }catch (msg) {
         setError(msg);
@@ -113,32 +111,12 @@ function Login() {
     },
   });
 
- useEffect(() => {
-   if (router.query.msg) {
-    setOpenQuery(true)
-   }
-
- }, [errors])
   return (
     <Container className={classes.root}>
-      <style global jsx>
-        {`
-        html,
-        body,
-        main,
-        div#__next {
-          height: 96%;
-          background: #2193b0;  /* fallback for old browsers */
-          background: -webkit-linear-gradient(to right, #6dd5ed, #2193b0);  /* Chrome 10-25, Safari 5.1-6 */
-          background: linear-gradient(to right, #6dd5ed, #2193b0); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-
-        },`}
-      </style>
       {/* utilizar toda la altura de la pagina */}
       <Grid container>
         <Card className={classes.card}>
-        {
-          router.query ?
+        
           <Collapse in={openQuery}>
               <Alert
               severity="success"
@@ -155,11 +133,8 @@ function Login() {
                   </IconButton>
                 }
               >
-                {router.query.msg}
               </Alert>
             </Collapse>
-            : nll
-        }
           {errors ? (
             <Collapse in={open}>
               <Alert
@@ -186,7 +161,7 @@ function Login() {
             <Typography variant="h4" component="h4">
               <ArrowBackIcon
                 className={classes.back}
-                onClick={() => Router.push("/")}
+                onClick={() => <Redirect to="/" />}
               />{" "}
               {messages.title}
             </Typography>
@@ -227,7 +202,7 @@ function Login() {
             <Typography className={classes.singUp}>
               {messages.not_account}.{" "}
               <span
-                onClick={() => Router.push("/singin")}
+                onClick={() => <Redirect to="/singin" />}
                 className={classes.span}
               >
                 {messages.link_sing_up}

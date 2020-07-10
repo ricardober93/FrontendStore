@@ -1,5 +1,5 @@
 import React from 'react'
-import Link from 'next/link'
+import { Link }  from 'react-router-dom'
 import { makeStyles, useTheme  } from "@material-ui/core/styles";
 import Drawer from '@material-ui/core/Drawer';
 import List from '@material-ui/core/List';
@@ -69,7 +69,7 @@ export default function DrawerMenu (props) {
           </IconButton>
         </div>
         <List>
-          <Link href="/profile">
+          <Link to="/profile">
             <ListItem button >
               <ListItemIcon>
                 <AccountCircleIcon /> 
@@ -92,7 +92,7 @@ export default function DrawerMenu (props) {
         </List>
         <Divider />
         <List>
-          <Link href="/login">
+          <Link to="/login">
             <ListItem button >
               <ListItemIcon>
                 <PersonOutlineIcon /> 

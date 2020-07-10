@@ -4,6 +4,8 @@ import NabvarHome from '../components/NabvarHome'
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 import { makeStyles } from "@material-ui/core/styles";
 import FormAddProduct from '../components/FormAddProduct';
+import { Redirect } from 'react-router'
+
 const useStyles = makeStyles((theme) => ({
 
   flex: {
@@ -38,7 +40,7 @@ export default function CreateProduct() {
     <Dashboard>
       <NabvarHome />
       <section className={classes.flex} >
-          <ArrowBackIcon  className={classes.arrow}  onClick={() => Router.push("/")}/>
+          <ArrowBackIcon  className={classes.arrow} onClick={() => <Redirect to="/" />}/>
           <h2 className={classes.h2}>Crear un nuevo producto</h2>
       </section>
       <section>

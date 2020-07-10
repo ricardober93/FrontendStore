@@ -4,6 +4,7 @@ import LanguageReducer from "./modules/customization/language/store/LanguageRedu
 import LogoReducer from "./modules/customization/logo/store/LogoReducer";
 import LogoPreviewReducer from "./modules/customization/logo/store/LogoPreviewReducer";
 import AuthReducer from "./modules/user/auth/store/AuthReducer";
+import CartReducer from "./modules/market/store/CartReducer";
 
 export default combineReducers({
   customization: ColorsReducer,
@@ -11,4 +12,5 @@ export default combineReducers({
   logo: LogoReducer,
   logoPreview: LogoPreviewReducer,
   user: AuthReducer,
+  cart: CartReducer,
 });

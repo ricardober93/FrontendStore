@@ -19,11 +19,11 @@ import { makeStyles } from "@material-ui/core/styles";
 import { useSelector } from "react-redux";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 import CloseIcon from "@material-ui/icons/Close";
-import { useRouter } from 'next/router'
 
 import { AuthSignUpfn } from "../providers/AuthProvider";
 import { useDispatch } from "react-redux";
 import { signUpAction } from "../store/AuthAction";
+
 const useStyles = makeStyles((theme) => ({
   root: {
     height: "100%",
@@ -73,7 +73,6 @@ const useStyles = makeStyles((theme) => ({
 const Signin = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
-  const router = useRouter()
   const messages = useSelector((state) => state.language.messages.login);
   const [open, setOpen] = React.useState(false);
   const [errors, setError] = useState({
@@ -100,31 +99,18 @@ const Signin = () => {
       try {
         let res = await AuthSignUpfn(values);
           // dispatch(signUpAction(res.data.data))
-          router.push({
+          /* router.push({
             pathname: '/login',
             query: { msg: res.msg },
-          })
+          }) */
       } catch (error) {
         setError(error);
-        router.push("/singin");
+        /* router.push("/singin"); */
       }
     },
   });
   return (
     <Container className={classes.root}>
-      <style global jsx>{`
-        html,
-        body,
-        main,
-        div#__next {
-          height: 100%;
-          background: #2193b0;  /* fallback for old browsers */
-          background: -webkit-linear-gradient(to right, #6dd5ed, #2193b0);  /* Chrome 10-25, Safari 5.1-6 */
-          background: linear-gradient(to right, #6dd5ed, #2193b0); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-
-        },
-        
-      `}</style>
       <Grid container>
         <Card className={classes.card}>
         {errors ? (
@@ -154,7 +140,7 @@ const Signin = () => {
             <Typography variant="h5" component="h4">
               <ArrowBackIcon
                 className={classes.back}
-                onClick={() => Router.push("/")}
+                // onClick={() => Router.push("/")}
               />{" "}
               Register
             </Typography>
@@ -220,7 +206,7 @@ const Signin = () => {
             <Typography className={classes.singUp}>
               Tienes Cuenta.{" "}
               <span
-                onClick={() => Router.push("/login")}
+                /* onClick={() => Router.push("/login")} */
                 className={classes.span}
               >
                 Inicia Sesión

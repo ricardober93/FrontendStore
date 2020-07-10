@@ -1,4 +1,4 @@
-import router from "next/router";
+import React from 'react';
 import {
   Grid,
   Button,
@@ -15,6 +15,7 @@ import NabvarHome from "../components/NabvarHome";
 import { makeStyles } from "@material-ui/core/styles";
 import EditIcon from '@material-ui/icons/Edit';
 import DeleteIcon from '@material-ui/icons/Delete';
+import { Redirect } from 'react-router'
 
 const useStyles = makeStyles((theme) => ({
   sectionProduct: {
@@ -66,7 +67,7 @@ const rows = [
   createData('Zapatos Addidas', 70, 70.000, 'Zapatos'),
 ];
 
-export default function ProductoAdmin() {
+export default function ProductAdmin() {
   const classes = useStyles();
   return (
     <Dashboard>
@@ -78,7 +79,7 @@ export default function ProductoAdmin() {
             <span>40 productos agregados</span>
           </div>
           <div className={classes.sectionButton}>
-            <Button onClick={()=> ( router.push('/dashboard-createproduct') )} sm variant="contained" color="primary" disableElevation>
+            <Button onClick={()=> ( <Redirect to="/dashboard-createproduc" /> )} sm variant="contained" color="primary" disableElevation>
               Agregar Producto
             </Button>
           </div>
