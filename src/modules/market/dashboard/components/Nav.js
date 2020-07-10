@@ -64,8 +64,8 @@ export default function Nav() {
     <Grid container className={classes.header}>
       <nav className={classes.headerMenu}>
       <div className={classes.mainMenu}>
-        <Link href="#">
-            <li  className={classes.item}>Home</li>
+        <Link href="/">
+            <a  className={classes.item}>Home</a>
         </Link>
         <Link href="#"  >
             <li className={classes.item}>Setting</li>

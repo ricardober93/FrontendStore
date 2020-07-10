@@ -1,4 +1,5 @@
 import React from 'react'
+import Link from 'next/link'
 import { makeStyles, useTheme  } from "@material-ui/core/styles";
 import Drawer from '@material-ui/core/Drawer';
 import List from '@material-ui/core/List';
@@ -6,11 +7,13 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import Divider from '@material-ui/core/Divider';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import MailIcon from '@material-ui/icons/Mail';
 import IconButton from '@material-ui/core/IconButton';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
+import AccountCircleIcon from '@material-ui/icons/AccountCircle';
+import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
+import PaymentIcon from '@material-ui/icons/Payment';
+import PersonOutlineIcon from '@material-ui/icons/PersonOutline';
 
 const drawerWidth = 240;
 const useStyles = makeStyles((theme) => ({
@@ -51,7 +54,7 @@ export default function DrawerMenu (props) {
     const classes = useStyles();
     const theme = useTheme();
     return (
-        <Drawer
+      <Drawer
         className={classes.drawer}
         variant={props.varient}
         anchor={props.anchor}
@@ -65,23 +68,39 @@ export default function DrawerMenu (props) {
             {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
           </IconButton>
         </div>
-      <List>
-        {['In', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-          <ListItem button key={text}>
-            <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-            <ListItemText primary={text} />
+        <List>
+          <Link href="/profile">
+            <ListItem button >
+              <ListItemIcon>
+                <AccountCircleIcon /> 
+              </ListItemIcon>
+              <ListItemText primary={'Perfil'} />
+            </ListItem>
+          </Link>
+          <ListItem button >
+            <ListItemIcon>
+              <ShoppingCartIcon /> 
+            </ListItemIcon>
+            <ListItemText primary={'Historial del carrito'} />
           </ListItem>
-        ))}
-      </List>
-      <Divider />
-      <List>
-        {['All mail', 'Trash', 'Spam'].map((text, index) => (
-          <ListItem button key={text}>
-            <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-            <ListItemText primary={text} />
+          <ListItem button >
+            <ListItemIcon>
+              <PaymentIcon /> 
+            </ListItemIcon>
+            <ListItemText primary={'Métodos de Pago'} />
           </ListItem>
-        ))}
-      </List>
+        </List>
+        <Divider />
+        <List>
+          <Link href="/login">
+            <ListItem button >
+              <ListItemIcon>
+                <PersonOutlineIcon /> 
+              </ListItemIcon>
+              <ListItemText primary={'Cerrar Sesión'} />
+            </ListItem>
+          </Link>
+        </List>
       </Drawer>
 
     )
