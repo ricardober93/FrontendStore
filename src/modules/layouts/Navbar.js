@@ -108,7 +108,7 @@ export default function Navbar() {
       <CssBaseline />
       <div className={classes.grow}>
         <AppBar className={classes.navbar} position="static">
-          <Container>
+          <div>
             <div className={classes.cart}>
               <p className={classes.cartText}>Calle 4 No. 65-13, Valledupar</p>
             </div>
@@ -121,9 +121,11 @@ export default function Navbar() {
               >
                 <MenuIcon />
               </IconButton>
-              <Typography className={classes.title} variant="h6" noWrap>
-                E-Commerce
-              </Typography>
+              <Link to="/">
+                <Typography className={classes.title} variant="h6" noWrap>
+                  E-Commerce
+                </Typography>
+              </Link>
               <Search />
               <div className={classes.grow} />
               <div className={classes.sectionDesktop}>
@@ -155,7 +157,7 @@ export default function Navbar() {
                 </IconButton>
               </div>
             </Toolbar>
-          </Container>
+          </div>
         </AppBar>
         <DrawerMenu
           variant="temporary"

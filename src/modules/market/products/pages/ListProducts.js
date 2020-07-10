@@ -18,8 +18,8 @@ export default function ListProduct() {
   }
 
   return (
-    <Container>
+    <div>
       { products.length > 0 ? <Products products={products} /> : null}
-    </Container>
+    </div>
   );
 }

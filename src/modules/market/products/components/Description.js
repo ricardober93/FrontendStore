@@ -37,26 +37,11 @@ const Description = (props) => {
 
   const { product } = props;
   const classes = useStyles();
-  const cart = useSelector((state) => state.cart);
+  const productsInCart = useSelector((state) => state.cart.products);
   const [value, setValue] = useState(product.raiting);
   const [quantity, setQuantity] = useState(1);
   const [redirect, setRedirect] = useState(false);
   let repeat = false
-
-  /* useEffect(() => {
-    if(cart.total !== 0 && !cartUpdate){
-      setCartUpdate(true)
-      let update = JSON.parse(localStorage.getItem('cart'))
-      if(update){
-        update.products = [ ...update.products, cart.products[0]]
-        update.total = update.total + cart.products[0].subtotal
-        localStorage.setItem('cart', JSON.stringify(update)) 
-      } else {
-        localStorage.setItem('cart', JSON.stringify(cart))
-      }
-    }
-  }, [cart]) */
-
 
   //utilizar useDispatch y te crea una funcion
   const dispatch = useDispatch();
@@ -69,7 +54,7 @@ const Description = (props) => {
 
   const addCart = () => {
 
-    cart.products.map(productCart => {
+    productsInCart.map(productCart => {
       if(productCart._id === product._id){
         repeat = true
       }
@@ -79,6 +64,8 @@ const Description = (props) => {
       product.quantity = quantity
       product.subtotal = quantity * product.price
       dispatch(setCartAction(product));
+      productsInCart.push(product);
+      localStorage.setItem('cart', JSON.stringify(productsInCart))
     } else {
       alert('Ya esta en el carrito')
       setQuantity(1)

@@ -1,5 +1,7 @@
+const currentCart = JSON.parse(localStorage.getItem('cart'));
+
 const initialState = {
-    products: [],
+    products: currentCart ? currentCart : [],
     total: 0
 }
 

@@ -6,7 +6,7 @@ export default function Layout({ children }) {
   return (
     <>
       <Navbar />
-      <main>{children}</main>
+      <main style={{height: "790px"}}>{children}</main>
       <Footer />
     </>
   );

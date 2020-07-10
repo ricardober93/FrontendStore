@@ -69,7 +69,7 @@ export default function DrawerMenu (props) {
           </IconButton>
         </div>
         <List>
-          <Link to="/profile">
+          <Link style={{textDecoration: 'none'}} to="/profile">
             <ListItem button >
               <ListItemIcon>
                 <AccountCircleIcon /> 
@@ -92,7 +92,7 @@ export default function DrawerMenu (props) {
         </List>
         <Divider />
         <List>
-          <Link to="/login">
+          <Link style={{textDecoration: 'none'}} to="/login">
             <ListItem button >
               <ListItemIcon>
                 <PersonOutlineIcon /> 
