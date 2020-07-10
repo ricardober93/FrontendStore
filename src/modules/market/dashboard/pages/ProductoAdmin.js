@@ -13,6 +13,8 @@ import {
 import Dashboard from "../components/Dashboard";
 import NabvarHome from "../components/NabvarHome";
 import { makeStyles } from "@material-ui/core/styles";
+import EditIcon from '@material-ui/icons/Edit';
+import DeleteIcon from '@material-ui/icons/Delete';
 
 const useStyles = makeStyles((theme) => ({
   sectionProduct: {
@@ -43,25 +45,25 @@ const useStyles = makeStyles((theme) => ({
     margin: 0,
   },
   container:{
-    width:'80%',
-    margin: '20px auto'
+    width:'90%',
+    margin: '30px auto'
   },
   table: {
     minWidth: 650,
-    padding: theme.spacing(2)
+    padding: theme.spacing(1)
   },
 }));
 
-function createData(name, stock, precio, cat, action) {
-  return { name, stock, precio, cat, action };
+function createData(name, stock, precio, cat,) {
+  return { name, stock, precio, cat, };
 }
 
 const rows = [
-  createData('Camisa Amarrila', 40, 25.000, 'Ropa', 'Editar'),
-  createData('Zapatillas Nike', 20, 50.000, 'Zapatos', 'Editar'),
-  createData('Zapatos de Cuero', 100, 16.000, 'Zapatos', 'Editar'),
-  createData('Jeans Capri', 30, 35.000, 'Ropa', 'Editar'),
-  createData('Zapatos Addidas', 70, 70.000, 'Zapatos', 'Editar'),
+  createData('Camisa Amarrila', 40, 25.000, 'Ropa'),
+  createData('Zapatillas Nike', 20, 50.000, 'Zapatos'),
+  createData('Zapatos de Cuero', 100, 16.000, 'Zapatos'),
+  createData('Jeans Capri', 30, 35.000, 'Ropa'),
+  createData('Zapatos Addidas', 70, 70.000, 'Zapatos'),
 ];
 
 export default function ProductoAdmin() {
@@ -85,7 +87,7 @@ export default function ProductoAdmin() {
 
       {/* Table */}
       <Grid container className={classes.container} >
-      <TableContainer component={Paper}>
+      <TableContainer>
       <Table className={classes.table} aria-label="simple table">
         <TableHead>
           <TableRow>
@@ -98,14 +100,14 @@ export default function ProductoAdmin() {
         </TableHead>
         <TableBody>
           {rows.map((row) => (
-            <TableRow key={row.name}>
+            <TableRow  key={row.name}>
               <TableCell component="th" scope="row">
                 {row.name}
               </TableCell>
               <TableCell align="right">{row.stock}</TableCell>
               <TableCell align="right">{row.precio}</TableCell>
               <TableCell align="right">{row.cat}</TableCell>
-              <TableCell align="right">{row.action}</TableCell>
+              <TableCell align="right"><EditIcon /> <DeleteIcon /> </TableCell>
             </TableRow>
           ))}
         </TableBody>
