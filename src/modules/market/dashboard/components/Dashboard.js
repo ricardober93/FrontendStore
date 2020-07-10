@@ -7,13 +7,17 @@ const useStyles = makeStyles((theme) => ({
   gridContainer: {
     display: "flex",
 
-    height: "100vh",
+    height: "100%",
     width: "100vw",
   },
   Column2:{
       display:'grid',
+      height:'100%',
       width: '100%',
       alignSelf:'start'
+  },
+  main:{
+    height: 466,
   }
 }));
 export default function Dashboard({children}) {
@@ -23,7 +27,7 @@ export default function Dashboard({children}) {
       <Sidebar />
       <div className={classes.Column2}>
       <Nav />
-      <main className="main p-layout"> {children} </main>
+      <main className={classes.main}> {children} </main>
       </div>
     </section >
   );

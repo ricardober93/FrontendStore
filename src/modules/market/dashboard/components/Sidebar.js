@@ -5,8 +5,10 @@ import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({
     sidebar: {
+      // position: 'fixed',
       display: "grid",
-      height: '100%',
+      minHeight: '609px',
+      height:'100%',
       width: 300,
       alignContent: 'space-around',
       justifyContent:'center',

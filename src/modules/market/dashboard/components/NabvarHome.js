@@ -32,13 +32,13 @@ export default function NabvarHome() {
   return (
     <Grid className={classes.container}>
       <nav className={classes.Menu}>
-        <Link href="#">
+        <Link href="/dashboard">
           <a className={classes.item}>Overview</a>
         </Link>
-        <Link href="#">
+        <Link href="/dashboard-product">
           <a className={classes.item}>Products</a>
         </Link>
-        <Link href="#">
+        <Link href="dashboard-shipping">
           <a className={classes.item}>Shipping</a>
         </Link>
         <Link href="#">
