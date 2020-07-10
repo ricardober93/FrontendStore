@@ -23,13 +23,13 @@ export default function(state = initialState, action){
         case 'UPDATE_PRODUCT_CART':
             return {
                 ...state,
-                productsCart: action.payload,
+                products: action.payload,
             }
         case 'REMOVE_PRODUCT_CART':
             return {
                 ...state,
                 productRemove: action.payload,
-                productsCart: state.productsCart.filter(product => product.id !== state.productRemove),
+                products: state.products.filter(product => product._id !== action.payload),
             }
         default:
             return state;

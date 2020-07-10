@@ -1,9 +1,14 @@
-import React from "react";
+import React, {useState} from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import { Container, Grid, Typography, Button } from "@material-ui/core";
+import { Container, Grid, Typography, TextField, Card, InputAdornment, Button } from "@material-ui/core";
 import AvatarImage from "../../../components/AvatarImage";
+import HouseIcon from "@material-ui/icons/House";
 import { useSelector } from "react-redux";
 import InputForm from "../../../components/InputForm";
+import PlacesAutocomplete, {
+  geocodeByAddress,
+  getLatLng,
+} from "react-places-autocomplete";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -44,6 +49,17 @@ export default function Profile() {
   const [spacing, setSpacing] = React.useState(2);
   const classes = useStyles();
   const messages = useSelector((state) => state.language.messages.profile);
+  const user = useSelector((state) => state.user.user);
+  const [address, setAddress] = useState("");
+
+  function capitalize(word) {
+    return word[0].toUpperCase() + word.slice(1);
+  }
+
+  const handleSelect = async (value) => {
+    const results = await geocodeByAddress(value);
+    const coords = await getLatLng(results[0]);
+  };
 
   return (
     <Container maxWidth="md"style={{ padding: 30 }} >
@@ -58,7 +74,7 @@ export default function Profile() {
           <Grid container alignItems="flex-end" classes={classes.text}>
             <div>
               <Typography variant="h5" colorPrimary>
-                Carlos Martinez Solano
+                {capitalize(user.name)} {capitalize(user.lastname)}
               </Typography>
               <Typography variant="h6" colorPrimary>
                 Cmartinez@gmail.com
@@ -79,23 +95,21 @@ export default function Profile() {
               <InputForm
                 placeholder="Nombre"
                 name="name"
-                // onChange={formik.handleChange}
-                // onBlur={formik.handleBlur}
-                // value={formik.values.email}
+                value={user.name}
               />
               <InputForm
                 placeholder="Apellido"
                 name="lastname"
                 // onChange={formik.handleChange}
                 // onBlur={formik.handleBlur}
-                // value={formik.values.email}
+                value={user.lastname}
               />
               <InputForm
                 placeholder="email"
                 name="email"
                 // onChange={formik.handleChange}
                 // onBlur={formik.handleBlur}
-                // value={formik.values.email}
+                value={user.lastname}
               />
             </Grid>
             <Grid item xs>
@@ -104,15 +118,54 @@ export default function Profile() {
                 name="movil"
                 // onChange={formik.handleChange}
                 // onBlur={formik.handleBlur}
-                // value={formik.values.email}
+                value={user.phone}
               />
-              <InputForm
-                placeholder="Dirección"
-                name="address"
-                // onChange={formik.handleChange}
-                // onBlur={formik.handleBlur}
-                // value={formik.values.email}
-              />
+              <Typography>Direccion</Typography>
+              <PlacesAutocomplete
+                value={address}
+                onChange={setAddress}
+                onSelect={handleSelect}
+              >
+                {({
+                  getInputProps,
+                  suggestions,
+                  getSuggestionItemProps,
+                  loading,
+                }) => (
+                  <Grid item>
+                    <TextField
+                      label={messages.form_label_address}
+                      fullWidth
+                      {...getInputProps()}
+                      InputProps={{
+                        startAdornment: (
+                          <InputAdornment position="start">
+                            <HouseIcon />
+                          </InputAdornment>
+                        ),
+                      }}
+                    />
+                    <Grid item>
+                      {loading ? <Card>...loading</Card> : null}
+
+                      {suggestions.map((suggestion) => {
+                        const style = {
+                          backgroundColor: suggestion.active
+                            ? "#41b6e6"
+                            : "#ffffff",
+                        };
+                        return (
+                          <Card
+                            {...getSuggestionItemProps(suggestion, { style })}
+                          >
+                            {suggestion.description}
+                          </Card>
+                        );
+                      })}
+                    </Grid>
+                  </Grid>
+                )}
+              </PlacesAutocomplete>
             </Grid>
           </Grid>
           <Grid container className={classes.div} spacing={3}>

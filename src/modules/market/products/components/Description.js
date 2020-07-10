@@ -16,6 +16,7 @@ import AddCircleOutlineIcon from "@material-ui/icons/AddCircleOutline";
 import RemoveCircleOutlineIcon from "@material-ui/icons/RemoveCircleOutline";
 import { setCartAction, setCartReloadAction } from "../../store/CartAction";
 import Swal from 'sweetalert2';
+import { Redirect } from 'react-router'
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -86,13 +87,8 @@ const Description = (props) => {
       cancelButtonText: 'No, seguir ordenando!'
     }).then((result) => {
       if (result.value) {
-        Swal.fire(
-          'Deleted!',
-          'Your file has been deleted.',
-          'success'
-        )
-      } else {
         setRedirect(true);
+      } else {
       }
     })
 
@@ -113,7 +109,7 @@ const Description = (props) => {
               name="simple-controlled"
               value={value}
               onChange={(event, newValue) => {
-                setValue(newValue);
+                alert("Podra votar una vez que haya comprado");
               }}
             />
           </Box>
@@ -149,6 +145,7 @@ const Description = (props) => {
               <Button onClick={confirmOrder} variant="contained" fullWidth color="primary">
                 Comprar
               </Button>
+              { redirect ? <Redirect to="/cart" /> : null }
             </Grid>
           </Grid>
         </Grid>

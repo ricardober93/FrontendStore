@@ -16,7 +16,7 @@ const Cart = () => {
   const showAllProductsInCart = (products) => (
     products.map((product) => (
       <Product
-        key={product.id}
+        key={product._id}
         product={product}
         subtotal={subtotal}
         setSubtotal={setSubtotal}

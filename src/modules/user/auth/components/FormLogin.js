@@ -23,6 +23,7 @@ import CloseIcon from "@material-ui/icons/Close";
 import { useDispatch } from "react-redux";
 import { signInAction } from "../store/AuthAction";
 import { AuthLoginfn } from './../providers/AuthProvider'
+import jwtDecode from "jwt-decode";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -78,6 +79,7 @@ function Login() {
   const [open, setOpen] = useState(false);
   const [errors, setError] = useState([]);
   const [openQuery, setOpenQuery] = useState(false);
+  const [redirect, setRedirect] = useState(false);
 
   // formik para crear el formulario
   const formik = useFormik({
@@ -97,11 +99,16 @@ function Login() {
     }),
     onSubmit: async (values) => {
       try {
-        let data = await AuthLoginfn(values);
-        console.log(data.data.data.token);
-        if (data) {
-          dispatch(signInAction(data.data.data.token));
-          window.location.href = '/'
+        let response = await AuthLoginfn(values);
+        if (response) {
+          const tokenDecoded = jwtDecode(response.data.token);
+          let auth = {
+            token: response.data.token,
+            user: tokenDecoded
+          }
+          dispatch(signInAction(auth));
+          localStorage.setItem('user', JSON.stringify(auth));
+          setRedirect(true);
       }
     }catch (msg) {
         setError(msg);
@@ -113,6 +120,8 @@ function Login() {
 
   return (
     <Container className={classes.root}>
+
+    { redirect ? <Redirect to="/" /> : null }
       {/* utilizar toda la altura de la pagina */}
       <Grid container>
         <Card className={classes.card}>

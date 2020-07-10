@@ -38,6 +38,7 @@ const Product = ({ product, setSubtotal, subtotal, setTotal }) => {
   const increment = () => {
       setQuantity(quantity + 1);
       product.quantity = quantity + 1;
+      product.subtotal = product.quantity * product.price;
       let index = productsInCart.indexOf(product);
       productsInCart.splice(index, 1, product)
       setTotal(newTotal(productsInCart))
@@ -72,13 +73,13 @@ const Product = ({ product, setSubtotal, subtotal, setTotal }) => {
             )
             let carts = []
             productsInCart.map((product) => {
-              if(product.id !== id){
+              if(product._id !== id){
                 carts.push(product)
               }
             })
-            setTotal(newTotal(productsInCart))
+            console.log(carts)
             localStorage.setItem('cart', JSON.stringify(carts))
-            window.location.href = "/cart";
+            window.location.href = '/cart'
             break;
           case 'confirmBuyProduct':
             console.log('Comprado');
@@ -119,12 +120,6 @@ const Product = ({ product, setSubtotal, subtotal, setTotal }) => {
     setSubtotal(subtotal)
     return (product.price * product.quantity).toFixed(2)
   };
-/*  
-    <Button
-      className="btn btn-primary mr-1"
-      onClick={() => confirmBuyProduct()}
-    >{messages['buy']}</Button>
-    */
 
   return (
     <Fragment>
@@ -156,7 +151,7 @@ const Product = ({ product, setSubtotal, subtotal, setTotal }) => {
               ></Button>
               <button
                 className="btn btn-danger ml-3"
-                onClick={() => confirmRemoveProduct(product.id)}
+                onClick={() => confirmRemoveProduct(product._id)}
               >{messages['delete']}</button>
             </ButtonGroup>
           </Grid>
