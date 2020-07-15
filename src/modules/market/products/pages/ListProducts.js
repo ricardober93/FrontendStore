@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import {Container} from '@material-ui/core'
 import Products from "../components/Products";
 import { getProducts } from "../providers/ProductProvider";
-
+import Layout from '../../../layouts/Layout';
 export default function ListProduct() {
   
   const [products, setProducts] = useState([]);
@@ -18,8 +18,10 @@ export default function ListProduct() {
   }
 
   return (
-    <div>
+    <>
+    <Layout>
       { products.length > 0 ? <Products products={products} /> : null}
-    </div>
+      </Layout> 
+    </>
   );
 }

@@ -5,6 +5,7 @@ import Product from '../components/Product';
 import EmptyCart from '../components/EmptyCart';
 import Subtotal from '../components/Subtotal';
 import '../styles/Cart.css';
+import Layout from '../../../layouts/Layout';
 
 const Cart = () => {
 
@@ -27,6 +28,7 @@ const Cart = () => {
   
   return (
     <Fragment>
+    <Layout>
       <Container>
         <h2 className="my-4">
           {messages['my']} <strong>{messages['cart']}</strong>
@@ -42,6 +44,7 @@ const Cart = () => {
 
         { productsInCart.length !== 0 ? showAllProductsInCart(productsInCart) : <EmptyCart />}
       </Container>
+      </Layout>
     </Fragment>
   );
 }

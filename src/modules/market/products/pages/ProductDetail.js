@@ -21,11 +21,13 @@ const ProductDetail = () => {
   }
   console.log(product)
   return (
+    <Layout> 
     <Container>
       { product.name ?  <Description product={product} /> : null}
       <Divider />
       <Valuation />
     </Container>
+    </Layout>
   );
 };
 

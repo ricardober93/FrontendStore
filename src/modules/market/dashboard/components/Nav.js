@@ -64,11 +64,11 @@ export default function Nav() {
     <Grid container className={classes.header}>
       <nav className={classes.headerMenu}>
       <div className={classes.mainMenu}>
-        <Link to="/">
-            <a  className={classes.item}>Home</a>
+        <Link to="/dashboard" className={classes.item}>
+          Home
         </Link>
-        <Link to="#"  >
-            <li className={classes.item}>Setting</li>
+        <Link to="#" className={classes.item} >
+          Setting
         </Link>
       </div>
       <div className={classes.search}>

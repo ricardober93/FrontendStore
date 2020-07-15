@@ -6,7 +6,6 @@ import { makeStyles } from "@material-ui/core/styles";
 const useStyles = makeStyles((theme) => ({
   gridContainer: {
     display: "flex",
-
     height: "100%",
     width: "100vw",
   },
@@ -15,9 +14,6 @@ const useStyles = makeStyles((theme) => ({
       height:'100%',
       width: '100%',
       alignSelf:'start'
-  },
-  main:{
-    height: 466,
   }
 }));
 export default function Dashboard({children}) {

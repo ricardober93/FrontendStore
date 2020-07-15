@@ -8,7 +8,6 @@ import {
   TableContainer,
   TableHead,
   TableRow,
-  Paper,
 } from "@material-ui/core";
 import Dashboard from "../components/Dashboard";
 import NabvarHome from "../components/NabvarHome";

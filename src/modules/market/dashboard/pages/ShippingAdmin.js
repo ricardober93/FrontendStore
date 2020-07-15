@@ -19,7 +19,6 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
     height:'425px',
     maxHeight: '425px',
-    minWidth:'660px',
     display: 'grid',
     gridTemplateColumns: '10fr 4fr'
   },
