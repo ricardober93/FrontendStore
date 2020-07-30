@@ -5,9 +5,17 @@ import Product from '../components/Product';
 import EmptyCart from '../components/EmptyCart';
 import Subtotal from '../components/Subtotal';
 import '../styles/Cart.css';
+import PanelEnvio from '../components/PanelEnvio';
+import { makeStyles } from "@material-ui/core/styles";
+
+const useStyles = makeStyles((theme) => ({
+  gridContainer: {
+    padding: "2em",
+  },
+}));
 
 const Cart = () => {
-
+  const classes = useStyles()
   const productsInCart = useSelector(state => state.cart.products);
   const messages = useSelector(state => state.language.messages.cart);
   const [subtotal, setSubtotal] = useState([]);
@@ -24,19 +32,19 @@ const Cart = () => {
       />
     ))
   )
-  
   return (
     <Fragment>
-      <Container>
-        <h2 className="my-4">
+      <Container className={classes.gridContainer}>
+        <PanelEnvio/>
+        <h2 className="my-4 cart-title">
           {messages['my']} <strong>{messages['cart']}</strong>
         </h2>
 
         { productsInCart.length !== 0 
-          ? <Subtotal 
+          ? <Subtotal
               productsInCart={productsInCart}
               total={total}
-            /> 
+            />
           : null
         }
 

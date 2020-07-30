@@ -11,8 +11,8 @@ const EmptyCart = () => {
   const currentColors = useSelector(state => state.customization.colors);
 
   return (
-    <Container>
-      <Figure >
+    <Container className="emptyCart">
+      <Figure className="emptyCart-text-center">
         <Figure.Image
           width={170}
           src={null} // no funciona
@@ -21,7 +21,7 @@ const EmptyCart = () => {
           <h3 style={{ color:currentColors.textPrimary}} >{messages['empty']}</h3>
         </Figure.Caption>
         <Link to='/'>
-          <Button variant="danger">{messages['back']}</Button>
+          <Button className="emptyCart-button" variant="danger">{messages['back']}</Button>
         </Link>
       </Figure>
     </Container>
