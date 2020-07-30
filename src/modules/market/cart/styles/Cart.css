@@ -35,21 +35,7 @@
     border-radius: 2em;
 }
 
-.emptyCart{
-    padding: 1.2em;
-    display: grid;
-    justify-content: center;
-    align-content: center;
-}
-.emptyCart-text-center{
-    text-align: center;
-}
-
-.emptyCart-button{
-    background-color: #665C84;
-    color: #ffffff;
-    border: none;
-    font-size: 1.1em;
-    padding: .5em;
-    border-radius: .6em;
+.cart-pedido{
+    background-color: #FFF3E1;
+    padding: 1.3em;
 }
