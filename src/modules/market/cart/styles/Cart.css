@@ -37,5 +37,10 @@
 
 .cart-pedido{
     background-color: #FFF3E1;
-    padding: 1.3em;
+    padding: 1.5em;
+    border-radius: 1.3em;
+
+    height: 300px;
+    display: grid;
+    justify-content: space-around;
 }

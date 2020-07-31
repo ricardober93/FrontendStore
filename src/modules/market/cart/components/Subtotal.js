@@ -1,22 +1,10 @@
-import React, { useEffect, useState } from "react";
-import { makeStyles } from "@material-ui/core/styles";
+import React from "react";
 import { useSelector } from "react-redux";
-import { Container, Button } from "react-bootstrap";
+import { Button} from "@material-ui/core";
 //services
 import { newCart } from "../../providers/CartProvider";
 
-const useStyles = makeStyles((theme) => ({
-  formControl: {
-    margin: theme.spacing(2),
-    minWidth: 200,
-  },
-  selectEmpty: {
-    marginTop: theme.spacing(2),
-  },
-}));
-
 const Subtotal = ({ productsInCart, total }) => {
-  const classes = useStyles();
   const messages = useSelector((state) => state.language.messages.cart);
   const user = useSelector((state) => state.user.user);
 
@@ -32,20 +20,14 @@ const Subtotal = ({ productsInCart, total }) => {
   };
 
   return (
-    <Container>
+    <>
       <p>Envio: +52.000</p>
-      <p>Total Pedido:</p>
+      <p className="panel-envio-m">Total Pedido:</p>
       <p>Total: $ {total}</p>
-      <Button
-        type="button"
-        variant="success"
-        size="lg"
-        block
-        onClick={confirmBuy}
-      >
+      <Button variant="contained" color="secondary" fullwidth onClick={confirmBuy}>
         {messages["buy"]}
       </Button>
-    </Container>
+    </>
   );
 };
 
