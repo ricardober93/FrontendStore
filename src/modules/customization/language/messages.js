@@ -52,6 +52,50 @@ export const messagesSpanish = {
   search: {
     placeholder: "Buscar...",
   },
+
+  panel_products: {
+    name: 'Nombre para mostrar',
+    price: 'Precio',
+    image: 'Imagen',
+    category: 'Categoria',
+    stock: 'Stock',
+    state: 'Estado',
+    featured: 'Producto destacado',
+    actions: 'Acciones',
+    products: 'Panel de administración de productos',
+    new_category: 'Agregar una nueva categoria',
+    edit_category: 'Modificar categoria',
+    table_pagination: 'Listado por página',
+  },
+
+  form_product: {
+      label_name: 'Nombre',
+      label_description: 'Descripcion corta',
+      label_long_description: 'Descripcion larga',
+      label_price: 'Precio',
+      label_category: 'Categoria',
+      label_button_save: 'Guardar',
+      label_button_exit: 'Salir',
+      featured_product: '¿Producto destacado?',
+  },
+
+  form_update_product: {
+      submitted_success: 'El producto se modifico con exito',
+      name_min_required: 'El nombre debe tener al menos 3 letras',
+      name_required: 'El nombre es obligatorio',
+      label_name: 'Nombre',
+      label_description: 'Descripcion corta',
+      label_long_description: 'Descripcion larga',
+      label_price: 'Precio',
+      label_state: 'Estado',
+      label_category: 'Categoria',
+      label_description: 'Descripcion',
+      featured_product: '¿Producto destacado?',
+      label_button_save: 'Editar',
+      label_button_exit: 'Salir',
+      label_state: '¿Producto disponible?',
+  },
+
   panel_customization_title: "Panel de configuración",
   panel_customization_color_title: "Colores",
   panel_customization_color_subtitle:

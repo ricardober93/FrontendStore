@@ -11,6 +11,7 @@ import {
   Paper,
 } from "@material-ui/core";
 import Dashboard from "../components/Dashboard";
+import PanelProduct from "../../crud-product/pages/PanelProduct";
 import { makeStyles } from "@material-ui/core/styles";
 import EditIcon from '@material-ui/icons/Edit';
 import DeleteIcon from '@material-ui/icons/Delete';
@@ -113,6 +114,7 @@ export default function ProductAdmin() {
       </Table>
     </TableContainer>
     </Grid>
+      <PanelProduct />
     </Dashboard>
   );
 }
