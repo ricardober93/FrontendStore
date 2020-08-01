@@ -11,7 +11,6 @@ import {
   Paper,
 } from "@material-ui/core";
 import Dashboard from "../components/Dashboard";
-import NabvarHome from "../components/NabvarHome";
 import { makeStyles } from "@material-ui/core/styles";
 import EditIcon from '@material-ui/icons/Edit';
 import DeleteIcon from '@material-ui/icons/Delete';
@@ -71,7 +70,6 @@ export default function ProductAdmin() {
   const classes = useStyles();
   return (
     <Dashboard>
-      <NabvarHome />
       <section className={classes.sectionProduct}>
         <div className={classes.flex}>
           <div className={classes.sectionTitle}>

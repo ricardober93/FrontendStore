@@ -1,6 +1,5 @@
 import React from "react";
 import Dashboard from "../components/Dashboard";
-import NabvarHome from "../components/NabvarHome";
 import {
   Grid,
   Button,
@@ -76,7 +75,6 @@ export default function ShippingAdmin() {
   const classes = useStyles();
   return (
     <Dashboard>
-      <NabvarHome />
       <Grid container className={classes.root} spacing={0} col={2}>
         <Grid item xs={12} md={12} className={classes.col1}>
           <Grid container className={classes.scroll} justify="center" spacing={1} col={1}>

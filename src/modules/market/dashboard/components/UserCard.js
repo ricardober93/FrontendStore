@@ -34,7 +34,7 @@ export default function UserCard({name , role}) {
         <section className={classes.root}>
 
         <div>
-          <img src="static/img/user.jpg" alt="" className={classes.img}/>
+          <img src="./logo192.png" alt="" className={classes.img}/>
         </div>
 
         <div className={classes.textProfile}>
