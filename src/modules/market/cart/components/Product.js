@@ -1,5 +1,4 @@
-import React, { Fragment, useState, useEffect } from 'react';
-import { Row, Col, Image } from 'react-bootstrap';
+import React, {useState, useEffect } from 'react';
 import Swal from 'sweetalert2';
 import { object } from 'prop-types';
 import { useSelector, useDispatch } from 'react-redux';
@@ -12,9 +11,44 @@ import RemoveCircleOutlineIcon from "@material-ui/icons/RemoveCircleOutline";
 import AddCircleOutlineIcon from "@material-ui/icons/AddCircleOutline";
 // Redux
 import { updateCartAction, removeProductCartAction } from '../../store/CartAction';
+import { Image } from 'react-bootstrap';
+import { makeStyles } from '@material-ui/core/styles';
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    display:"flex",
+    borderBottom:"1px solid #000000",
+    padding:"1.1em"
+  },
+  price:{
+    Height:'15px',
+    display:"flex",
+    justifyContent:"center",
+    alignContent:"flex-start"
+  },
+  text:{
+    Height:'15px',
+    lineHeight:'15px',
+    fontSize:'1em',
+    marginLeft:'.9em'
+  },
+  description:{
+    fontSize:'.7em'
+  },
+  delete:{
+    backgroundColor: "transparent",
+    color: 'red',
+    marginLeft:'.7em'
+  },
+  buttons:{
+    display:"flex",
+    alignContent:"center",
+    width:"auto",
+  }
+}));
 
 const Product = ({ product, setSubtotal, subtotal, setTotal }) => {
-
+  const classes = useStyles();
   const messages = useSelector(state => state.language.messages.cart);
   const productsInCart = useSelector(state => state.cart.products);
   const dispatch = useDispatch();
@@ -122,23 +156,24 @@ const Product = ({ product, setSubtotal, subtotal, setTotal }) => {
   };
 
   return (
-    <Fragment>
-      <Row>
-        <Col md={3}>
+    <Grid className={classes.root} Container  spacing={2}>
+        <Grid item xs={4} sm={3}>
           <Image
             className="img-fluid rounded mb-3 mb-md-0"
             src={product.image_preview}
-            width={250}
-            height={250}
+            width={150}
+            height={150}
             alt=""
           />
-        </Col>
-        <Col md={9}>
-          <h3 style={{ textTransform: "capitalize" }}>{product.name}</h3>
-          <p>$ {product.price}</p>
-          <p>Subtotal: $ {showSubtotal()}</p>
-          <p>{product.description}</p>
-          <Grid xs={12} sm={4}>
+        </Grid>
+        <Grid xs={8} sm={8} container>
+        <div className={classes.price} >
+          <h3 className={classes.text} style={{ textTransform: "capitalize" }}>{product.name}</h3>
+          <p className={classes.text}>$ {product.price}</p>
+          <p className={classes.text}>Subtotal: $ {showSubtotal()}</p>
+        </div>
+          <p className={classes.description}>{product.description}</p>
+          <Grid item xs={12} sm={12} className={classes.buttons}>
             <ButtonGroup disableElevation variant="contained" color="primary">
               <Button
                 startIcon={<RemoveCircleOutlineIcon />}
@@ -149,17 +184,14 @@ const Product = ({ product, setSubtotal, subtotal, setTotal }) => {
                 startIcon={<AddCircleOutlineIcon />}
                 onClick={increment}
               ></Button>
-              <button
-                className="btn btn-danger ml-3"
-                onClick={() => confirmRemoveProduct(product._id)}
-              >{messages['delete']}</button>
             </ButtonGroup>
+              <Button
+                className={classes.delete}
+                onClick={() => confirmRemoveProduct(product._id)}
+              >{messages['delete']}</Button>
           </Grid>
-          
-        </Col>
-      </Row>
-      <hr />
-    </Fragment>
+        </Grid>
+    </Grid>
   );
 }
 
