@@ -3,6 +3,7 @@ import Dashboard from '../components/Dashboard'
 import NabvarHome from '../components/NabvarHome'
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 import { makeStyles } from "@material-ui/core/styles";
+import PanelProduct from '../../crud-product/pages/PanelProduct';
 import FormAddProduct from '../components/FormAddProduct';
 import { Redirect } from 'react-router'
 
@@ -44,6 +45,7 @@ export default function CreateProduct() {
           <h2 className={classes.h2}>Crear un nuevo producto</h2>
       </section>
       <section>
+       <PanelProduct />
        <FormAddProduct />
       </section>
     </Dashboard>
