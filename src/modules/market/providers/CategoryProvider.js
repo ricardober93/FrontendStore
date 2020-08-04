@@ -4,10 +4,10 @@ const headers = {
   "Content-Type": "application/json",
 };
 
-export const getProducts = () => {
+export const getCategories = () => {
   return new Promise((resolve, reject) => {
     axios
-      .get(process.env.REACT_APP_BACK_URL + "/api/products", {
+      .get(process.env.REACT_APP_BACK_URL + "/api/categories", {
         headers,
       })
       .then((response) => {
@@ -20,10 +20,10 @@ export const getProducts = () => {
   });
 };
 
-export const getProductId = (productId) => {
+export const getCategoryId = (categoryId) => {
   return new Promise((resolve, reject) => {
     axios
-      .get(process.env.REACT_APP_BACK_URL + "/api/product/" + productId, {
+      .get(process.env.REACT_APP_BACK_URL + "/api/category/" + categoryId, {
         headers,
       })
       .then((response) => {
@@ -36,11 +36,11 @@ export const getProductId = (productId) => {
   });
 };
 
-export const addProduct = (form) => {
+export const addCategory = (form) => {
   console.log(form)
   return new Promise((resolve, reject) => {
     axios
-      .post(process.env.REACT_APP_BACK_URL + "/api/product", form, { headers })
+      .post(process.env.REACT_APP_BACK_URL + "/api/category", form, { headers })
       .then((response) => {
         console.log(response)
         resolve(response.data);
@@ -52,10 +52,10 @@ export const addProduct = (form) => {
   });
 };
 
-export const updateProduct = (form) => {
+export const updateCategory = (form) => {
   return new Promise((resolve, reject) => {
     axios
-      .put(process.env.REACT_APP_BACK_URL + "/api/product/"+form._id, form, { headers })
+      .put(process.env.REACT_APP_BACK_URL + "/api/category", form, { headers })
       .then((response) => {
         resolve(response.data);
       })

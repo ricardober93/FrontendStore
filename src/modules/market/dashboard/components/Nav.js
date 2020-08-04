@@ -23,7 +23,7 @@ export default function Nav() {
         <Link className="itemNav center" to="/dashboard">
           Overview
         </Link>
-        <Link className="itemNav center" to="/dashboard">
+        <Link className="itemNav center" to="/dashboard-product">
           Products
         </Link>
         <Link className="itemNav center" to="/dashboard">

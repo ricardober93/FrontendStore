@@ -162,7 +162,7 @@ export default function PanelProduct() {
   };
 
   const updateProductTable = (id, updatedProduct) => {
-    setProducts(products.map((product) => (product.id === id ? updatedProduct : product)));
+    setProducts(products.map((product) => (product._id === id ? updatedProduct : product)));
   };
 
   return (

@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { useSelector } from "react-redux";
 import Fileuploader from "react-firebase-file-uploader";
 import {
@@ -19,6 +19,8 @@ import { FirebaseContext } from "../../../../firebase";
 
 import { useStyles } from "../../styles/StylesForm";
 import { addProduct } from "../../providers/ProductProvider";
+import { getCategories } from "../../providers/CategoryProvider";
+import { getBrands } from "../../providers/BrandProvider";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 
@@ -27,6 +29,8 @@ const FormProduct = ({ submitUpdate, newProduct, handleClose }) => {
   const [urlImage, setUrlImage] = useState("");
 
   const [selectedFeatured, setSelectedFeatured] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState("");
+  const [selectedBrand, setSelectedBrand] = useState("");
 
   //Context con las operaciones de firebase
   const { firebase } = useContext(FirebaseContext);
@@ -37,6 +41,25 @@ const FormProduct = ({ submitUpdate, newProduct, handleClose }) => {
   const classes = useStyles();
 
   const [formState, setFormState] = useState(false);
+  const [brands, setBrands] = useState([]);
+  const [categories, setCategories] = useState([]);
+
+  useEffect(() => {
+    fetchCategories();
+    fetchBrands();
+  }, []);
+
+  const fetchCategories = async () => {
+    await getCategories().then(response => {
+      setCategories(response.data);
+    });
+  };
+
+  const fetchBrands = async () => {
+    await getBrands().then(response => {
+      setBrands(response.data);
+    });
+  };
 
   const formik = useFormik({
     initialValues: {
@@ -44,6 +67,8 @@ const FormProduct = ({ submitUpdate, newProduct, handleClose }) => {
       description: "",
       sku: "",
       price: "",
+      category: "",
+      brand: "",
       featured: false,
       image: "",
     },
@@ -64,6 +89,8 @@ const FormProduct = ({ submitUpdate, newProduct, handleClose }) => {
         //Mandar producto a firebase
         data.image = urlImage;
         data.featured = selectedFeatured;
+        data.category = selectedCategory;
+        data.brand = selectedBrand;
         
         // Mandar producto a la BD  
         await addProduct({
@@ -71,6 +98,8 @@ const FormProduct = ({ submitUpdate, newProduct, handleClose }) => {
           "description": data.description,
           "sku": data.sku,
           "price": data.price,
+          "category_id": data.category,
+          "brand_id": data.brand,
           "image_preview": urlImage,
           "featured": data.featured,
         })
@@ -179,7 +208,59 @@ const FormProduct = ({ submitUpdate, newProduct, handleClose }) => {
           ) : null}
         </Grid>
 
-        <Grid item xs={12} sm={6}>
+        <Grid item xs={12} sm={4}>
+          <FormControl className={classes.formControl}>
+            <InputLabel id="category-input">
+              {messages.label_category}
+            </InputLabel>
+            <Select
+              labelId="category-input"
+              id="category"
+              value={selectedCategory}
+              onChange={(e) => {
+                setSelectedCategory(e.target.value);
+              }}
+              onBlur={formik.handleBlur}
+              displayEmpty
+            >
+              {categories.map((category) => (
+                <MenuItem key={category._id} value={category._id}>{category.name}</MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+          {formik.errors.featured ? (
+            <Typography variant="subtitle2" color="error">
+              {formik.errors.featured}
+            </Typography>
+          ) : null}
+        </Grid>
+        <Grid item xs={12} sm={4}>
+          <FormControl className={classes.formControl}>
+            <InputLabel id="brand-input">
+              {messages.label_brand}
+            </InputLabel>
+            <Select
+              labelId="brand-input"
+              id="brand"
+              value={selectedBrand}
+              onChange={(e) => {
+                setSelectedBrand(e.target.value);
+              }}
+              onBlur={formik.handleBlur}
+              displayEmpty
+            >
+              {brands.map((brand) => (
+                <MenuItem key={brand._id} value={brand._id}>{brand.name}</MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+          {formik.errors.featured ? (
+            <Typography variant="subtitle2" color="error">
+              {formik.errors.featured}
+            </Typography>
+          ) : null}
+        </Grid>
+        <Grid item xs={12} sm={4}>
           <FormControl className={classes.formControl}>
             <InputLabel id="featured-input">
               {messages.featured_product}
@@ -194,8 +275,8 @@ const FormProduct = ({ submitUpdate, newProduct, handleClose }) => {
               onBlur={formik.handleBlur}
               displayEmpty
             >
-              <MenuItem value={1}>Sí</MenuItem>
-              <MenuItem value={0}>No</MenuItem>
+              <MenuItem value={true}>Sí</MenuItem>
+              <MenuItem value={false}>No</MenuItem>
             </Select>
           </FormControl>
           {formik.errors.featured ? (
