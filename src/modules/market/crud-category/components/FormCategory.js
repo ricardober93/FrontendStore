@@ -1,12 +1,20 @@
 import React from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import InputForm from "../../../components/InputForm";
-import { FormControl, TextareaAutosize, Select ,Button } from "@material-ui/core";
+import {
+  FormControl,
+  TextareaAutosize,
+  Select,
+  Button,
+  TextField ,
+  InputLabel,
+  MenuItem,
+} from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { addCategory } from "../../providers/CategoryProvider";
 import { Alert } from "@material-ui/lab";
 import { useHistory } from "react-router";
+import InputForm from "../../../components/InputForm";
 
 const useStyles = makeStyles((theme) => ({
   gridItem: {
@@ -14,17 +22,17 @@ const useStyles = makeStyles((theme) => ({
     gridGap: "15px",
   },
 }));
- 
+
 export default function FormCategory() {
-  let history = useHistory()
+  let history = useHistory();
   const classes = useStyles();
   const formik = useFormik({
     initialValues: {
       name: "",
-      description:"",
-      image_url:"",
-      featured:"",
-      state:""
+      description: "",
+      image_url: "",
+      featured: "",
+      state: "",
     },
     // Yup para las validaciones
     validationSchema: Yup.object({
@@ -35,7 +43,6 @@ export default function FormCategory() {
         console.log(values);
         let response = await addCategory(values);
         if (response) {
-          
         }
       } catch (err) {
         console.warn(err);
@@ -45,8 +52,10 @@ export default function FormCategory() {
   return (
     <form className={classes.gridItem} onSubmit={formik.handleSubmit}>
       <FormControl>
-        <InputForm
+        <TextField
+          variant="outlined"
           name="name"
+          label="categoria"
           placeholder="Agregar una categoria"
           onChange={formik.handleChange}
           value={formik.values.name}
@@ -59,6 +68,7 @@ export default function FormCategory() {
         <TextareaAutosize
           name="description"
           rowsMax={4}
+          rows={4}
           aria-label="descripcion"
           placeholder="Agregar una descripcion"
           onChange={formik.handleChange}
@@ -99,4 +109,3 @@ export default function FormCategory() {
     </form>
   );
 }
-  
