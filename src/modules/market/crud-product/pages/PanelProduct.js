@@ -11,6 +11,7 @@ import {
   TablePagination,
   TableRow,
   TableSortLabel,
+  Button,
 } from "@material-ui/core";
 import Paper from '@material-ui/core/Paper';
 import { Container, Typography, Box, Divider } from '@material-ui/core';
@@ -21,7 +22,7 @@ import Modal from '../components/Modal';
 import { stableSort, getSorting } from './tableFunctions';
 import { green, red } from "@material-ui/core/colors";
 import { getProducts } from '../../providers/ProductProvider';
-
+import { useHistory } from "react-router-dom";
 function EnhancedTableHead(props) {
   const messages = useSelector((state) => state.language.messages.panel_products);
   const { classes, order, orderBy, onRequestSort } = props;
@@ -120,10 +121,36 @@ const useStyles = makeStyles((theme) => ({
   },
   image:{
     height: 75
-  }
+  },
+  sectionProduct: {
+    width: "100%",
+  },
+  sectionButton:{
+    height:"50px",
+    margin:"1em 0"
+  },
+  flex: {
+    display: "flex",
+    width: "100%",
+    alignContent: "center",
+    justifyContent: "flex-start",
+    marginTop: theme.spacing(2)
+  },
+  sectionTitle: {
+    width: "40%",
+    display: "grid",
+    aligContent: "center",
+    justifyContent: "center",
+  },
+  title: {
+    fontWeight: "bold",
+    fontSize: "18px",
+    margin: 0,
+  },
 }));
 
 export default function PanelProduct() {
+  let history = useHistory();
   const classes = useStyles();
   const messages = useSelector(
     (state) => state.language.messages.panel_products
@@ -167,18 +194,15 @@ export default function PanelProduct() {
 
   return (
     <Container>
-      <Box display={'flex'}>
-        <Box margin={0}>
-          <Typography
-            variant={'h5'}
-            style={{ marginLeft: 0 }}
-            className={classes.typography}
-          >
-            {messages.products}
-          </Typography>
-        </Box>
-      </Box>
-      <Box display={'flex'}>
+      <section className={classes.sectionProduct}>
+        <div className={classes.flex}>
+          <div className={classes.sectionTitle}>
+            <h2 className={classes.title}>{messages.products}</h2>
+            <span>{products.length} productos agregados</span>
+          </div>
+        </div>
+      </section>
+      <Box className={classes.sectionButton} display={'flex'}>
         <Box className={classes.box}>
           <Modal
             color="primary"
@@ -188,6 +212,13 @@ export default function PanelProduct() {
             newProduct={addProduct}
           ></Modal>
         </Box>
+        <Button
+          onClick={() => history.push("/dashboard-create-category")}
+          variant="outlined"
+          size="small"
+          color="primary">
+        Agregar Categoria
+        </Button>
       </Box>
       <Divider />
       {dataSuccess ? (

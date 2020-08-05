@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
       alignSelf:'start'
   },
   main:{
-    height: 466,
+    padding:"1em"
   }
 }));
 export default function Dashboard({children}) {
