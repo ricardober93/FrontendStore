@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import {Container} from '@material-ui/core'
 import Products from "../components/Products";
-import { getProducts } from "../providers/ProductProvider";
+import { getProducts } from "../../providers/ProductProvider";
 
 export default function ListProduct() {
   
