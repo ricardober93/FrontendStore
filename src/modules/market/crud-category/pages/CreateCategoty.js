@@ -9,12 +9,12 @@ import { Redirect } from "react-router";
 const useStyles = makeStyles((theme) => ({
   gridContainer: {
     display: "grid",
-    gridTemplateColumns: "2fr 3fr",
-    gridColumnGap: "90px",
+    gridTemplateColumns: "6fr 6fr",
+    gridColumnGap: "10px",
     width: "100%",
     alignContent: "center",
     justifyContent: "flex-start",
-    padding: "2em 9em",
+    padding: "1em 2em",
   },
   gridItem: {
     display: "grid",
@@ -23,26 +23,26 @@ const useStyles = makeStyles((theme) => ({
   flex: {
     display: "flex",
     width: "100%",
-    height:40,
+    height: 40,
     alignContent: "center",
     justifyContent: "flex-start",
     marginTop: theme.spacing(2),
-    paddingLeft: theme.spacing(3)
+    paddingLeft: theme.spacing(3),
   },
   arrow: {
     display: "flex",
-    height:40,
+    height: 40,
     alignContent: "center",
   },
-  h2:{
+  h2: {
     display: "flex",
     alignContent: "center",
-    height:'100%',
-    margin:0,
+    height: "100%",
+    margin: 0,
     marginLeft: theme.spacing(2),
-    fontWeight:400,
-    fontSize: '28px'
-  }
+    fontWeight: 400,
+    fontSize: "28px",
+  },
 }));
 
 export default function CreateCategoty() {

@@ -6,7 +6,7 @@ import {
   TextareaAutosize,
   Select,
   Button,
-  TextField ,
+  TextField,
   InputLabel,
   MenuItem,
 } from "@material-ui/core";
@@ -95,12 +95,27 @@ export default function FormCategory() {
         <Select
           labelId="featured"
           id="featured"
-          value={formik.featured}
+          name="featured"
+          value={formik.values.featured}
           onChange={formik.handleChange}
           label="featured"
         >
-          <MenuItem value="false">No</MenuItem>
-          <MenuItem value="true">si</MenuItem>
+          <MenuItem value={false}>No</MenuItem>
+          <MenuItem value={true}>si</MenuItem>
+        </Select>
+      </FormControl>
+      <FormControl variant="outlined">
+        <InputLabel id="state">State</InputLabel>
+        <Select
+          labelId="state"
+          id="state"
+          name="state"
+          value={formik.values.state}
+          onChange={formik.handleChange}
+          label="state"
+        >
+          <MenuItem value="available">available</MenuItem>
+          <MenuItem value="unavailable">unavailable</MenuItem>
         </Select>
       </FormControl>
       <Button type="submit" variant="contained" color="primary">
