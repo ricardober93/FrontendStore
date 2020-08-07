@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link }  from 'react-router-dom'
 import { makeStyles, useTheme  } from "@material-ui/core/styles";
+import { useSelector } from "react-redux";
 import Drawer from '@material-ui/core/Drawer';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
@@ -52,6 +53,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function DrawerMenu (props) {
     const classes = useStyles();
+    const messages = useSelector((state) => state.language.messages.drawer_menu);
     const theme = useTheme();
     return (
       <Drawer
@@ -74,20 +76,20 @@ export default function DrawerMenu (props) {
               <ListItemIcon>
                 <AccountCircleIcon /> 
               </ListItemIcon>
-              <ListItemText primary={'Perfil'} />
+              <ListItemText primary={messages['profile']} />
             </ListItem>
           </Link>
           <ListItem button >
             <ListItemIcon>
               <ShoppingCartIcon /> 
             </ListItemIcon>
-            <ListItemText primary={'Historial del carrito'} />
+            <ListItemText primary={messages['shopping_history']} />
           </ListItem>
           <ListItem button >
             <ListItemIcon>
               <PaymentIcon /> 
             </ListItemIcon>
-            <ListItemText primary={'Métodos de Pago'} />
+            <ListItemText primary={messages['payment_methods']} />
           </ListItem>
         </List>
         <Divider />
@@ -97,7 +99,7 @@ export default function DrawerMenu (props) {
               <ListItemIcon>
                 <PersonOutlineIcon /> 
               </ListItemIcon>
-              <ListItemText primary={'Cerrar Sesión'} />
+              <ListItemText primary={messages['log_out']} />
             </ListItem>
           </Link>
         </List>

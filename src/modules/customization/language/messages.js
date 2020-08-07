@@ -1,4 +1,16 @@
 export const messagesSpanish = {
+  nabvar_home:{
+    overview: "Vista General",
+    products: "Productos",
+    shipping: "Envío",
+    payment: "Pagó"
+  },
+  drawer_menu:{
+    profile: "Perfil",
+    shopping_history: 'Historial de compras',
+    payment_methods: "Métodos de pago",
+    log_out: "Cerrar Sesión"
+  },
   login:{
     email_invalid:"Correo Invalido",
     msg_shot:"Correo muy corto",
@@ -92,6 +104,18 @@ export const messagesSpanish = {
   
 // ACA ESTARIAN MENSAJES EN INGLES
 export const messagesEnglish = {
+  nabvar_home:{
+    overview: "Overview",
+    products: "Products",
+    shipping: "Shipping",
+    payment: "Payment"
+  },
+  drawer_menu:{
+    profile: "Profile",
+    shopping_history: "Shopping history",
+    payment_methods: "Payment methods",
+    log_out: "Log Out"
+  },
   login:{
     email_invalid: "Invalid Mail",
     msg_shot: "Mail too short",
@@ -181,6 +205,18 @@ export const messagesEnglish = {
 
 // ACA ESTARIAN MENSAJES EN PORTUGUES
 export const messagesPortuguese = {
+  nabvar_home:{
+    overview: "Visão geral",
+    products: "Produtos",
+    shipping: "Remessa",
+    payment: "Pagamento"
+  },
+  drawer_menu:{
+    profile: "Perfil",
+    shopping_history: "Histórico de compras",
+    payment_methods: "Métodos de pagamento",
+    log_out: "Fechar Sessão"
+  },
   login:{
     email_invalid:"Correo Invalido",
     msg_shot:"Correo muy corto",

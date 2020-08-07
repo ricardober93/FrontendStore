@@ -8,12 +8,9 @@ import {
   Container,
   Grid,
   Typography,
-  Button,
   Card,
   CardActionArea,
-  CardActions,
-  CardContent,
-  CardMedia
+  CardContent
 } from "@material-ui/core";
 import LocalAtmIcon from '@material-ui/icons/LocalAtm';
 
@@ -21,22 +18,26 @@ import LocalAtmIcon from '@material-ui/icons/LocalAtm';
 const useStyles = makeStyles({
   root: {
     maxWidth: 330,
+    marginTop: '8%',
     background: 'linear-gradient(45deg, #2196f3 30%, #21cbf3 90%)'
   },
   ajuste: {
     maxWidth: 180,
+    borderRadius: '5%',
     background: 'linear-gradient(45deg, #2196f3 30%, #21cbf3 90%)'
+  },
+  ajuste2: {
+    maxWidth: 180,
+    borderRadius: '5%',
+    background: '#7d2181'
   },
   medio: {
     height: 200,
   },
   media: {
-    height: 180,
+    height: '100%',
+    width: '100%'
   },
-  media2: {
-    height: 0,
-    paddingTop: '56.25%', // 16:9
-  }
 });
 
 export default function OverView() {
@@ -80,12 +81,13 @@ export default function OverView() {
       <NabvarHome />
         <Container>
           <Grid container>
-            <Grid xs={12} sm={6}>
+            <Grid xs={6} sm={6}>
               <Grid container>
-                <Grid xs={12} sm={6}>
-                  <Card className={classes.ajuste}>
+                <Grid xs={6} sm={6}>
+                  <Card className={classes.ajuste2}>
                     <CardActionArea>
                       <CardContent>
+                          <LocalAtmIcon style={{ fontSize: '400%', color: 'white' }}/>
                         <Typography className={classes.medio} gutterBottom variant="h3" component="h2">
                           $ 9M
                         </Typography>
@@ -96,7 +98,7 @@ export default function OverView() {
                     </CardActionArea>
                   </Card>
                 </Grid>
-                <Grid xs={12} sm={6}>
+                <Grid xs={6} sm={6}>
                  <Card className={classes.ajuste}>
                     <CardActionArea>
                       <CardContent>
@@ -129,7 +131,7 @@ export default function OverView() {
             </Grid>
             
 
-            <Grid xs={12} sm={6} style={{ height: '500px', width: '500px' }}>
+            <Grid xs={6} sm={6} style={{ height: '100%', width: '100%' }}>
                 <Bar data={chartData} options={{
                   responsive: true,
                   title: {text: 'Dias de semana', display: true},
