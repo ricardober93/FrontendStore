@@ -2,10 +2,16 @@ import axios from "axios";
 
 let user = JSON.parse(localStorage.getItem('user'))
 
-const headers = {
+let headers = {
   "Content-Type": "application/json",
-  "Authorization": `Bearer ${user.token}`,
 };
+
+if(user){
+  headers = {
+    "Content-Type": "application/json",
+    "Authorization": `Bearer ${user.token}`,
+  };
+}
 
 export const getCarts = () => {
   return new Promise((resolve, reject) => {
