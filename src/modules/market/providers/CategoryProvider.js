@@ -1,13 +1,22 @@
 import axios from "axios";
 
-const headers = {
+let user = JSON.parse(localStorage.getItem('user'))
+
+let headers = {
   "Content-Type": "application/json",
 };
 
-export const getCategories = () => {
+if(user){
+  headers = {
+    "Content-Type": "application/json",
+    "Authorization": `Bearer ${user.token}`,
+  };
+}
+
+export const getCategoryId = (categoryId) => {
   return new Promise((resolve, reject) => {
     axios
-      .get(process.env.REACT_APP_BACK_URL + "/api/categories", {
+      .get(process.env.REACT_APP_BACK_URL + "/api/category/" + categoryId, {
         headers,
       })
       .then((response) => {
@@ -20,13 +29,15 @@ export const getCategories = () => {
   });
 };
 
-export const getCategoryId = (categoryId) => {
+export const getCategories = (user) => {
   return new Promise((resolve, reject) => {
     axios
-      .get(process.env.REACT_APP_BACK_URL + "/api/category/" + categoryId, {
-        headers,
+      .get(
+        process.env.REACT_APP_BACK_URL + "/api/categories", {
+        'Authorization': `Bearer ${user.token}`,
       })
       .then((response) => {
+        console.log(response);
         resolve(response.data);
       })
       .catch((error) => {

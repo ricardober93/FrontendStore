@@ -38,12 +38,12 @@ export default function CreateProduct() {
    
     return (
     <Dashboard>
-      <section className={classes.flex} >
+      <section className={classes.flex } >
           <ArrowBackIcon  className={classes.arrow} onClick={() => <Redirect to="/" />}/>
           <h2 className={classes.h2}>Crear un nuevo producto</h2>
       </section>
       <section>
-       <PanelProduct />
+       {/* <PanelProduct /> */}
        <FormAddProduct />
       </section>
     </Dashboard>

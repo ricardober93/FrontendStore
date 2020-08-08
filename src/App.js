@@ -26,6 +26,7 @@ import {
   Switch,
   Route
 } from "react-router-dom";
+import CreateCategoty from './modules/market/crud-category/pages/CreateCategoty';
 
 function App() {
 
@@ -52,6 +53,7 @@ function App() {
                 <Route exact path='/dashboard-product' component={ProductAdmin} />
                 <Route exact path='/dashboard-shipping' component={ShippingAdmin} />
                 <Route exact path='/product/:id' component={ProductDetail} />
+                <Route exact path='/dashboard-create-category' component={CreateCategoty} />
 
                 {/* <Route component={NotFound} /> */}
               </Switch>

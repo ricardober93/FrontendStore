@@ -41,7 +41,7 @@ export const addProduct = (form) => {
     axios
       .post(process.env.REACT_APP_BACK_URL + "/api/product", form, { headers })
       .then((response) => {
-        console.log(response)
+        console.log(response);
         resolve(response.data);
       })
       .catch((error) => {
