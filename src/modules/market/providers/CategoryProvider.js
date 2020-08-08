@@ -1,8 +1,17 @@
 import axios from "axios";
 
-const headers = {
+let user = JSON.parse(localStorage.getItem('user'))
+
+let headers = {
   "Content-Type": "application/json",
 };
+
+if(user){
+  headers = {
+    "Content-Type": "application/json",
+    "Authorization": `Bearer ${user.token}`,
+  };
+}
 
 export const getCategoryId = (categoryId) => {
   return new Promise((resolve, reject) => {
