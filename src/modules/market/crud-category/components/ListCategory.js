@@ -25,7 +25,7 @@ export default function ListCategory() {
             <Skeleton animation="wave" height={60} width="80%" />
             <Skeleton animation="wave" height={60} width="80%" />
           </>
-          : <CardCategory Categories={Categories} />
+          : <CardCategory Categories={Categories} user={user} />
       }
     </div>
   );

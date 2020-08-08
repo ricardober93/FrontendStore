@@ -4,7 +4,7 @@ import '../css/cardCategory.css'
 import ModalCategory from './ModalCategory';
 
 export default function CardCategory(props) {
-    const { Categories } = props
+    const { Categories, user } = props
 
     return (
         <Grid col={1}>
@@ -21,7 +21,7 @@ export default function CardCategory(props) {
                                         <Typography color="textSecondary" gutterBottom>
                                             {category.state}
                                         </Typography>
-                                        <ModalCategory category={category} />
+                                        <ModalCategory category={category} user={user} />
                                     </CardContent>
                                 </Card>
                             </div>

@@ -15,6 +15,7 @@ import {
 import { Edit } from '@material-ui/icons';
 import InputForm from '../../../components/InputForm';
 import { updateCategory } from '../../providers/CategoryProvider';
+// import { useHistory } from 'react-router-dom'
 
 const useStyles = makeStyles((theme) => ({
     modal: {
@@ -31,9 +32,11 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-export default function ModalCategory({ category }) {
+export default function ModalCategory({ category, user }) {
+    // let history = useHistory();
     const classes = useStyles();
     const [open, setOpen] = useState(false);
+    const { token } = user
     const [formData, setFormData] = useState({
         id: category._id,
         name: category.name,
@@ -71,7 +74,7 @@ export default function ModalCategory({ category }) {
                 image_url: values.image_url,
                 featured: values.featured,
                 state: values.state,
-            });
+            }, token);
             setOpen(!open);
         },
     });

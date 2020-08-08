@@ -1,8 +1,6 @@
 import axios from "axios";
 
-const headers = {
-  "Content-Type": "application/json",
-};
+
 
 export const addCategory = (form) => {
   return new Promise((resolve, reject) => {
@@ -41,7 +39,8 @@ export const updateCategory = (formData, token) => {
   return new Promise((resolve, reject) => {
     axios
       .put(
-        process.env.REACT_APP_BACK_URL + "/api/category/" + formData.id, formData, headers)
+        process.env.REACT_APP_BACK_URL + `/api/category/${formData.id}`, formData,
+        { "Content-Type": "application/json", 'Authorization': `Bearer ${token}` })
       .then((response) => {
         console.log(response);
         resolve(response.data);
