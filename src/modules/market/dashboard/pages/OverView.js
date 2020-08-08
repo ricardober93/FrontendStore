@@ -1,6 +1,5 @@
 import React from 'react';
 import Dashboard from "../components/Dashboard";
-import NabvarHome from "../components/NabvarHome";
 import { Bar } from 'react-chartjs-2';
 import { useState, useEffect } from "react";
 import { makeStyles } from '@material-ui/core/styles';
@@ -78,7 +77,6 @@ export default function OverView() {
   return (
       
       <Dashboard>
-      <NabvarHome />
         <Container>
           <Grid container>
             <Grid xs={6} sm={6}>

@@ -11,7 +11,7 @@ import {
   Paper,
 } from "@material-ui/core";
 import Dashboard from "../components/Dashboard";
-import NabvarHome from "../components/NabvarHome";
+import PanelProduct from "../../crud-product/pages/PanelProduct";
 import { makeStyles } from "@material-ui/core/styles";
 import EditIcon from '@material-ui/icons/Edit';
 import DeleteIcon from '@material-ui/icons/Delete';
@@ -71,50 +71,7 @@ export default function ProductAdmin() {
   const classes = useStyles();
   return (
     <Dashboard>
-      <NabvarHome />
-      <section className={classes.sectionProduct}>
-        <div className={classes.flex}>
-          <div className={classes.sectionTitle}>
-            <h2 className={classes.title}>Productos</h2>
-            <span>40 productos agregados</span>
-          </div>
-          <div className={classes.sectionButton}>
-            <Button onClick={()=> ( <Redirect to="/dashboard-createproduc" /> )} sm variant="contained" color="primary" disableElevation>
-              Agregar Producto
-            </Button>
-          </div>
-        </div>
-      </section>
-
-      {/* Table */}
-      <Grid container className={classes.container} >
-      <TableContainer>
-      <Table className={classes.table} aria-label="simple table">
-        <TableHead>
-          <TableRow>
-            <TableCell>Name Producto</TableCell>
-            <TableCell align="right">Stock</TableCell>
-            <TableCell align="right">Precio</TableCell>
-            <TableCell align="right">Categoria</TableCell>
-            <TableCell align="right">Acciones</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {rows.map((row) => (
-            <TableRow  key={row.name}>
-              <TableCell component="th" scope="row">
-                {row.name}
-              </TableCell>
-              <TableCell align="right">{row.stock}</TableCell>
-              <TableCell align="right">{row.precio}</TableCell>
-              <TableCell align="right">{row.cat}</TableCell>
-              <TableCell align="right"><EditIcon /> <DeleteIcon /> </TableCell>
-            </TableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </TableContainer>
-    </Grid>
+      <PanelProduct />
     </Dashboard>
   );
 }

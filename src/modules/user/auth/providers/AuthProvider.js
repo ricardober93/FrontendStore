@@ -5,7 +5,22 @@ export const AuthLoginfn = async (values) => {
 
   return new Promise((resolve, reject) => {
     axios
-      .post(process.env.REACT_APP_BACK_URL + "/signin", values )
+      .post(process.env.REACT_APP_BACK_URL + "/api/auth", values )
+      .then((response) => {
+        resolve(response.data);
+      })
+      .catch((error) => {
+        console.error(error);
+        reject(error);
+      });
+  });
+}
+
+export const authGoogle = async (form) => {
+
+  return new Promise((resolve, reject) => {
+    axios
+      .post(process.env.REACT_APP_BACK_URL + "/api/auth-method", form )
       .then((response) => {
         resolve(response.data);
       })

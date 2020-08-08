@@ -16,6 +16,7 @@ import { Alert, AlertTitle } from "@material-ui/lab";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import InputForm from "../../../components/InputForm";
+import GoogleBtn from "./GoogleBtn";
 import { makeStyles } from "@material-ui/core/styles";
 import { useSelector } from "react-redux";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
@@ -101,22 +102,35 @@ function Login() {
       try {
         let response = await AuthLoginfn(values);
         if (response) {
-          const tokenDecoded = jwtDecode(response.data.token);
+          const tokenDecoded = jwtDecode(response.token);
           let auth = {
-            token: response.data.token,
+            token: response.token,
             user: tokenDecoded
           }
           dispatch(signInAction(auth));
           localStorage.setItem('user', JSON.stringify(auth));
           setRedirect(true);
-      }
+        }
     }catch (msg) {
         setError(msg);
-        console.log(errors);
+        console.error(errors);
         setOpen(true);
       }
     },
   });
+
+  const loginSuccessGoogle = (response) => {
+    if (response) {
+      const tokenDecoded = jwtDecode(response.token);
+      let auth = {
+        token: response.token,
+        user: tokenDecoded
+      }
+      dispatch(signInAction(auth));
+      localStorage.setItem('user', JSON.stringify(auth));
+      setRedirect(true);
+    }
+  }
 
   return (
     <Container className={classes.root}>
@@ -219,6 +233,7 @@ function Login() {
             </Typography>
           </CardContent>
         </Card>
+        <GoogleBtn loginSuccessGoogle={loginSuccessGoogle} />
       </Grid>
     </Container>
   );

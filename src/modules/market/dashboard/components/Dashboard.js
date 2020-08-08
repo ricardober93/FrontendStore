@@ -26,7 +26,6 @@ export default function Dashboard({children}) {
     <section className={classes.gridContainer}>
       <Sidebar />
       <div className={classes.Column2}>
-      <Nav />
       <main className={classes.main}> {children} </main>
       </div>
     </section >
