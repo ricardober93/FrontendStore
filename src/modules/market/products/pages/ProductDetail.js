@@ -3,7 +3,7 @@ import { Card, Typography, Container, Divider } from "@material-ui/core";
 import Description from "../components/Description";
 import Valuation from "../components/Valuation";
 import Layout from "../../../layouts/Layout";
-import { getProductId } from "../providers/ProductProvider";
+import { getProductId } from "../../providers/ProductProvider";
 
 const ProductDetail = () => {
   //Routing para obtener el id actual

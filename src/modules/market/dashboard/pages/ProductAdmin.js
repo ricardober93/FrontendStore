@@ -17,7 +17,10 @@ export default function ProductAdmin() {
   const classes = useStyles();
   return (
     <Dashboard>
+<<<<<<< HEAD
       <Grid container className={classes.container} >
+=======
+>>>>>>> e2b2a4bcb794f1e1db6d6198e5d19a6c63e38162
       <PanelProduct />
     </Grid>
     </Dashboard>

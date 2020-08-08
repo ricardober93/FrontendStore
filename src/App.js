@@ -8,7 +8,7 @@ import PanelCustomization from "./modules/customization/pages/PanelCustomization
 import ListProduct from "./modules/market/products/pages/ListProducts";
 import OverView from "./modules/market/dashboard/pages/OverView";
 import CreateProduct from "./modules/market/dashboard/pages/CreateProduct";
-import ProductoAdmin from "./modules/market/dashboard/pages/ProductAdmin";
+import ProductAdmin from "./modules/market/dashboard/pages/ProductAdmin";
 import ShippingAdmin from "./modules/market/dashboard/pages/ShippingAdmin";
 import FormLogin from "./modules/user/auth/components/FormLogin";
 import Profile from "./modules/user/profile/components/Profile";
@@ -50,7 +50,7 @@ function App() {
                 <Route exact path='/customization' component={PanelCustomization} />
                 <Route exact path='/dashboard' component={OverView} />
                 <Route exact path='/dashboard-create-product' component={CreateProduct} />
-                <Route exact path='/dashboard-product' component={ProductoAdmin} />
+                <Route exact path='/dashboard-product' component={ProductAdmin} />
                 <Route exact path='/dashboard-shipping' component={ShippingAdmin} />
                 <Route exact path='/product/:id' component={ProductDetail} />
                 <Route exact path='/dashboard-create-category' component={CreateCategoty} />
