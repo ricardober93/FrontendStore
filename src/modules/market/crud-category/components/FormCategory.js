@@ -58,6 +58,7 @@ export default function FormCategory() {
           label="categoria"
           placeholder="Agregar una categoria"
           onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
           value={formik.values.name}
         />
         {formik.touched.name && formik.errors.name ? (
@@ -72,6 +73,7 @@ export default function FormCategory() {
           aria-label="descripcion"
           placeholder="Agregar una descripcion"
           onChange={formik.handleChange}
+          onBlur={formik.onBlur}
           value={formik.values.description}
         />
         {formik.touched.description && formik.errors.description ? (
@@ -84,6 +86,7 @@ export default function FormCategory() {
           type="file"
           placeholder="Agregar una imagen"
           onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
           value={formik.values.image_url}
         />
         {formik.touched.image_url && formik.errors.image_url ? (
@@ -97,6 +100,7 @@ export default function FormCategory() {
           id="featured"
           name="featured"
           value={formik.values.featured}
+          onBlur={formik.handleBlur}
           onChange={formik.handleChange}
           label="featured"
         >
@@ -111,6 +115,7 @@ export default function FormCategory() {
           id="state"
           name="state"
           value={formik.values.state}
+          onBlur={formik.handleBlur}
           onChange={formik.handleChange}
           label="state"
         >

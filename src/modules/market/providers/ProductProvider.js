@@ -37,12 +37,12 @@ export const getProductId = (productId) => {
 };
 
 export const addProduct = (form) => {
-  console.log(form)
+  console.log(form);
   return new Promise((resolve, reject) => {
     axios
       .post(process.env.REACT_APP_BACK_URL + "/product", form, { headers })
       .then((response) => {
-        console.log(response)
+        console.log(response);
         resolve(response.data);
       })
       .catch((error) => {
