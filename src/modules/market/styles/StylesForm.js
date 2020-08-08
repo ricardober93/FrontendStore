@@ -10,7 +10,7 @@ export const useStyles = makeStyles((theme) => ({
     marginBottom: '50px',
   },
   formControl: {
-    minWidth: 200,
+    minWidth: 180,
   },
   formControlUpdate: {
     minWidth: 150,
@@ -45,8 +45,8 @@ export const useStyles = makeStyles((theme) => ({
   textArea: {
     minHeight: '100px',
     maxHeight: '200px',
-    minWidth: '270px',
-    maxWidth: '500px',
+    minWidth: '550px',
+    maxWidth: '550px',
   },
   image: {
     maxWidth: '100px',

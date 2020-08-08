@@ -4,10 +4,10 @@ const headers = {
   "Content-Type": "application/json",
 };
 
-export const getProducts = () => {
+export const getBrands = () => {
   return new Promise((resolve, reject) => {
     axios
-      .get(process.env.REACT_APP_BACK_URL + "/products/all", {
+      .get(process.env.REACT_APP_BACK_URL + "/api/brands", {
         headers,
       })
       .then((response) => {
@@ -20,10 +20,10 @@ export const getProducts = () => {
   });
 };
 
-export const getProductId = (productId) => {
+export const getBrandId = (brandId) => {
   return new Promise((resolve, reject) => {
     axios
-      .get(process.env.REACT_APP_BACK_URL + "/product/" + productId, {
+      .get(process.env.REACT_APP_BACK_URL + "/api/brand/" + brandId, {
         headers,
       })
       .then((response) => {
@@ -36,10 +36,26 @@ export const getProductId = (productId) => {
   });
 };
 
-export const newProduct = (form) => {
+export const addBrand = (form) => {
+  console.log(form)
   return new Promise((resolve, reject) => {
     axios
-      .post(process.env.REACT_APP_BACK_URL + "/api/product", form, { headers })
+      .post(process.env.REACT_APP_BACK_URL + "/api/brand", form, { headers })
+      .then((response) => {
+        console.log(response)
+        resolve(response.data);
+      })
+      .catch((error) => {
+        console.error(error);
+        reject(error);
+      });
+  });
+};
+
+export const updateBrand = (form) => {
+  return new Promise((resolve, reject) => {
+    axios
+      .put(process.env.REACT_APP_BACK_URL + "/api/brand", form, { headers })
       .then((response) => {
         resolve(response.data);
       })

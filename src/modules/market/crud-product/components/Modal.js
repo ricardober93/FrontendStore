@@ -31,8 +31,7 @@ const Modal = (props) => {
   const updateSubmitted = async () => {
     setOpen(false);
     await getProducts().then(response => {
-      //setDataProduct(response.data);
-      setDataProduct(true);
+      setDataProduct(response.data);
     });
   };
 
