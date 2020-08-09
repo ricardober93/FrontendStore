@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { allCategory } from "../../providers/CategoryProvider";
+import { getCategories } from "../../providers/CategoryProvider";
 import { useSelector } from "react-redux";
 import CardCategory from './CardCategory';
 import { Skeleton } from '@material-ui/lab';
@@ -9,7 +9,7 @@ export default function ListCategory() {
   const user = useSelector((state) => state.user);
 
   const getAllCat = async () => {
-    await allCategory(user).then((response) => {
+    await getCategories(user).then((response) => {
       setCategories(response.data);
     });
   };
