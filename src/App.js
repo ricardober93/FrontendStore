@@ -14,6 +14,7 @@ import FormLogin from "./modules/user/auth/components/FormLogin";
 import Profile from "./modules/user/profile/components/Profile";
 import Recovery from "./modules/user/recovery/components/Recovery";
 import ProductDetail from "./modules/market/products/pages/ProductDetail";
+import CartHistoryUser from './modules/market/cart/pages/CartHistoryUser';
 
 //Context
 import firebase, { FirebaseContext } from "./firebase";
@@ -54,6 +55,7 @@ function App() {
                 <Route exact path='/dashboard-shipping' component={ShippingAdmin} />
                 <Route exact path='/product/:id' component={ProductDetail} />
                 <Route exact path='/dashboard-create-category' component={CreateCategoty} />
+                <Route exact path='/cart-history' component={CartHistoryUser} />
 
                 {/* <Route component={NotFound} /> */}
               </Switch>

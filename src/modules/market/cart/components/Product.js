@@ -1,4 +1,4 @@
-import React, {useState, useEffect } from 'react';
+import React, {useState, useEffect, Fragment } from 'react';
 import Swal from 'sweetalert2';
 import { object } from 'prop-types';
 import { useSelector, useDispatch } from 'react-redux';
@@ -6,6 +6,7 @@ import {
   Grid,
   Button,
   ButtonGroup,
+  CardHeader
 } from "@material-ui/core";
 import RemoveCircleOutlineIcon from "@material-ui/icons/RemoveCircleOutline";
 import AddCircleOutlineIcon from "@material-ui/icons/AddCircleOutline";
@@ -13,8 +14,59 @@ import AddCircleOutlineIcon from "@material-ui/icons/AddCircleOutline";
 import { updateCartAction, removeProductCartAction } from '../../store/CartAction';
 import { Image } from 'react-bootstrap';
 import { makeStyles } from '@material-ui/core/styles';
+import Card from '@material-ui/core/Card';
+import { Row, Col } from 'react-bootstrap';
+
+
+// Productos del Carrito
+export const ProductCart = ({ product }) => {
+  const classes = useStyles();
+  const { quantity, name, price } = product;
+  return ( 
+    <Fragment>
+  
+      <Col md={4}>
+      <Card mb={4} className="shadow-sm m-3">
+          <Card.Img
+            variant="top"
+            className="bd-placeholder-img"
+            width="100%"
+            height="225"
+            src={product.image[0].image}
+            preserveAspectRatio="xMidYMid slice"
+            focusable="false"
+            role="img">
+          </Card.Img>
+
+        <Card.Body>
+            <Card.Title className="product-title" align="center">
+              {product.name}
+              </Card.Title>
+            <Card.Text className="product-text m-3">
+              {product.description}
+            </Card.Text>
+        </Card.Body>
+      </Card>
+    </Col>
+
+
+    </Fragment>
+      
+  );
+}
+// Products cart
+
+
+
 
 const useStyles = makeStyles((theme) => ({
+  card: {
+    marginTop: '5%',
+    marginLeft: '5%',
+    marginRight: '5%',
+    width: 'auto',
+    height: 'auto'
+  },
   root: {
     display:"flex",
     borderBottom:"1px solid #000000",

@@ -32,7 +32,7 @@ export const getCarts = () => {
 export const getCartsByUser = () => {
   return new Promise((resolve, reject) => {
     axios
-      .get(process.env.REACT_APP_BACK_URL + "/carts/user", {
+      .get(process.env.REACT_APP_BACK_URL + "/api/carts/user", {
         headers,
       })
       .then((response) => {
