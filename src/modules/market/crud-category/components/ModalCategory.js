@@ -15,7 +15,7 @@ import {
 import { Edit } from '@material-ui/icons';
 import InputForm from '../../../components/InputForm';
 import { updateCategory } from '../../providers/CategoryProvider';
-// import { useHistory } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 
 const useStyles = makeStyles((theme) => ({
     modal: {
@@ -32,11 +32,10 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-export default function ModalCategory({ category, user }) {
-    // let history = useHistory();
+export default function ModalCategory({ category }) {
+    let history = useHistory();
     const classes = useStyles();
     const [open, setOpen] = useState(false);
-    const { token } = user
     const [formData, setFormData] = useState({
         id: category._id,
         name: category.name,
@@ -58,24 +57,31 @@ export default function ModalCategory({ category, user }) {
             featured: formData.featured,
             state: formData.state,
         },
-        onSubmit: (values) => {
-            updateCategory({
-                id: formData.id,
-                name: values.name,
-                description: values.description,
-                image_url: values.image_url,
-                featured: values.featured,
-                state: values.state,
-            })
-            setFormData({
-                _id: formData.id,
-                name: values.name,
-                description: values.description,
-                image_url: values.image_url,
-                featured: values.featured,
-                state: values.state,
-            }, token);
-            setOpen(!open);
+        onSubmit: async (values) => {
+            try {
+
+                await updateCategory({
+                    _id: formData.id,
+                    name: values.name,
+                    description: values.description,
+                    image_url: values.image_url,
+                    featured: values.featured,
+                    state: values.state,
+                })
+                setFormData({
+                    id: formData.id,
+                    name: values.name,
+                    description: values.description,
+                    image_url: values.image_url,
+                    featured: values.featured,
+                    state: values.state,
+                });
+                setOpen(!open)
+                history.push("/dashboard-create-category");
+
+            } catch (err) {
+                console.log(err)
+            }
         },
     });
     return (
