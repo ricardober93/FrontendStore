@@ -3,7 +3,7 @@ import axios from 'axios';
 export const AuthLoginfn = async (values) => {
   return new Promise((resolve, reject) => {
     axios
-      .post(process.env.REACT_APP_BACK_URL + "/api/auth", values )
+      .post(process.env.REACT_APP_BACK_URL + "/api/auth", values)
       .then((response) => {
         resolve(response.data);
       })
@@ -18,7 +18,7 @@ export const authGoogle = async (form) => {
 
   return new Promise((resolve, reject) => {
     axios
-      .post(process.env.REACT_APP_BACK_URL + "/api/auth-method", form )
+      .post(process.env.REACT_APP_BACK_URL + "/api/auth-method", form)
       .then((response) => {
         resolve(response.data);
       })

@@ -54,7 +54,7 @@ export const addProduct = (form) => {
 export const updateProduct = (form) => {
   return new Promise((resolve, reject) => {
     axios
-      .put(process.env.REACT_APP_BACK_URL + "/api/product/"+form._id, form, { headers })
+      .put(process.env.REACT_APP_BACK_URL + "/api/product/" + form._id, form, { headers })
       .then((response) => {
         resolve(response.data);
       })
