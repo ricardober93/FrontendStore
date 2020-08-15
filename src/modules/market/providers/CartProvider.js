@@ -49,7 +49,7 @@ export const newCart = (form) => {
 
   return new Promise((resolve, reject) => {
     axios
-      .post(process.env.REACT_APP_BACK_URL + "/cart/add", form, { headers })
+      .post(process.env.REACT_APP_BACK_URL + "/api/cart", form, { headers })
       .then((response) => {
         resolve(response.data);
       })
