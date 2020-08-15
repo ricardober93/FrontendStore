@@ -41,7 +41,7 @@ const Cart = ({ cart }) => {
                     className="bd-placeholder-img"
                     width="100%"
                     height="225"
-                    src={product.image_preview[0]}
+                    src={null}
                     preserveAspectRatio="xMidYMid slice"
                     focusable="false"
                     role="img">
