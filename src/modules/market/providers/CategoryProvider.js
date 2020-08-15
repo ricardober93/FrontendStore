@@ -6,7 +6,7 @@ let headers = {
   "Content-Type": "application/json",
 };
 
-if(user){
+if (user) {
   headers = {
     "Content-Type": "application/json",
     "Authorization": `Bearer ${user.token}`,
@@ -29,6 +29,7 @@ export const getCategoryId = (categoryId) => {
   });
 };
 
+
 export const getCategories = (user) => {
   return new Promise((resolve, reject) => {
     axios
@@ -37,7 +38,6 @@ export const getCategories = (user) => {
         'Authorization': `Bearer ${user.token}`,
       })
       .then((response) => {
-        console.log(response);
         resolve(response.data);
       })
       .catch((error) => {
@@ -46,6 +46,7 @@ export const getCategories = (user) => {
       });
   });
 };
+
 
 export const addCategory = (form) => {
   console.log(form)
@@ -64,9 +65,10 @@ export const addCategory = (form) => {
 };
 
 export const updateCategory = (form) => {
+  console.log(form)
   return new Promise((resolve, reject) => {
     axios
-      .put(process.env.REACT_APP_BACK_URL + "/api/category", form, { headers })
+      .put(process.env.REACT_APP_BACK_URL + "/api/category/" + form._id, form, { headers })
       .then((response) => {
         resolve(response.data);
       })

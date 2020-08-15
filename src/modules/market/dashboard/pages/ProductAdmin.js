@@ -7,8 +7,8 @@ import PanelProduct from "../../crud-product/pages/PanelProduct";
 import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({
-  container:{
-    width:'90%',
+  container: {
+    width: '90%',
     margin: '30px auto'
   },
 }));
@@ -18,8 +18,8 @@ export default function ProductAdmin() {
   return (
     <Dashboard>
       <Grid container className={classes.container} >
-      <PanelProduct />
-    </Grid>
+        <PanelProduct />
+      </Grid>
     </Dashboard>
   );
 }
