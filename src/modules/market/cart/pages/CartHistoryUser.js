@@ -3,12 +3,13 @@ import EmptyCart from '../components/EmptyCart';
 import Cart from '../components/Cart';
 import { getCartsByUser } from '../../providers/CartProvider';
 import { useSelector } from 'react-redux';
-import { Grid, Container, Divider } from '@material-ui/core';
+import { Grid, Container, Divider, Card } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
+import { Col } from "react-bootstrap";
 
 const useStyles = makeStyles({
     root: {
-      marginTop: '5%',
+      marginTop: '2%',
       marginLeft: '5%',
       marginRight: '5%'
     },
@@ -17,7 +18,14 @@ const useStyles = makeStyles({
       marginLeft: '6%',
       marginRight: '11%',
       backgroundColor: 'grey'
-    }
+    },
+    containerCard: {
+      width: '100%',
+      display: 'flex',
+      maxWidth: '400px',
+      margin: 'auto',
+      marginTop: '10%'
+  },
 });
 
 
@@ -37,14 +45,14 @@ const CartHistoryUser = () => {
 
       const showAllCarts = (carts) => (
         <Container>
-          <Grid container>
+          <Grid xs={12} sm={12} container>
             {carts.map((cart) => (
-              <Grid xs={4} sm={4}>
+              <Col md={4}>
                   <Cart
                     key={cart._id}
                     cart={cart}
                   />
-              </Grid>
+              </Col>
             ))}
           </Grid>
         </Container>

@@ -79,12 +79,14 @@ export default function DrawerMenu (props) {
               <ListItemText primary={messages['profile']} />
             </ListItem>
           </Link>
-          <ListItem button >
-            <ListItemIcon>
-              <ShoppingCartIcon /> 
-            </ListItemIcon>
-            <ListItemText primary={messages['shopping_history']} />
-          </ListItem>
+          <Link style={{textDecoration: 'none'}} to="/cart-history">
+            <ListItem button >
+              <ListItemIcon>
+                <ShoppingCartIcon /> 
+              </ListItemIcon>
+              <ListItemText primary={messages['shopping_history']} />
+            </ListItem>
+          </Link>
           <ListItem button >
             <ListItemIcon>
               <PaymentIcon /> 
