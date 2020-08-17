@@ -35,7 +35,7 @@ export const getCategories = (user) => {
     axios
       .get(
         process.env.REACT_APP_BACK_URL + "/api/categories", {
-        'Authorization': `Bearer ${user.token}`,
+        headers,
       })
       .then((response) => {
         resolve(response.data);
