@@ -20,7 +20,7 @@ import { useSelector } from "react-redux";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 import CloseIcon from "@material-ui/icons/Close";
 
-import { AuthSignUpfn } from "../providers/AuthProvider";
+import { AuthSignUpfn } from "../../providers/AuthProvider";
 import { useDispatch } from "react-redux";
 import { signUpAction } from "../store/AuthAction";
 

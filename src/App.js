@@ -1,7 +1,8 @@
 import React from 'react';
 import Layout from './modules/layouts/Layout';
 //import NotFound from "./modules/layouts/NotFound";
-//import PrivateRoute from './PrivateRoute';
+import PrivateRoute from './PrivateRoute';
+import AdminRoute from './AdminRoute';
 import Signin from "./modules/user/auth/components/SingIn";
 import Cart from "./modules/market/cart/pages/Cart";
 import PanelCustomization from "./modules/customization/pages/PanelCustomization";
@@ -46,16 +47,16 @@ function App() {
                 <Route exact path='/login' component={FormLogin} />
                 <Route exact path='/signin' component={Signin} />
                 <Route exact path='/restore' component={Recovery} />
-                <Route exact path='/profile' component={Profile} />
+                <PrivateRoute exact path='/profile' component={Profile} />
                 <Route exact path='/cart' component={Cart} />
-                <Route exact path='/customization' component={PanelCustomization} />
-                <Route exact path='/dashboard' component={OverView} />
-                <Route exact path='/dashboard-create-product' component={CreateProduct} />
-                <Route exact path='/dashboard-product' component={ProductAdmin} />
-                <Route exact path='/dashboard-shipping' component={ShippingAdmin} />
+                <AdminRoute exact path='/customization' component={PanelCustomization} />
+                <PrivateRoute exact path='/dashboard' component={OverView} />
+                <PrivateRoute exact path='/dashboard-create-product' component={CreateProduct} />
+                <PrivateRoute exact path='/dashboard-product' component={ProductAdmin} />
+                <PrivateRoute exact path='/dashboard-shipping' component={ShippingAdmin} />
                 <Route exact path='/product/:id' component={ProductDetail} />
-                <Route exact path='/dashboard-create-category' component={CreateCategoty} />
-                <Route exact path='/cart-history' component={CartHistoryUser} />
+                <PrivateRoute exact path='/dashboard-create-category' component={CreateCategoty} />
+                <PrivateRoute exact path='/cart-history' component={CartHistoryUser} />
 
                 {/* <Route component={NotFound} /> */}
               </Switch>

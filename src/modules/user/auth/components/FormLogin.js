@@ -23,7 +23,7 @@ import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 import CloseIcon from "@material-ui/icons/Close";
 import { useDispatch } from "react-redux";
 import { signInAction } from "../store/AuthAction";
-import { AuthLoginfn } from './../providers/AuthProvider'
+import { AuthLoginfn } from '../../providers/AuthProvider'
 import jwtDecode from "jwt-decode";
 
 const useStyles = makeStyles((theme) => ({

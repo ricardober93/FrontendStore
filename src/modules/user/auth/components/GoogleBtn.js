@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { GoogleLogin, GoogleLogout } from 'react-google-login';
-import { authGoogle } from './../providers/AuthProvider'
+import { authGoogle } from '../../providers/AuthProvider'
 
 const CLIENT_ID = '204470833493-t6f3poqcq90579iqr2545ku6srainf1o.apps.googleusercontent.com';
 
