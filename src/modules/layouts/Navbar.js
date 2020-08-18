@@ -11,6 +11,10 @@ import {
   Typography,
   IconButton,
   Container,
+  Card,
+  Grid,
+  CardContent,
+  CardActionArea
 } from "@material-ui/core";// componente de Notificacion
 import Notification from "../components/Notification";
 // componetne de Avatar
@@ -81,6 +85,21 @@ const useStyles = makeStyles((theme) => ({
       display: "none",
     },
   },
+  cardShoppingCartIcon: {
+    width: '120%',
+    position: 'relative',
+    borderRadius: '30%',
+    right: 70,
+    bottom: 5
+  },
+  textCardCart: {
+    display: "none",
+    [theme.breakpoints.up("sm")]: {
+      display: "inline-block",
+    },
+    marginTop: '28%',
+    marginRight: '20%'
+  }
 }));
 
 export default function Navbar() {
@@ -130,9 +149,20 @@ export default function Navbar() {
               <div className={classes.grow} />
               <div className={classes.sectionDesktop}>
                 <Link to="/cart">
-                  <IconButton aria-label="cart">
-                    <ShoppingCartIcon />
-                  </IconButton>
+                  <Card elevation={5} variant="elevation" className={classes.cardShoppingCartIcon}>
+                    <CardActionArea>
+                      <Grid sm={12} container>
+                        <Grid sm={6}>
+                          <ShoppingCartIcon style={{ fontSize: 45, marginTop: '15%', marginLeft: '20%' }} />
+                        </Grid>
+                        <Grid sm={6}>
+                          <Typography className={classes.textCardCart}variant="h6" gutterBottom>
+                            <strong>Carrito</strong>
+                          </Typography>
+                        </Grid>
+                      </Grid>
+                    </CardActionArea>
+                  </Card>
                 </Link>
                 <IconButton aria-label="show new notifications">
                   <Notification numberOfNotifications={numberOfNotifications} />

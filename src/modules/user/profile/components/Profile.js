@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import { Container, Grid, Typography, TextField, Card, InputAdornment, Button } from "@material-ui/core";
+import { Container, Grid, Typography, TextField, Card, InputAdornment, Button, Input, InputLabel } from "@material-ui/core";
 import AvatarImage from "../../../components/AvatarImage";
 import HouseIcon from "@material-ui/icons/House";
 import { useSelector } from "react-redux";
@@ -43,6 +43,11 @@ const useStyles = makeStyles((theme) => ({
     width: "100%",
     marginTop: 3
   },
+  textInput: {
+    color: '#000000',
+    fontSize: 20,
+    marginTop: '5%'
+  }
 }));
 
 export default function Profile() {
@@ -82,8 +87,8 @@ export default function Profile() {
             </div>
           </Grid>
           <Grid justify="center" alignItems="flex-end">
-            <Button variant="contained" color="primary">
-              {messages.btn_changes_password}
+            <Button variant="contained" style={{background: '#edc847'}}>
+              <strong>{messages.btn_changes_password}</strong>
             </Button>
           </Grid>
         </Grid>
@@ -92,35 +97,21 @@ export default function Profile() {
         <form className={classes.form} autoComplete="off">
           <Grid container className={classes.div} spacing={3}>
             <Grid item xs>
+              <InputLabel className={classes.textInput}><strong>Nombre</strong></InputLabel>
               <InputForm
                 placeholder="Nombre"
                 name="name"
                 value={user.name}
               />
+              <InputLabel className={classes.textInput}><strong>Correo</strong></InputLabel>
               <InputForm
-                placeholder="Apellido"
-                name="lastname"
-                // onChange={formik.handleChange}
-                // onBlur={formik.handleBlur}
-                value={user.lastname}
-              />
-              <InputForm
-                placeholder="email"
+                placeholder="ejemplo@gmail.com"
                 name="email"
                 // onChange={formik.handleChange}
                 // onBlur={formik.handleBlur}
                 value={user.lastname}
               />
-            </Grid>
-            <Grid item xs>
-              <InputForm
-                placeholder="Telefono"
-                name="movil"
-                // onChange={formik.handleChange}
-                // onBlur={formik.handleBlur}
-                value={user.phone}
-              />
-              <Typography>Direccion</Typography>
+              <InputLabel className={classes.textInput}><strong>Dirección</strong></InputLabel>
               <PlacesAutocomplete
                 value={address}
                 onChange={setAddress}
@@ -133,17 +124,9 @@ export default function Profile() {
                   loading,
                 }) => (
                   <Grid item>
-                    <TextField
+                    <InputForm
                       label={messages.form_label_address}
-                      fullWidth
                       {...getInputProps()}
-                      InputProps={{
-                        startAdornment: (
-                          <InputAdornment position="start">
-                            <HouseIcon />
-                          </InputAdornment>
-                        ),
-                      }}
                     />
                     <Grid item>
                       {loading ? <Card>...loading</Card> : null}
@@ -166,6 +149,24 @@ export default function Profile() {
                   </Grid>
                 )}
               </PlacesAutocomplete>
+            </Grid>
+            <Grid item xs>
+              <InputLabel className={classes.textInput}><strong>Apellido</strong></InputLabel>
+              <InputForm
+                placeholder="Apellido"
+                name="lastname"
+                // onChange={formik.handleChange}
+                // onBlur={formik.handleBlur}
+                value={user.lastname}
+              />
+              <InputLabel className={classes.textInput}><strong>Teléfono</strong></InputLabel>
+              <InputForm
+                placeholder="Telefono"
+                name="movil"
+                // onChange={formik.handleChange}
+                // onBlur={formik.handleBlur}
+                value={user.phone}
+              />
             </Grid>
           </Grid>
           <Grid container className={classes.div} spacing={3}>

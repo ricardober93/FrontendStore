@@ -36,7 +36,8 @@ const useStyles = makeStyles({
         margin: 'auto',
         marginTop: '10%',
         marginLeft: '10%',
-        marginRight: '10%'
+        marginRight: '10%',
+        borderRadius: '3%'
     },
     /*circulo: {
         width: '100px',
