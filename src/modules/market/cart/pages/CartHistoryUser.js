@@ -37,10 +37,10 @@ const CartHistoryUser = () => {
       }, []);
       
       async function fetchData() {
-           await getCartsByUser()
-            .then((response) => {
-                setCarts(response.data);
-            })
+      await getCartsByUser()
+      .then((response) => {
+       setCarts(response.data);
+      })
     }
 
       const showAllCarts = (carts) => (

@@ -13,6 +13,11 @@ export default function AuthReducer(state = InicialState, action) {
       return { ...state, token: action.payload.token, user: action.payload.user };
     case SING_UP:
       return { ...state, state: action.payload };
+    case 'SET_PROFILE':
+      return {
+        ...state,
+        user: action.payload
+      }
 
     default:
       return state;

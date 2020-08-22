@@ -35,39 +35,41 @@ export const addUser = ({
       longitude: longitude,
       role: role,
       state: state,
-    });
+    }, headers);
 };
   
 //Actualizar usuario
 export const updateUser = ({
     id,
     name,
-    username,
+    lastname,
     email,
+    phone,
     address,
     latitude,
     longitude
     }) => {
     return axios.put(process.env.REACT_APP_BACK_URL + "/api/user/" + id, {
-        name: name,
-        username: username,
-        email: email,
-        address: address,
-        latitude: latitude,
-        longitude: longitude
-    });
+      name,
+      lastname,
+      email,
+      phone,
+      address: address,
+      latitude: latitude,
+      longitude: longitude
+    }, headers);
 };
 
-//Eliminar usuario
-export const deleteUser = (id) => {
-    return axios.delete(process.env.REACT_APP_BACK_URL + "/api/user", id);
-    };
 
-    export const updatePasswordUser = ({ id, password }) => {
-    return axios.put(
-        process.env.REACT_APP_BACK_URL + "/api/users/password/" + id,
-        {
-        password: password,
-        }
-    );
+// Update Password
+export const updatePasswordUser = ({
+  currentPassword,
+  newPassword
+  }) => { 
+  console.log(currentPassword,
+    newPassword);
+  return axios.put(process.env.REACT_APP_BACK_URL + "/api/user/password", {
+    currentPassword,
+    newPassword
+  }, headers);
 };

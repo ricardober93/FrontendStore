@@ -7,3 +7,8 @@ export const signUpAction = (user) => ({
         type: 'SING_Up',
         payload: user
 })
+
+export const updateUserAction = (user) => ({
+        type: 'SET_PROFILE',
+        payload: user
+})
