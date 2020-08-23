@@ -49,7 +49,6 @@ export const getCategories = (user) => {
 
 
 export const addCategory = (form) => {
-  console.log(form)
   return new Promise((resolve, reject) => {
     axios
       .post(process.env.REACT_APP_BACK_URL + "/api/category", form, { headers })
@@ -65,10 +64,9 @@ export const addCategory = (form) => {
 };
 
 export const updateCategory = (form) => {
-  console.log(form)
   return new Promise((resolve, reject) => {
     axios
-      .put(process.env.REACT_APP_BACK_URL + "/api/category/" + form._id, form, { headers })
+      .put(process.env.REACT_APP_BACK_URL + "/api/category/" + form._id, form, headers)
       .then((response) => {
         resolve(response.data);
       })

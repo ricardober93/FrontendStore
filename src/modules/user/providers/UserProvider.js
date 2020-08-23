@@ -35,7 +35,7 @@ export const addUser = ({
       longitude: longitude,
       role: role,
       state: state,
-    }, headers);
+    }, {headers});
 };
   
 //Actualizar usuario
@@ -57,7 +57,7 @@ export const updateUser = ({
       address: address,
       latitude: latitude,
       longitude: longitude
-    }, headers);
+    }, {headers});
 };
 
 
@@ -71,5 +71,5 @@ export const updatePasswordUser = ({
   return axios.put(process.env.REACT_APP_BACK_URL + "/api/user/password", {
     currentPassword,
     newPassword
-  }, headers);
+  }, {headers});
 };

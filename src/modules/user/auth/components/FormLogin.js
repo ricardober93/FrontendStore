@@ -102,9 +102,10 @@ function Login() {
       try {
         let response = await AuthLoginfn(values);
         if (response) {
-          const tokenDecoded = jwtDecode(response.token);
+          console.log(response)
+          const tokenDecoded = jwtDecode(response.data.token);
           let auth = {
-            token: response.token,
+            token: response.data.token,
             user: tokenDecoded
           }
           dispatch(signInAction(auth));
