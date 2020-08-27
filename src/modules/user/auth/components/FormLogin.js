@@ -120,6 +120,7 @@ function Login() {
   });
 
   const loginSuccessGoogle = (response) => {
+    console.log(response)
     if (response) {
       const tokenDecoded = jwtDecode(response.token);
       let auth = {
