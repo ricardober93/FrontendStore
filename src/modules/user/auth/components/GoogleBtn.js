@@ -13,7 +13,7 @@ const GoogleBtn = (props) => {
     const login = async (response) => {
         if(response.accessToken){
             let data = await authGoogle(response.profileObj)
-            props.loginSuccessGoogle(data)
+            props.loginSuccessGoogle(data.data)
             setIsLogined(true)
             setAccessToken(response.accessToken)
         }
