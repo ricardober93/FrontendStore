@@ -49,15 +49,15 @@ const tutorialSteps = [
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    maxWidth: 400,
-    flexGrow: 1,
+    paddingTop:20,
+    paddingBottom:20,
+    flexGrow: 1,    
+    backgroundColor: '#F7F7F7 !important',
   },
   header: {
     display: "flex",
     alignItems: "center",
     height: 50,
-    paddingLeft: theme.spacing(4),
-    backgroundColor: theme.palette.background.default,
   },
   img: {
     height: 255,
