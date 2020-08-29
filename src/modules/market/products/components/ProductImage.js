@@ -47,13 +47,15 @@ const useStyles = makeStyles((theme) => ({
     height: 50,
     paddingLeft: theme.spacing(4),
     backgroundColor: theme.palette.background.default,
+    borderRadius:'50px !important'
   },
   img: {
-    height: 255,
+    height: 350,
     display: "block",
     maxWidth: 400,
     overflow: "hidden",
     width: "100%",
+    borderRadius:'50px !important'
   },
 }));
 
