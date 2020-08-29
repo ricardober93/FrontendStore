@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import SearchIcon from "@material-ui/icons/Search";
 import { InputBase } from "@material-ui/core";
 import { fade, makeStyles } from "@material-ui/core/styles";
 import { useSelector } from "react-redux";
+import { Redirect } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   search: {
@@ -49,7 +50,15 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Search() {
   const classes = useStyles();
+  const [redirect, setRedirect] = useState(false)
+  const [search, setSearch] = useState('')
   const messages = useSelector((state) => state.language.messages.search);
+
+  const redirectSearch = (e) => {
+    if (e.key === 'Enter') {
+      setRedirect(true)
+    }
+  };
 
   return (
     <div className={classes.search}>
@@ -57,6 +66,8 @@ export default function Search() {
         <SearchIcon />
       </div>
       <InputBase
+        onKeyDown={redirectSearch}
+        onChange={e => setSearch(e.target.value)}
         placeholder={messages.placeholder}
         classes={{
           root: classes.inputRoot,
@@ -64,6 +75,7 @@ export default function Search() {
         }}
         inputProps={{ "aria-label": "search" }}
       />
+      { redirect ? <Redirect to={`/search/${search}`} /> : null}
     </div>
   );
 }

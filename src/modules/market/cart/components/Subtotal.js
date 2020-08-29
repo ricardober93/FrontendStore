@@ -3,8 +3,6 @@ import { useSelector } from "react-redux";
 import { Button, Modal, Card } from "@material-ui/core";
 import { makeStyles } from '@material-ui/core/styles';
 import FormMercadoPago from './FormMercadoPago'
-//services
-import { newCart } from "../../providers/CartProvider";
 
 const useStyles = makeStyles({
   root: {

@@ -7,6 +7,7 @@ import Signin from "./modules/user/auth/components/SingIn";
 import Cart from "./modules/market/cart/pages/Cart";
 import PanelCustomization from "./modules/customization/pages/PanelCustomization";
 import ListProduct from "./modules/market/products/pages/ListProducts";
+import SearchProducts from "./modules/market/products/pages/SearchProducts";
 import OverView from "./modules/market/dashboard/pages/OverView";
 import CreateProduct from "./modules/market/dashboard/pages/CreateProduct";
 import ProductAdmin from "./modules/market/dashboard/pages/ProductAdmin";
@@ -44,6 +45,7 @@ function App() {
             <Layout >
               <Switch>
                 <Route exact path='/' component={ListProduct} />
+                <Route exact path='/search/:search' component={SearchProducts} />
                 <Route exact path='/login' component={FormLogin} />
                 <Route exact path='/signin' component={Signin} />
                 <Route exact path='/restore' component={Recovery} />
