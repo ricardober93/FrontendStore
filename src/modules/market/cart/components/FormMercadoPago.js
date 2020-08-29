@@ -5,6 +5,8 @@ import InputForm from "../../../components/InputForm";
 import { useSelector } from "react-redux";
 import { useFormik } from "formik";
 import * as Yup from 'yup';
+//services
+import { newCart } from "../../providers/CartProvider";
 
 function rand() {
     return Math.round(Math.random() * 20) - 10;
@@ -37,7 +39,7 @@ const FormMercadoPago = ({handleClose, open, total, productsInCart}) => {
     const classes = useStyles();
     const user = useSelector((state) => state.user.user);
     const [modalStyle] = useState(getModalStyle);
-    const [cardNumber, setCardNumber] = useState('');
+    const [cardNumber, setCardNumber] = useState('4170068810108020');
     const [paymentMethodId, setPaymentMethodId] = useState(null);
     
     useEffect(() => {
@@ -46,13 +48,14 @@ const FormMercadoPago = ({handleClose, open, total, productsInCart}) => {
 
     const formik = useFormik({
         initialValues: {
-            cardholderName: '',
-            email: '',
-            cardExpirationMonth: '',
-            cardExpirationYear: '',
-            securityCode: '',
-            docNumber: '',
+            cardholderName: 'Pepe botella',
+            email: 'newlogiclp@gmail.com',
+            cardExpirationMonth: 11,
+            cardExpirationYear: 25,
+            securityCode: '123',
+            docNumber: '12341234',
             paymentMethodId: '',
+            cardToken: '',
         },
         validationSchema: Yup.object({
             cardholderName: Yup.string()
@@ -80,17 +83,8 @@ const FormMercadoPago = ({handleClose, open, total, productsInCart}) => {
         onSubmit: async (values) => {
             let form_mp = values
             form_mp.paymentMethodId = paymentMethodId
-
-            await window.Mercadopago.createToken(form_mp, async function(status, response) {
-                console.log(response)
-                if (status != 200 && status != 201) {
-                    /* const errors = document.getElementById("paymentsErrors");
-                    errors.textContent = response.cause[0].description; */
-                } else {
-                    form_mp.cardToken = response.id;
-                    form_mp.submit();
-                }
-            });
+            console.log('form_mp',form_mp)
+            
 
 
             if(!paymentMethodId){
@@ -104,7 +98,7 @@ const FormMercadoPago = ({handleClose, open, total, productsInCart}) => {
                 form_mp,
             };
             console.log(data);
-            //await newCart(data);
+            await newCart(data);
             handleClose()
           try {
           } catch (error) {
