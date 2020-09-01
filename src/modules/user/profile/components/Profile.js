@@ -68,7 +68,7 @@ export default function Profile() {
   const classes = useStyles();
   const messages = useSelector((state) => state.language.messages.profile);
   const userRedux = useSelector((state) => state.user);
-  const [address, setAddress] = useState("");
+  // const [address, setAddress] = useState("");
  
   const { user } = userRedux;
   const formik = useFormik({
@@ -77,7 +77,8 @@ export default function Profile() {
       name: user?.name,
       lastname: user?.lastname,
       email: user?.email,
-      phone: user?.phone
+      phone: user?.phone,
+      address: user?.address
     },
     validationSchema: Yup.object({
       name: Yup.string()
@@ -86,7 +87,8 @@ export default function Profile() {
       .required('Required'),
       email: Yup.string()
       .required('Required'),
-      phone: Yup.number()
+      phone: Yup.number(),
+      address: Yup.string()
     }),
     onSubmit: async (values) => {
       console.log(values);
@@ -99,6 +101,7 @@ export default function Profile() {
         }
         localStorage.setItem('user', JSON.stringify(auth));
         console.log(response.data);
+
         /*alert(JSON.stringify(values, null, 2));
         async function fetchData() {
           await updateUser(values)
@@ -182,7 +185,13 @@ export default function Profile() {
               </Grid>
               <Grid xs={12}>
                 <InputLabel className={classes.textInput}><strong>Dirección</strong></InputLabel>
-                <PlacesAutocomplete
+                <InputForm
+                  name="address"
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                  value={formik.values.address}
+                />
+                {/*<PlacesAutocomplete
                   value={address}
                   onChange={setAddress}
                   onSelect={handleSelect}
@@ -218,7 +227,7 @@ export default function Profile() {
                       </Grid>
                     </Grid>
                   )}
-                </PlacesAutocomplete>
+                </PlacesAutocomplete>*/}
               </Grid>
             </Grid>
             <Grid item xs>
