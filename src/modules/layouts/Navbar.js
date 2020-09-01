@@ -4,7 +4,7 @@ import MenuIcon from "@material-ui/icons/Menu";
 import MoreIcon from "@material-ui/icons/MoreVert";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 import { makeStyles } from "@material-ui/core/styles";
-import { Link }  from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import {
   AppBar,
   Toolbar,
@@ -156,7 +156,7 @@ export default function Navbar() {
                           <ShoppingCartIcon style={{ fontSize: 45, marginTop: '15%', marginLeft: '20%' }} />
                         </Grid>
                         <Grid sm={6}>
-                          <Typography className={classes.textCardCart}variant="h6" gutterBottom>
+                          <Typography className={classes.textCardCart} variant="h6" gutterBottom>
                             <strong>Carrito</strong>
                           </Typography>
                         </Grid>
