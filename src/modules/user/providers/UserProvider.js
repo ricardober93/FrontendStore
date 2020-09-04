@@ -54,9 +54,17 @@ export const updateUser = ({
       lastname,
       email,
       phone,
-      address: address,
+      address,
       latitude: latitude,
       longitude: longitude
+    }, {headers});
+};
+//Actualizar direccion del usuario
+export const updateAddressUser = (
+    address
+    ) => {
+    return axios.put(process.env.REACT_APP_BACK_URL + "/api/user/address" ,  {
+      address
     }, {headers});
 };
 
@@ -65,9 +73,7 @@ export const updateUser = ({
 export const updatePasswordUser = ({
   currentPassword,
   newPassword
-  }) => { 
-  console.log(currentPassword,
-    newPassword);
+  }) => {
   return axios.put(process.env.REACT_APP_BACK_URL + "/api/user/password", {
     currentPassword,
     newPassword
