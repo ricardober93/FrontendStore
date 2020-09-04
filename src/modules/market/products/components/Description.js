@@ -44,29 +44,29 @@ const useStyles = makeStyles((theme) => ({
     width: 100,
     height: 100,
   },
-  button_group:{
-    backgroundColor:'#f1f1f1',    
-    borderRadius:'999px !important',
-    marginTop:20,
-    marginBottom:20,
+  button_group: {
+    backgroundColor: '#f1f1f1',
+    borderRadius: '999px !important',
+    marginTop: 20,
+    marginBottom: 20,
   },
-  quantity:{
-    backgroundColor:'#EBEBEB',
-  },price:{
-    fontSize:'2.2em',
+  quantity: {
+    backgroundColor: '#EBEBEB',
+  }, price: {
+    fontSize: '2.2em',
     textAlign: 'center',
-    fontWeight:'500 !important',
-    width:'100%',
-    margin:0,
-  }  ,
-  addCart:{
-    backgroundColor:'#FFBA5A',
-    color:'#1B1C1E',
-    marginBottom:5,
-    borderRadius:'25px !important',
-    '&:hover':{
-      backgroundColor:'#665C84',
-      color:'#fff',
+    fontWeight: '500 !important',
+    width: '100%',
+    margin: 0,
+  },
+  addCart: {
+    backgroundColor: '#FFBA5A',
+    color: '#1B1C1E',
+    marginBottom: 5,
+    borderRadius: '25px !important',
+    '&:hover': {
+      backgroundColor: '#665C84',
+      color: '#fff',
     }
   },
   polygon: {
@@ -74,12 +74,12 @@ const useStyles = makeStyles((theme) => ({
     stroke: theme.palette.divider,
     strokeWidth: 1,
   },
-  comprar:{
-    backgroundColor:'#665C84',    
-    color:'#fff',
-    borderRadius:'259px !important',
-    '&:hover':{
-      backgroundColor:'#574C77',
+  comprar: {
+    backgroundColor: '#665C84',
+    color: '#fff',
+    borderRadius: '259px !important',
+    '&:hover': {
+      backgroundColor: '#574C77',
     }
   }
 }));
@@ -87,7 +87,6 @@ const useStyles = makeStyles((theme) => ({
 const Description = (props) => {
 
   const { product } = props;
-  console.log(product);
   const classes = useStyles();
   const productsInCart = useSelector((state) => state.cart.products);
   const [value, setValue] = useState(product.raiting);
@@ -139,6 +138,22 @@ const Description = (props) => {
     }).then((result) => {
       if (result.value) {
         setRedirect(true);
+        productsInCart.map(productCart => {
+          if (productCart._id === product._id) {
+            repeat = true
+          }
+        })
+
+        if (!repeat) {
+          product.quantity = quantity
+          product.subtotal = quantity * product.price
+          dispatch(setCartAction(product));
+          productsInCart.push(product);
+          localStorage.setItem('cart', JSON.stringify(productsInCart))
+        } else {
+          alert('Ya esta en el carrito')
+          setQuantity(1)
+        }
       } else {
       }
     })
@@ -182,36 +197,36 @@ const Description = (props) => {
               </Grid>
             </Grid>
             <Grid xs={12} sm={12}
-             container
-             direction="row"
-             justify="center"
-             alignItems="center">
-            <Grid xs={12} sm={6} 
-            container
-            item>  
-              <p className={classes.price}> $ {product.price} </p> 
-             </Grid>
-            <Grid xs={12} sm={6}
-            container
-            item>
-              <Button
-                variant="contained"
-                className={classes.addCart}
-                fullWidth
-                startIcon={<AddShoppingCartIcon />}
-                color="primary"
-                onClick={addCart}
-              >
-                Agregar al carrito
+              container
+              direction="row"
+              justify="center"
+              alignItems="center">
+              <Grid xs={12} sm={6}
+                container
+                item>
+                <p className={classes.price}> $ {product.price} </p>
+              </Grid>
+              <Grid xs={12} sm={6}
+                container
+                item>
+                <Button
+                  variant="contained"
+                  className={classes.addCart}
+                  fullWidth
+                  startIcon={<AddShoppingCartIcon />}
+                  color="primary"
+                  onClick={addCart}
+                >
+                  Agregar al carrito
               </Button></Grid>
             </Grid>
             <Grid item xs={12} sm={12}>
-              <Button 
-              className={classes.comprar}
-              onClick={confirmOrder} 
-              variant="contained" 
-              fullWidth 
-              color="secondary">
+              <Button
+                className={classes.comprar}
+                onClick={confirmOrder}
+                variant="contained"
+                fullWidth
+                color="secondary">
                 Comprar
               </Button>
               {redirect ? <Redirect to="/cart" /> : null}

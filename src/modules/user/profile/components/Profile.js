@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { Container, Grid, Typography, TextField, Card, InputAdornment, Button, Input, InputLabel, IconButton, Modal } from "@material-ui/core";
 import AvatarImage from "../../../components/AvatarImage";
@@ -69,7 +69,7 @@ export default function Profile() {
   const messages = useSelector((state) => state.language.messages.profile);
   const userRedux = useSelector((state) => state.user);
   // const [address, setAddress] = useState("");
- 
+
   const { user } = userRedux;
   const formik = useFormik({
     initialValues: {
@@ -82,16 +82,15 @@ export default function Profile() {
     },
     validationSchema: Yup.object({
       name: Yup.string()
-      .required('Required'),
+        .required('Required'),
       lastname: Yup.string()
-      .required('Required'),
+        .required('Required'),
       email: Yup.string()
-      .required('Required'),
+        .required('Required'),
       phone: Yup.number(),
       address: Yup.string()
     }),
     onSubmit: async (values) => {
-      console.log(values);
       try {
         let response = await updateUser(values);
         dispatch(updateUserAction(response.data));
@@ -100,17 +99,6 @@ export default function Profile() {
           token: userRedux.token
         }
         localStorage.setItem('user', JSON.stringify(auth));
-        console.log(response.data);
-
-        /*alert(JSON.stringify(values, null, 2));
-        async function fetchData() {
-          await updateUser(values)
-          .then((response) => {
-           console.log(response.data);
-          })
-        }
-        fetchData()*/
-        
       } catch (error) {
         console.error(error);
       }
@@ -128,7 +116,7 @@ export default function Profile() {
   };
 
   return (
-    <Container maxWidth="md"style={{ padding: 30 }} >
+    <Container maxWidth="md" style={{ padding: 30 }} >
       <Grid container className={classes.root} spacing={2}>
         <Typography variant="h4" colorPrimary style={{ marginBottom: 20 }}  >
           {messages.title}
@@ -149,12 +137,12 @@ export default function Profile() {
               </Typography>
             </div>
           </Grid>
-          <Grid justify="center" alignItems="flex-end">
+          {!user?.google_id ? <Grid justify="center" alignItems="flex-end">
             <ModalPassword />
-          </Grid>
+          </Grid> : null}
         </Grid>
       </Grid>
-      <Grid xs={12} style={{ margin: 0, padding: 0}} >
+      <Grid xs={12} style={{ margin: 0, padding: 0 }} >
         <form onSubmit={formik.handleSubmit} className={classes.form} autoComplete="off">
           <Grid container className={classes.div} spacing={3}>
             <Grid xs={12} item xs>
@@ -167,7 +155,7 @@ export default function Profile() {
                   value={formik.values.name}
                 />
                 {formik.touched.name && formik.errors.name ? (
-                <div>{formik.errors.name}</div>
+                  <div>{formik.errors.name}</div>
                 ) : null}
               </Grid>
               <Grid xs={12}>
@@ -180,7 +168,7 @@ export default function Profile() {
                   value={formik.values.email}
                 />
                 {formik.touched.email && formik.errors.email ? (
-                <div>{formik.errors.email}</div>
+                  <div>{formik.errors.email}</div>
                 ) : null}
               </Grid>
               <Grid xs={12}>

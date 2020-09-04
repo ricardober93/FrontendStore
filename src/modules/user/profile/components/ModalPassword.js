@@ -8,7 +8,7 @@ import * as Yup from 'yup';
 
 // Configuración del Modal de Material-ui
 function getModalStyle() {
-  const top = 50 ;
+  const top = 50;
   const left = 50;
   return {
     top: `${top}%`,
@@ -18,24 +18,24 @@ function getModalStyle() {
 }
 
 const useStyles = makeStyles(theme => ({
-    paper: {
-      position: 'absolute',
-      width: 450,
-      backgroundColor: theme.palette.background.paper,
-      boxShadow: theme.shadows[5],
-      padding: theme.spacing(2, 4, 3),
-    },
-    textField: {
-      width: '100%',
-      marginTop: '5%'
-    }
+  paper: {
+    position: 'absolute',
+    width: 450,
+    backgroundColor: theme.palette.background.paper,
+    boxShadow: theme.shadows[5],
+    padding: theme.spacing(2, 4, 3),
+  },
+  textField: {
+    width: '100%',
+    marginTop: '5%'
+  }
 }));
 
 export default function ModalPassword() {
   const messages = useSelector((state) => state.language.messages.profile);
   // Configuración del Modal de Material-ui
-  const [ modalStyle ] = useState(getModalStyle);
-  const [ open, setOpen ] = useState(false);
+  const [modalStyle] = useState(getModalStyle);
+  const [open, setOpen] = useState(false);
   const classes = useStyles();
   const handleOpen = () => {
     setOpen(true);
@@ -52,19 +52,17 @@ export default function ModalPassword() {
     },
     validationSchema: Yup.object({
       currentPassword: Yup.string()
-      .required('Required'),
+        .required('Required'),
       newPassword: Yup.string()
-      .required('Required'),
+        .required('Required'),
     }),
-    onSubmit: async (values, {resetForm}) => {
-      console.log(values);
+    onSubmit: async (values, { resetForm }) => {
       try {
-        
+
         let response = await updatePasswordUser(values);
-        console.log(response);
         handleClose();
-        resetForm({values: ''});
-       
+        resetForm({ values: '' });
+
       } catch (error) {
         console.error(error);
       }
@@ -72,13 +70,13 @@ export default function ModalPassword() {
   })
 
 
-  return ( 
+  return (
     <div>
-      <Button 
+      <Button
         type="button"
         className="btn btn-block btn-primary"
-        variant="contained" 
-        style={{background: '#edc847'}}
+        variant="contained"
+        style={{ background: '#edc847' }}
         onClick={() => {
           handleOpen();
         }}
@@ -92,41 +90,41 @@ export default function ModalPassword() {
       >
         <div align="center" style={modalStyle} className={classes.paper}>
           <h2><strong>{messages.btn_changes_password}</strong></h2>
-              
+
           <form onSubmit={formik.handleSubmit}>
-            <TextField 
+            <TextField
               autoComplete="on"
               type="password"
-              label="Contraseña actual" 
+              label="Contraseña actual"
               name="currentPassword"
-              className={classes.textField} 
+              className={classes.textField}
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
               value={formik.values.currentPassword}
             />
             {formik.touched.currentPassword && formik.errors.currentPassword ? (<div>{formik.errors.currentPassword}</div>
             ) : null}
-            <Divider/>
-            <TextField 
+            <Divider />
+            <TextField
               autoComplete="on"
               type="password"
-              label="Nueva contraseña" 
+              label="Nueva contraseña"
               name="newPassword"
-              className={classes.textField} 
+              className={classes.textField}
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
               value={formik.values.newPassword}
             />
             {formik.touched.newPassword && formik.errors.newPassword ? (
-            <div>{formik.errors.newPassword}</div>
+              <div>{formik.errors.newPassword}</div>
             ) : null}
-            <Divider/>
-            <div style={{marginTop: 20}}>
-              <Button 
-              type="submit"
-              style={{background: '#edc847'}} 
-              className="btn btn-block btn-primary"
-              variant="contained" 
+            <Divider />
+            <div style={{ marginTop: 20 }}>
+              <Button
+                type="submit"
+                style={{ background: '#edc847' }}
+                className="btn btn-block btn-primary"
+                variant="contained"
               >Guardar Cambios</Button>
             </div>
           </form>
@@ -135,4 +133,3 @@ export default function ModalPassword() {
     </div>
   )
 }
- 

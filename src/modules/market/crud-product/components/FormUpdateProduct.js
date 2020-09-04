@@ -114,8 +114,6 @@ const FormUpdateProduct = (props) => {
           brand_id: data.brand,
         })
 
-        console.log('object')
-
         setFormState(true);
         setFormData({
           _id: data.id,

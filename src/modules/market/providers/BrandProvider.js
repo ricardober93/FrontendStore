@@ -37,12 +37,11 @@ export const getBrandId = (brandId) => {
 };
 
 export const addBrand = (form) => {
-  console.log(form)
   return new Promise((resolve, reject) => {
     axios
       .post(process.env.REACT_APP_BACK_URL + "/api/brand", form, { headers })
       .then((response) => {
-        console.log(response)
+        console.warn(response)
         resolve(response.data);
       })
       .catch((error) => {

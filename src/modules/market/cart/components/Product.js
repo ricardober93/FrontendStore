@@ -1,4 +1,4 @@
-import React, {useState, useEffect, Fragment } from 'react';
+import React, { useState, useEffect, Fragment } from 'react';
 import Swal from 'sweetalert2';
 import { object } from 'prop-types';
 import { useSelector, useDispatch } from 'react-redux';
@@ -16,17 +16,18 @@ import { Image } from 'react-bootstrap';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import { Row, Col } from 'react-bootstrap';
-
+import { useHistory } from 'react-router-dom'
 
 // Productos del Carrito
 export const ProductCart = ({ product }) => {
   const classes = useStyles();
+  let history = useHistory();
   const { quantity, name, price } = product;
-  return ( 
+  return (
     <Fragment>
-  
+
       <Col md={4}>
-      <Card mb={4} className="shadow-sm m-3">
+        <Card mb={4} className="shadow-sm m-3">
           <Card.Img
             variant="top"
             className="bd-placeholder-img"
@@ -38,20 +39,17 @@ export const ProductCart = ({ product }) => {
             role="img">
           </Card.Img>
 
-        <Card.Body>
+          <Card.Body>
             <Card.Title className="product-title" align="center">
               {product.name}
-              </Card.Title>
+            </Card.Title>
             <Card.Text className="product-text m-3">
               {product.description}
             </Card.Text>
-        </Card.Body>
-      </Card>
-    </Col>
-
-
+          </Card.Body>
+        </Card>
+      </Col>
     </Fragment>
-      
   );
 }
 // Products cart
@@ -68,39 +66,40 @@ const useStyles = makeStyles((theme) => ({
     height: 'auto'
   },
   root: {
-    display:"flex",
-    borderBottom:"1px solid #000000",
-    padding:"1.1em"
+    display: "flex",
+    borderBottom: "1px solid #000000",
+    padding: "1.1em"
   },
-  price:{
-    Height:'15px',
-    display:"flex",
-    justifyContent:"center",
-    alignContent:"flex-start"
+  price: {
+    Height: '15px',
+    display: "flex",
+    justifyContent: "center",
+    alignContent: "flex-start"
   },
-  text:{
-    Height:'15px',
-    lineHeight:'15px',
-    fontSize:'1em',
-    marginLeft:'.9em'
+  text: {
+    Height: '15px',
+    lineHeight: '15px',
+    fontSize: '1em',
+    marginLeft: '.9em'
   },
-  description:{
-    fontSize:'.7em'
+  description: {
+    fontSize: '.7em'
   },
-  delete:{
+  delete: {
     backgroundColor: "transparent",
     color: 'red',
-    marginLeft:'.7em'
+    marginLeft: '.7em'
   },
-  buttons:{
-    display:"flex",
-    alignContent:"center",
-    width:"auto",
+  buttons: {
+    display: "flex",
+    alignContent: "center",
+    width: "auto",
   }
 }));
 
 const Product = ({ product, setSubtotal, subtotal, setTotal }) => {
   const classes = useStyles();
+  let history = useHistory();
   const messages = useSelector(state => state.language.messages.cart);
   const productsInCart = useSelector(state => state.cart.products);
   const dispatch = useDispatch();
@@ -122,13 +121,13 @@ const Product = ({ product, setSubtotal, subtotal, setTotal }) => {
   };
 
   const increment = () => {
-      setQuantity(quantity + 1);
-      product.quantity = quantity + 1;
-      product.subtotal = product.quantity * product.price;
-      let index = productsInCart.indexOf(product);
-      productsInCart.splice(index, 1, product)
-      setTotal(newTotal(productsInCart))
-      dispatch(updateCartAction(productsInCart));
+    setQuantity(quantity + 1);
+    product.quantity = quantity + 1;
+    product.subtotal = product.quantity * product.price;
+    let index = productsInCart.indexOf(product);
+    productsInCart.splice(index, 1, product)
+    setTotal(newTotal(productsInCart))
+    dispatch(updateCartAction(productsInCart));
   };
 
   const newTotal = (productsInCart) => {
@@ -159,16 +158,15 @@ const Product = ({ product, setSubtotal, subtotal, setTotal }) => {
             )
             let carts = []
             productsInCart.map((product) => {
-              if(product._id !== id){
+              if (product._id !== id) {
                 carts.push(product)
               }
             })
-            console.log(carts)
             localStorage.setItem('cart', JSON.stringify(carts))
-            window.location.href = '/cart'
+            history.push("/cart");
             break;
           case 'confirmBuyProduct':
-            console.log('Comprado');
+            console.warn('Comprado');
             break;
           default:
             break;
@@ -208,41 +206,41 @@ const Product = ({ product, setSubtotal, subtotal, setTotal }) => {
   };
 
   return (
-    <Grid className={classes.root} Container  spacing={2}>
-        <Grid item xs={4} sm={3}>
-          <Image
-            className="img-fluid rounded mb-3 mb-md-0"
-            src={product.image_preview}
-            width={150}
-            height={150}
-            alt=""
-          />
-        </Grid>
-        <Grid xs={8} sm={8} container>
+    <Grid className={classes.root} Container spacing={2}>
+      <Grid item xs={4} sm={3}>
+        <Image
+          className="img-fluid rounded mb-3 mb-md-0"
+          src={product.image_preview}
+          width={150}
+          height={150}
+          alt=""
+        />
+      </Grid>
+      <Grid xs={8} sm={8} container>
         <div className={classes.price} >
           <h3 className={classes.text} style={{ textTransform: "capitalize" }}>{product.name}</h3>
           <p className={classes.text}>$ {product.price}</p>
           <p className={classes.text}>Subtotal: $ {showSubtotal()}</p>
         </div>
-          <p className={classes.description}>{product.description}</p>
-          <Grid item xs={12} sm={12} className={classes.buttons}>
-            <ButtonGroup disableElevation variant="contained" color="primary">
-              <Button
-                startIcon={<RemoveCircleOutlineIcon />}
-                onClick={decrement}
-              ></Button>
-              <Button>{product.quantity}</Button>
-              <Button
-                startIcon={<AddCircleOutlineIcon />}
-                onClick={increment}
-              ></Button>
-            </ButtonGroup>
-              <Button
-                className={classes.delete}
-                onClick={() => confirmRemoveProduct(product._id)}
-              >{messages['delete']}</Button>
-          </Grid>
+        <p className={classes.description}>{product.description}</p>
+        <Grid item xs={12} sm={12} className={classes.buttons}>
+          <ButtonGroup disableElevation variant="contained" color="primary">
+            <Button
+              startIcon={<RemoveCircleOutlineIcon />}
+              onClick={decrement}
+            ></Button>
+            <Button>{product.quantity}</Button>
+            <Button
+              startIcon={<AddCircleOutlineIcon />}
+              onClick={increment}
+            ></Button>
+          </ButtonGroup>
+          <Button
+            className={classes.delete}
+            onClick={() => confirmRemoveProduct(product._id)}
+          >{messages['delete']}</Button>
         </Grid>
+      </Grid>
     </Grid>
   );
 }

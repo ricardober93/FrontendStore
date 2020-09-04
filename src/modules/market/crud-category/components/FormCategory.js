@@ -40,7 +40,6 @@ export default function FormCategory() {
     }),
     onSubmit: async (values) => {
       try {
-        console.log(values);
         let response = await addCategory(values);
         if (response) {
         }

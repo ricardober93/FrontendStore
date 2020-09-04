@@ -8,7 +8,7 @@ import {
   TextareaAutosize,
   Button,
   Typography,
-  Select ,
+  Select,
   MenuItem,
   InputLabel
 } from "@material-ui/core";
@@ -24,9 +24,9 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "flex-start",
     padding: "2em 9em",
   },
-  gridItem:{
-      display:'grid',
-      gridGap:'15px'
+  gridItem: {
+    display: 'grid',
+    gridGap: '15px'
   }
 }));
 export default function FormAddProduct() {
@@ -70,42 +70,42 @@ export default function FormAddProduct() {
             />
           </FormControl>
           <FormControl>
-            <TextareaAutosize 
-                aria-label="empty textarea" 
-                placeholder="Empty"
-                rowsMax={10}
-                rows={7} />
-          </FormControl>
-        <FormControl variant="outlined">
-        <InputLabel id="categoria">Categoria</InputLabel>
-          <Select
-          labelId="categoria"
-          id="categoria"
-          value={formik.values.categoria}
-          label="Categoria"
-        >
-          <MenuItem value={'Jeans'}>Jeans</MenuItem>
-          <MenuItem value={'Zapatos'}>Zapatos</MenuItem>
-          <MenuItem value={'Camisas'}>Camisas</MenuItem>
-        </Select>
+            <TextareaAutosize
+              aria-label="empty textarea"
+              placeholder="Empty"
+              rowsMax={10}
+              rows={7} />
           </FormControl>
           <FormControl variant="outlined">
-           <InputLabel id="marca">Marca</InputLabel>
-          <Select
-          labelId="marca"
-          id="Marca"
-          value={formik.values.marca}
-          label="Marca"
-        >
-          <MenuItem value={'Addidas'}>Addidas</MenuItem>
-          <MenuItem value={'Leviton'}>Leviton</MenuItem>
-          <MenuItem value={'laKoste'}>laKoste</MenuItem>
-        </Select>
+            <InputLabel id="categoria">Categoria</InputLabel>
+            <Select
+              labelId="categoria"
+              id="categoria"
+              value={formik.values.categoria}
+              label="Categoria"
+            >
+              <MenuItem value={'Jeans'}>Jeans</MenuItem>
+              <MenuItem value={'Zapatos'}>Zapatos</MenuItem>
+              <MenuItem value={'Camisas'}>Camisas</MenuItem>
+            </Select>
+          </FormControl>
+          <FormControl variant="outlined">
+            <InputLabel id="marca">Marca</InputLabel>
+            <Select
+              labelId="marca"
+              id="Marca"
+              value={formik.values.marca}
+              label="Marca"
+            >
+              <MenuItem value={'Addidas'}>Addidas</MenuItem>
+              <MenuItem value={'Leviton'}>Leviton</MenuItem>
+              <MenuItem value={'laKoste'}>laKoste</MenuItem>
+            </Select>
           </FormControl>
 
         </Grid>
         <Grid item className={classes.gridItem}>
-        <FormControl>
+          <FormControl>
             <InputForm
               name="SKU"
               placeholder="Agregar el SKU de tu procuto"
@@ -135,7 +135,7 @@ export default function FormAddProduct() {
             />
           </FormControl>
           <Button variant="contained" color="primary" > Guardar Producto </Button>
-          </Grid>
+        </Grid>
       </section>
     </form>
   );

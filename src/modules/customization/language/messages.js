@@ -1,44 +1,45 @@
 export const messagesSpanish = {
-  nabvar_home:{
+  nabvar_home: {
     overview: "Vista General",
     products: "Productos",
     shipping: "Envío",
     payment: "Pagó"
   },
-  drawer_menu:{
+  drawer_menu: {
     profile: "Perfil",
     shopping_history: 'Historial de compras',
     payment_methods: "Métodos de pago",
-    log_out: "Cerrar Sesión"
+    log_out: "Cerrar Sesión",
+    log_in: "Iniciar Sesión"
   },
-  login:{
-    email_invalid:"Correo Invalido",
-    msg_shot:"Correo muy corto",
-    email_required:"requerido",
-    pass_short:"contraseña muy corta",
-    pass_requied:"requerida",
-    title:"Bienvenido",
-    btn_login:"iniciar sesión",
-    not_account:"No tienes una cuenta",
-    link_sing_up:"Registrate",
+  login: {
+    email_invalid: "Correo Invalido",
+    msg_shot: "Correo muy corto",
+    email_required: "requerido",
+    pass_short: "contraseña muy corta",
+    pass_requied: "requerida",
+    title: "Bienvenido",
+    btn_login: "iniciar sesión",
+    not_account: "No tienes una cuenta",
+    link_sing_up: "Registrate",
 
   },
-  profile:{
-    title:"Perfil",
-    btn_changes_password:"Cambiar contraseña",
-    btn_method_paid:"Metodo de pago",
-    btn_save_changes:"Guardar cambios"
+  profile: {
+    title: "Perfil",
+    btn_changes_password: "Cambiar contraseña",
+    btn_method_paid: "Metodo de pago",
+    btn_save_changes: "Guardar cambios"
   },
-  recovery:{
-    email_invalid:"Correo Invalido",
-    msg_shot:"Correo muy corto",
-    email_required:"requerido",
-    title:"Recuperar Contraseña",
-    messages_restore:"Entra a tu email y nosotros te enviaremos las instrucciones para restaurar la contraseña",
-    btn_resotre:"Restablecer contraseña",
-    check_span:"Recuerda revisar tu carpeta de spam",
+  recovery: {
+    email_invalid: "Correo Invalido",
+    msg_shot: "Correo muy corto",
+    email_required: "requerido",
+    title: "Recuperar Contraseña",
+    messages_restore: "Entra a tu email y nosotros te enviaremos las instrucciones para restaurar la contraseña",
+    btn_resotre: "Restablecer contraseña",
+    check_span: "Recuerda revisar tu carpeta de spam",
   },
-  cart:{
+  cart: {
     my: "Mi",
     cart: "Carrito",
     empty: "¡Su carrito está vacío!",
@@ -81,35 +82,35 @@ export const messagesSpanish = {
   },
 
   form_product: {
-      label_name: 'Nombre',
-      label_description: 'Descripcion corta',
-      label_long_description: 'Descripcion larga',
-      label_price: 'Precio',
-      label_sku: 'SKU',
-      label_category: 'Categoria',
-      label_brand: 'Marca',
-      label_button_save: 'Guardar',
-      label_button_exit: 'Salir',
-      featured_product: '¿Producto destacado?',
+    label_name: 'Nombre',
+    label_description: 'Descripcion corta',
+    label_long_description: 'Descripcion larga',
+    label_price: 'Precio',
+    label_sku: 'SKU',
+    label_category: 'Categoria',
+    label_brand: 'Marca',
+    label_button_save: 'Guardar',
+    label_button_exit: 'Salir',
+    featured_product: '¿Producto destacado?',
   },
 
   form_update_product: {
-      submitted_success: 'El producto se modifico con exito',
-      name_min_required: 'El nombre debe tener al menos 3 letras',
-      name_required: 'El nombre es obligatorio',
-      label_name: 'Nombre',
-      label_description: 'Descripcion corta',
-      label_long_description: 'Descripcion larga',
-      label_price: 'Precio',
-      label_state: 'Estado',
-      label_sku: 'SKU',
-      label_category: 'Categoria',
-      label_brand: 'Marca',
-      label_description: 'Descripcion',
-      featured_product: '¿Producto destacado?',
-      label_button_save: 'Editar',
-      label_button_exit: 'Salir',
-      label_state: '¿Producto disponible?',
+    submitted_success: 'El producto se modifico con exito',
+    name_min_required: 'El nombre debe tener al menos 3 letras',
+    name_required: 'El nombre es obligatorio',
+    label_name: 'Nombre',
+    label_description: 'Descripcion corta',
+    label_long_description: 'Descripcion larga',
+    label_price: 'Precio',
+    label_state: 'Estado',
+    label_sku: 'SKU',
+    label_category: 'Categoria',
+    label_brand: 'Marca',
+    label_description: 'Descripcion',
+    featured_product: '¿Producto destacado?',
+    label_button_save: 'Editar',
+    label_button_exit: 'Salir',
+    label_state: '¿Producto disponible?',
   },
 
   panel_customization_title: "Panel de configuración",
@@ -149,22 +150,22 @@ export const messagesSpanish = {
   language_change_english: "Inglés",
   language_change_portuguese: "Portugués",
 };
-  
+
 // ACA ESTARIAN MENSAJES EN INGLES
 export const messagesEnglish = {
-  nabvar_home:{
+  nabvar_home: {
     overview: "Overview",
     products: "Products",
     shipping: "Shipping",
     payment: "Payment"
   },
-  drawer_menu:{
+  drawer_menu: {
     profile: "Profile",
     shopping_history: "Shopping history",
     payment_methods: "Payment methods",
     log_out: "Log Out"
   },
-  login:{
+  login: {
     email_invalid: "Invalid Mail",
     msg_shot: "Mail too short",
     email_required: "required",
@@ -175,13 +176,13 @@ export const messagesEnglish = {
     not_account: "You don't have an account",
     link_sing_up: "Register",
   },
-  profile:{
+  profile: {
     title: "Profile",
     btn_changes_password: "Change password",
     btn_method_paid: "Payment method",
     btn_save_changes: "Save changes"
   },
-  recovery:{
+  recovery: {
     email_invalid: "Invalid Mail",
     msg_shot: "Mail too short",
     email_required: "required",
@@ -253,44 +254,44 @@ export const messagesEnglish = {
 
 // ACA ESTARIAN MENSAJES EN PORTUGUES
 export const messagesPortuguese = {
-  nabvar_home:{
+  nabvar_home: {
     overview: "Visão geral",
     products: "Produtos",
     shipping: "Remessa",
     payment: "Pagamento"
   },
-  drawer_menu:{
+  drawer_menu: {
     profile: "Perfil",
     shopping_history: "Histórico de compras",
     payment_methods: "Métodos de pagamento",
     log_out: "Fechar Sessão"
   },
-  login:{
-    email_invalid:"Correo Invalido",
-    msg_shot:"Correo muy corto",
-    email_required:"requerido",
-    pass_short:"contraseña muy corta",
-    pass_requied:"requerida",
-    title:"Bienvenido",
-    btn_login:"iniciar sesión",
-    not_account:"No tienes una cuenta",
-    link_sing_up:"Registrate",
+  login: {
+    email_invalid: "Correo Invalido",
+    msg_shot: "Correo muy corto",
+    email_required: "requerido",
+    pass_short: "contraseña muy corta",
+    pass_requied: "requerida",
+    title: "Bienvenido",
+    btn_login: "iniciar sesión",
+    not_account: "No tienes una cuenta",
+    link_sing_up: "Registrate",
 
   },
-  profile:{
-    title:"Perfil",
-    btn_changes_password:"Cambiar contraseña",
-    btn_method_paid:"Metodo de pago",
-    btn_save_changes:"Guardar cambios"
+  profile: {
+    title: "Perfil",
+    btn_changes_password: "Cambiar contraseña",
+    btn_method_paid: "Metodo de pago",
+    btn_save_changes: "Guardar cambios"
   },
-  recovery:{
-    email_invalid:"Correo Invalido",
-    msg_shot:"Correo muy corto",
-    email_required:"requerido",
-    title:"Recuperar Contraseña",
-    messages_restore:"Entra a tu email y nosotros te enviaremos las instrucciones para restaurar la contraseña",
-    btn_resotre:"Restablecer contraseña",
-    check_span:"Recuerda revisar tu carpeta de spam",
+  recovery: {
+    email_invalid: "Correo Invalido",
+    msg_shot: "Correo muy corto",
+    email_required: "requerido",
+    title: "Recuperar Contraseña",
+    messages_restore: "Entra a tu email y nosotros te enviaremos las instrucciones para restaurar la contraseña",
+    btn_resotre: "Restablecer contraseña",
+    check_span: "Recuerda revisar tu carpeta de spam",
   },
   mobile_menu: {
     cart: "Carrinho",

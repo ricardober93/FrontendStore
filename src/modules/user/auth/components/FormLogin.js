@@ -18,10 +18,9 @@ import * as Yup from "yup";
 import InputForm from "../../../components/InputForm";
 import GoogleBtn from "./GoogleBtn";
 import { makeStyles } from "@material-ui/core/styles";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 import CloseIcon from "@material-ui/icons/Close";
-import { useDispatch } from "react-redux";
 import { signInAction } from "../store/AuthAction";
 import { AuthLoginfn } from '../../providers/AuthProvider'
 import jwtDecode from "jwt-decode";
@@ -102,7 +101,6 @@ function Login() {
       try {
         let response = await AuthLoginfn(values);
         if (response) {
-          console.log(response)
           const tokenDecoded = jwtDecode(response.data.token);
           let auth = {
             token: response.data.token,
@@ -112,7 +110,7 @@ function Login() {
           localStorage.setItem('user', JSON.stringify(auth));
           setRedirect(true);
         }
-    }catch (msg) {
+      } catch (msg) {
         setError(msg);
         console.error(errors);
         setOpen(true);
@@ -121,7 +119,6 @@ function Login() {
   });
 
   const loginSuccessGoogle = (response) => {
-    console.log(response)
     if (response) {
       const tokenDecoded = jwtDecode(response.token);
       let auth = {
@@ -137,33 +134,33 @@ function Login() {
   return (
     <Container className={classes.root}>
 
-    { redirect ? <Redirect to="/" /> : null }
+      {redirect ? <Redirect to="/" /> : null}
       {/* utilizar toda la altura de la pagina */}
       <Grid container>
         <Card className={classes.card}>
-        
+
           <Collapse in={openQuery}>
-              <Alert
+            <Alert
               severity="success"
-                action={
-                  <IconButton
-                    aria-label="close"
-                    severity="success"
-                    size="small"
-                    onClick={() => {
-                      setOpenQuery(false);
-                    }}
-                  >
-                    <CloseIcon fontSize="inherit" />
-                  </IconButton>
-                }
-              >
-              </Alert>
-            </Collapse>
+              action={
+                <IconButton
+                  aria-label="close"
+                  severity="success"
+                  size="small"
+                  onClick={() => {
+                    setOpenQuery(false);
+                  }}
+                >
+                  <CloseIcon fontSize="inherit" />
+                </IconButton>
+              }
+            >
+            </Alert>
+          </Collapse>
           {errors ? (
             <Collapse in={open}>
               <Alert
-              severity="error"
+                severity="error"
                 action={
                   <IconButton
                     aria-label="close"
@@ -177,7 +174,7 @@ function Login() {
                   </IconButton>
                 }
               >
-              <AlertTitle>Error</AlertTitle>
+                <AlertTitle>Error</AlertTitle>
                 {errors.msg}
               </Alert>
             </Collapse>
@@ -223,6 +220,10 @@ function Login() {
               <Button type="submit" className={classes.btn} variant="contained">
                 {messages.btn_login}
               </Button>
+              <div align="center">
+                <br />
+                <GoogleBtn loginSuccessGoogle={loginSuccessGoogle} />
+              </div>
             </form>
             <Typography className={classes.singUp}>
               {messages.not_account}.{" "}
@@ -235,7 +236,6 @@ function Login() {
             </Typography>
           </CardContent>
         </Card>
-        <GoogleBtn loginSuccessGoogle={loginSuccessGoogle} />
       </Grid>
     </Container>
   );

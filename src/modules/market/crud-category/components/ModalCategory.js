@@ -80,7 +80,7 @@ export default function ModalCategory({ category }) {
                 history.push("/dashboard-create-category");
 
             } catch (err) {
-                console.log(err)
+                console.error(err)
             }
         },
     });

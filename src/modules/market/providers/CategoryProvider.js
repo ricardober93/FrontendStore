@@ -53,7 +53,6 @@ export const addCategory = (form) => {
     axios
       .post(process.env.REACT_APP_BACK_URL + "/api/category", form, { headers })
       .then((response) => {
-        console.log(response)
         resolve(response.data);
       })
       .catch((error) => {

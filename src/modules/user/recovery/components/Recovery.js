@@ -19,12 +19,12 @@ import { useSelector } from "react-redux";
 const useStyles = makeStyles((theme) => ({
   root: {
     height: '100%',
-    display:'grid',
+    display: 'grid',
     alignContent: 'center',
-    justifyContent:'center',
-    
+    justifyContent: 'center',
+
   },
- 
+
 }));
 
 const RestoreData = () => {
@@ -55,12 +55,12 @@ const RestoreData = () => {
         <Card padding={2}>
           <CardContent>
             <Typography variant="h4" component="h4">
-              { messages.title }
+              {messages.title}
             </Typography>
             <Typography
               style={{ marginTop: 20 }}
             >
-              { messages.messages_restore }
+              {messages.messages_restore}
             </Typography>
             <form onSubmit={formik.handleSubmit}>
               <FormControl fullWidth="true">
@@ -83,10 +83,10 @@ const RestoreData = () => {
                 color="primary"
                 style={{ marginTop: 20 }}
               >
-                { messages.btn_resotre }
+                {messages.btn_resotre}
               </Button>
               <Typography style={{ marginTop: 20 }} color="textSecondary">
-              { messages.check_span }
+                {messages.check_span}
               </Typography>
             </form>
           </CardContent>

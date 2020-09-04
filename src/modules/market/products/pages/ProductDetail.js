@@ -10,7 +10,7 @@ const ProductDetail = () => {
   const [product, setProduct] = useState({})
 
   useEffect(() => {
-      fetchProduct();
+    fetchProduct();
   }, []);
 
   const fetchProduct = async () => {
@@ -19,10 +19,10 @@ const ProductDetail = () => {
       setProduct(response.data);
     });
   }
-  console.log(product)
+
   return (
     <Container>
-      { product.name ?  <Description product={product} /> : null}
+      {product.name ? <Description product={product} /> : null}
       <Divider />
       <Valuation />
     </Container>

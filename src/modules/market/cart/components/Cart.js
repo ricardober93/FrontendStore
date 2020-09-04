@@ -54,73 +54,72 @@ const useStyles = makeStyles({
 const Cart = ({ cart }) => {
     const classes = useStyles();
     const { products, order_date, total_price, state, total_discount } = cart
-    console.log(cart);
-    console.log(products[0].image_preview);
+
     const showAllProductsInCart = (products) => (
         products.map(product => (
-                <ProductCart
-                    key={product._id}
-                    product={product}
-                />
+            <ProductCart
+                key={product._id}
+                product={product}
+            />
         ))
     );
-    return ( 
+    return (
         <Fragment>
             <Grid xs={12} sm={12} container>
-            <Card className={classes.containerCard} elevation={15} variant="elevation">
-                <Grid className='product-text' xs={12} sm={12}>
-                    <div className='primary-text' className={classes.state}>
+                <Card className={classes.containerCard} elevation={15} variant="elevation">
+                    <Grid className='product-text' xs={12} sm={12}>
+                        <div className='primary-text' className={classes.state}>
+                            <Typography className="mt-3" variant="h6" component="p">
+                                <strong>{state}</strong>
+                            </Typography>
+                        </div>
                         <Typography className="mt-3" variant="h6" component="p">
-                            <strong>{state}</strong>
+                            <strong>{order_date}</strong>
                         </Typography>
-                    </div>
-                    <Typography className="mt-3" variant="h6" component="p">
-                        <strong>{order_date}</strong>
-                    </Typography>
-                    <CardMedia
-                        className={classes.media}
-                        image={products[0].image_preview}
-                        title=""
-                    >
-                    {/* <div className={classes.circulo}>
+                        <CardMedia
+                            className={classes.media}
+                            image={products[0].image_preview}
+                            title=""
+                        >
+                            {/* <div className={classes.circulo}>
                     <div className={classes.icon}>
                         <LocalShippingIcon color="primary" style={{ fontSize: 40 }}/>
                     </div>
                     </div> */}
-                    </CardMedia>
-                    
-                </Grid>
-                <CardContent> 
-                    <Grid xs={12} sm={12} container>
-                        <Grid className={classes.contenido} xs={12} sm={6}>
-                            <Typography className="mt-3" variant="p" component="p">
-                                Relleno 1
-                            </Typography>
-                            <Typography className="mt-3" variant="p" component="p">
-                                Relleno 2
-                            </Typography>
-                            <Typography className="mt-3 text-product" variant="p" component="p">
-                                Relleno 3
-                            </Typography>
-                        </Grid>
-                        <Grid className={classes.totalPrice}  xs={12} sm={6}>
-                            <Typography className="mt-3" variant="h6" component="p">
-                                <strong>${total_price}</strong>
-                            </Typography>
-                            <Typography className="mt-3" variant="h6" component="p">
-                                <strong /*className={classes.discount}*/>{total_discount}% off</strong>
-                            </Typography>
-                        </Grid>
-                    </Grid>
-                </CardContent>
+                        </CardMedia>
 
-                <section>
-                    {/* { cart.products.length !== 0 ? showAllProductsInCart(cart.products) : null } */}
-                </section>
-            </Card>
+                    </Grid>
+                    <CardContent>
+                        <Grid xs={12} sm={12} container>
+                            <Grid className={classes.contenido} xs={12} sm={6}>
+                                <Typography className="mt-3" variant="p" component="p">
+                                    Relleno 1
+                            </Typography>
+                                <Typography className="mt-3" variant="p" component="p">
+                                    Relleno 2
+                            </Typography>
+                                <Typography className="mt-3 text-product" variant="p" component="p">
+                                    Relleno 3
+                            </Typography>
+                            </Grid>
+                            <Grid className={classes.totalPrice} xs={12} sm={6}>
+                                <Typography className="mt-3" variant="h6" component="p">
+                                    <strong>${total_price}</strong>
+                                </Typography>
+                                <Typography className="mt-3" variant="h6" component="p">
+                                    <strong /*className={classes.discount}*/>{total_discount}% off</strong>
+                                </Typography>
+                            </Grid>
+                        </Grid>
+                    </CardContent>
+
+                    <section>
+                        {/* { cart.products.length !== 0 ? showAllProductsInCart(cart.products) : null } */}
+                    </section>
+                </Card>
             </Grid>
         </Fragment>
     );
 }
- 
+
 export default Cart;

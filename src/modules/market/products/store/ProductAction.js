@@ -37,7 +37,7 @@ export function newProductAction(product) {
       dispatch(addProductError(true));
 
       // Mostrar el error
-      //console.log(error);
+      console.error(error);
 
       // Alerta de error
       Swal.fire({
@@ -76,7 +76,7 @@ export function getProductsAction() {
         dispatch(downloadProductsSuccess(data));
       });
     } catch (error) {
-      console.log(error);
+      console.error(error);
       dispatch(downloadProductsError());
     }
   };
@@ -172,7 +172,6 @@ const editProductError = () => ({
 export function getCartProductAction(product) {
   return (dispatch) => {
     dispatch(getCartProduct(product));
-    console.log(product);
   };
 }
 

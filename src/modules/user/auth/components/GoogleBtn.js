@@ -11,48 +11,48 @@ const GoogleBtn = (props) => {
     const [accessToken, setAccessToken] = useState('')
 
     const login = async (response) => {
-        if(response.accessToken){
+        if (response.accessToken) {
             let data = await authGoogle(response.profileObj)
             props.loginSuccessGoogle(data.data)
             setIsLogined(true)
             setAccessToken(response.accessToken)
         }
     }
-    
+
     const logout = (response) => {
         setIsLogined(false)
         setAccessToken('')
     }
-    
+
     const handleLoginFailure = (response) => {
-        console.log('Failed to log in')
-    }
-    
-    const handleLogoutFailure = (response) => {
-        console.log('Failed to log out')
+        console.error('Failed to log in')
     }
 
-    return ( 
+    const handleLogoutFailure = (response) => {
+        console.error('Failed to log out')
+    }
+
+    return (
         <div>
-            { isLogined ?
+            {isLogined ?
                 <GoogleLogout
-                clientId={ CLIENT_ID }
-                buttonText='Logout'
-                onLogoutSuccess={ logout }
-                onFailure={ handleLogoutFailure }
+                    clientId={CLIENT_ID}
+                    buttonText='Logout'
+                    onLogoutSuccess={logout}
+                    onFailure={handleLogoutFailure}
                 >
                 </GoogleLogout> : <GoogleLogin
-                clientId={ CLIENT_ID }
-                buttonText='Login'
-                onSuccess={ login }
-                onFailure={ handleLoginFailure }
-                cookiePolicy={ 'single_host_origin' }
-                responseType='code,token'
+                    clientId={CLIENT_ID}
+                    buttonText='Login'
+                    onSuccess={login}
+                    onFailure={handleLoginFailure}
+                    cookiePolicy={'single_host_origin'}
+                    responseType='code,token'
                 />
             }
-            { accessToken ? <h5>Your Access Token: <br/><br/> { accessToken }</h5> : null }
+            {accessToken ? <h5>Your Access Token: <br /><br /> {accessToken}</h5> : null}
         </div>
     );
 }
- 
+
 export default GoogleBtn;

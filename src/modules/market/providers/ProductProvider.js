@@ -23,7 +23,7 @@ export const getProducts = () => {
 export const getProductsBySearch = (search) => {
   return new Promise((resolve, reject) => {
     axios
-      .get(process.env.REACT_APP_BACK_URL + "/api/products/"+search, {
+      .get(process.env.REACT_APP_BACK_URL + "/api/products/" + search, {
         headers,
       })
       .then((response) => {
@@ -57,7 +57,6 @@ export const addProduct = (form) => {
     axios
       .post(process.env.REACT_APP_BACK_URL + "/api/product", form, { headers })
       .then((response) => {
-        console.log(response);
         resolve(response.data);
       })
       .catch((error) => {
