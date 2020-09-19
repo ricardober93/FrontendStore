@@ -20,6 +20,22 @@ export const getProducts = () => {
   });
 };
 
+export const getProductsRandom = () => {
+  return new Promise((resolve, reject) => {
+    axios
+      .get(process.env.REACT_APP_BACK_URL + "/api/products/random", {
+        headers,
+      })
+      .then((response) => {
+        resolve(response.data);
+      })
+      .catch((error) => {
+        console.error(error);
+        reject(error);
+      });
+  });
+};
+
 export const getProductsBySearch = (search) => {
   return new Promise((resolve, reject) => {
     axios

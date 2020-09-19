@@ -57,8 +57,11 @@ export default function Search() {
   const redirectSearch = (e) => {
     if (e.key === 'Enter') {
       setRedirect(true)
+      setTimeout(() => {
+        setRedirect(false)
+      }, 500);
     }
-  };
+  }
 
   return (
     <div className={classes.search}>
@@ -75,7 +78,7 @@ export default function Search() {
         }}
         inputProps={{ "aria-label": "search" }}
       />
-      { redirect ? <Redirect to={`/search/${search}`} /> : null}
+      {redirect ? <Redirect to={`/search/${search}`} /> : null}
     </div>
   );
 }

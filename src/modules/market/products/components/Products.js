@@ -38,12 +38,12 @@ export default function Products(props) {
           product ? (
             <Product key={product._id} product={product} />
           ) : (
-            <>
-              <Skeleton height={60} width="80%" style={{ marginBottom: 6 }} />
-              <Skeleton animation="wave" height={30} width="70%" />
-              <Skeleton animation="wave" height={30} width="40%" />
-            </>
-          )
+              <>
+                <Skeleton height={60} width="80%" style={{ marginBottom: 6 }} />
+                <Skeleton animation="wave" height={30} width="70%" />
+                <Skeleton animation="wave" height={30} width="40%" />
+              </>
+            )
         )}
       </GridList>
     </div>

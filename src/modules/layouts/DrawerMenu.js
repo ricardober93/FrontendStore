@@ -16,8 +16,9 @@ import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import PaymentIcon from '@material-ui/icons/Payment';
 import PersonOutlineIcon from '@material-ui/icons/PersonOutline';
+import DashboardIcon from '@material-ui/icons/Dashboard';
 
-const drawerWidth = "25%";
+const drawerWidth = "18%";
 const drawerMinWidth = 280;
 const useStyles = makeStyles((theme) => ({
 	drawer: {
@@ -99,6 +100,14 @@ export default function DrawerMenu(props) {
 							<AccountCircleIcon className={classes.colorWhite} />
 						</ListItemIcon>
 						<ListItemText primary={messages['profile']} />
+					</ListItem>
+				</Link> : null}
+				{user?.role?.name === 'admin' ? <Link to="/dashboard" className={classes.colorWhite}>
+					<ListItem button >
+						<ListItemIcon>
+							<DashboardIcon className={classes.colorWhite} />
+						</ListItemIcon>
+						<ListItemText primary={messages['dashboard']} />
 					</ListItem>
 				</Link> : null}
 				{user?.role?.name ? <Link to="/cart-history" className={classes.colorWhite}>

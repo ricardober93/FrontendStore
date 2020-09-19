@@ -7,6 +7,7 @@ import {
   Avatar,
   Typography,
 } from "@material-ui/core";
+import { useSelector } from "react-redux";
 import KeyboardArrowLeft from "@material-ui/icons/KeyboardArrowLeft";
 import KeyboardArrowRight from "@material-ui/icons/KeyboardArrowRight";
 import SwipeableViews from "react-swipeable-views";
@@ -49,9 +50,9 @@ const tutorialSteps = [
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    paddingTop:20,
-    paddingBottom:20,
-    flexGrow: 1,    
+    paddingTop: 20,
+    paddingBottom: 20,
+    flexGrow: 1,
     backgroundColor: '#F7F7F7 !important',
   },
   header: {
@@ -75,6 +76,7 @@ const useStyles = makeStyles((theme) => ({
 const Valuation = () => {
   const classes = useStyles();
   const theme = useTheme();
+  const messages = useSelector((state) => state.language.messages.product_detail);
   const [activeStep, setActiveStep] = React.useState(0);
   const maxSteps = tutorialSteps.length;
 
@@ -95,6 +97,7 @@ const Valuation = () => {
   return (
     <Container>
       <div className={classes.root}>
+        <Typography variant="h4" component="h2">{messages.commentaries}</Typography>
         <AutoPlaySwipeableViews
           axis={theme.direction === "rtl" ? "x-reverse" : "x"}
           index={activeStep}

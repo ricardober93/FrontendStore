@@ -29,7 +29,8 @@ import {
   Switch,
   Route
 } from "react-router-dom";
-import CreateCategoty from './modules/market/crud-category/pages/CreateCategoty';
+import CreateCategory from './modules/market/crud-category/pages/CreateCategory';
+import CreateBrand from './modules/market/crud-brand/pages/CreateBrand';
 
 function App() {
 
@@ -57,7 +58,8 @@ function App() {
                 <PrivateRoute exact path='/dashboard-product' component={ProductAdmin} />
                 <PrivateRoute exact path='/dashboard-shipping' component={ShippingAdmin} />
                 <Route exact path='/product/:id' component={ProductDetail} />
-                <PrivateRoute exact path='/dashboard-create-category' component={CreateCategoty} />
+                <PrivateRoute exact path='/dashboard-create-category' component={CreateCategory} />
+                <PrivateRoute exact path='/dashboard-create-brand' component={CreateBrand} />
                 <PrivateRoute exact path='/cart-history' component={CartHistoryUser} />
 
                 {/* <Route component={NotFound} /> */}

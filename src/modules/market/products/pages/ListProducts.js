@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
-import {Container} from '@material-ui/core'
+import { Container } from '@material-ui/core'
 import Products from "../components/Products";
 import { getProducts } from "../../providers/ProductProvider";
 
 export default function ListProduct() {
-  
+
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
@@ -19,7 +19,7 @@ export default function ListProduct() {
 
   return (
     <div>
-      { products.length > 0 ? <Products products={products} /> : null}
+      {products.length > 0 ? <Products products={products} /> : null}
     </div>
   );
 }

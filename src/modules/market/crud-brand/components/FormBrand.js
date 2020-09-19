@@ -11,7 +11,7 @@ import {
   MenuItem,
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-import { addCategory } from "../../providers/CategoryProvider";
+import { addBrand } from "../../providers/BrandProvider";
 import { Alert } from "@material-ui/lab";
 import { useHistory } from "react-router";
 import InputForm from "../../../components/InputForm";
@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function FormCategory() {
+export default function FormBrand() {
   let history = useHistory();
   const classes = useStyles();
   const formik = useFormik({
@@ -40,7 +40,7 @@ export default function FormCategory() {
     }),
     onSubmit: async (values) => {
       try {
-        let response = await addCategory(values);
+        let response = await addBrand(values);
         if (response) {
         }
       } catch (err) {
@@ -54,8 +54,8 @@ export default function FormCategory() {
         <TextField
           variant="outlined"
           name="name"
-          label="categoria"
-          placeholder="Agregar una categoria"
+          label="Marca"
+          placeholder="Agregar una marca"
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
           value={formik.values.name}
@@ -104,7 +104,7 @@ export default function FormCategory() {
           label="featured"
         >
           <MenuItem value={false}>No</MenuItem>
-          <MenuItem value={true}>si</MenuItem>
+          <MenuItem value={true}>Si</MenuItem>
         </Select>
       </FormControl>
       <FormControl variant="outlined">
@@ -123,7 +123,7 @@ export default function FormCategory() {
         </Select>
       </FormControl>
       <Button type="submit" variant="contained" color="primary">
-        Guardar Categoria
+        Guardar Marca
       </Button>
     </form>
   );

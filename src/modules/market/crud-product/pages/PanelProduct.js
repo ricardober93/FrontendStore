@@ -119,15 +119,15 @@ const useStyles = makeStyles((theme) => ({
   box: {
     padding: theme.spacing(0, 2, 2, 0),
   },
-  image:{
+  image: {
     height: 75
   },
   sectionProduct: {
     width: "100%",
   },
-  sectionButton:{
-    height:"50px",
-    margin:"1em 0"
+  sectionButton: {
+    height: "50px",
+    margin: "1em 0"
   },
   flex: {
     display: "flex",
@@ -217,7 +217,14 @@ export default function PanelProduct() {
           variant="outlined"
           size="small"
           color="primary">
-        Agregar Categoria
+          Agregar Categoria
+        </Button>
+        <Button
+          onClick={() => history.push("/dashboard-create-brand")}
+          variant="outlined"
+          size="small"
+          color="primary">
+          Agregar Marca
         </Button>
       </Box>
       <Divider />
@@ -255,8 +262,8 @@ export default function PanelProduct() {
                           {product.state_id == 3 ? (
                             <IconInactive className={classes.iconInactive} />
                           ) : (
-                            <IconActive className={classes.iconActive} />
-                          )}
+                              <IconActive className={classes.iconActive} />
+                            )}
                         </TableCell>
                         <TableCell>
                           <Modal

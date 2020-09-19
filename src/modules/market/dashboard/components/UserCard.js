@@ -6,43 +6,42 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     height: 60,
     alignContent: 'center',
-    justifyContent:'center',
+    justifyContent: 'center',
   },
-  textProfile:{
+  textProfile: {
     marginLeft: theme.spacing(2),
-    display:'grid',
-    alignContent:'center'
+    display: 'grid',
+    alignContent: 'center'
   },
-  img:{
-    height:60,
+  img: {
+    height: 60,
     borderRadius: 30,
   },
-  roleProfile:{
-    margin:0,
-    color:'#00000'
+  roleProfile: {
+    margin: 0,
+    color: '#00000'
   },
-  nameProfile:{
-    margin:0,
-    color:'#FFFFFF',
-    fontWeight:'bold'
+  nameProfile: {
+    margin: 0,
+    color: '#FFFFFF',
+    fontWeight: 'bold'
   },
 }));
 
-export default function UserCard({name , role}) {
+export default function UserCard({ name, role }) {
   const classes = useStyles();
-    return (
-        <section className={classes.root}>
+  return (
+    <section className={classes.root}>
 
-        <div>
-          <img src="./logo192.png" alt="" className={classes.img}/>
-        </div>
+      <div>
+        <img src="./logo192.png" alt="" className={classes.img} />
+      </div>
 
-        <div className={classes.textProfile}>
-          <h3 className={classes.roleProfile}> {name} </h3>
-          <p className={classes.nameProfile}> {role} </p>
-        </div>
+      <div className={classes.textProfile}>
+        <h3 className={classes.roleProfile}> {name} </h3>
+        <p className={classes.nameProfile}> {role} </p>
+      </div>
 
-      </section>
-    )
+    </section>
+  )
 }
- 

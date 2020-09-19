@@ -77,7 +77,7 @@ const Signin = () => {
   const [open, setOpen] = React.useState(false);
   const [errors, setError] = useState({
     error: false,
-    msg:''
+    msg: ''
   });
   const formik = useFormik({
     initialValues: {
@@ -98,11 +98,11 @@ const Signin = () => {
     onSubmit: async (values) => {
       try {
         let res = await AuthSignUpfn(values);
-          // dispatch(signUpAction(res.data.data))
-          /* router.push({
-            pathname: '/login',
-            query: { msg: res.msg },
-          }) */
+        // dispatch(signUpAction(res.data.data))
+        /* router.push({
+          pathname: '/login',
+          query: { msg: res.msg },
+        }) */
       } catch (error) {
         setError(error);
         /* router.push("/singin"); */
@@ -113,10 +113,10 @@ const Signin = () => {
     <Container className={classes.root}>
       <Grid container>
         <Card className={classes.card}>
-        {errors ? (
+          {errors ? (
             <Collapse in={open}>
               <Alert
-              severity="error"
+                severity="error"
                 action={
                   <IconButton
                     aria-label="close"
@@ -131,7 +131,7 @@ const Signin = () => {
                   </IconButton>
                 }
               >
-               <AlertTitle>Error</AlertTitle>
+                <AlertTitle>Error</AlertTitle>
                 {errors.msg}
               </Alert>
             </Collapse>
@@ -140,7 +140,7 @@ const Signin = () => {
             <Typography variant="h5" component="h4">
               <ArrowBackIcon
                 className={classes.back}
-                // onClick={() => Router.push("/")}
+              // onClick={() => Router.push("/")}
               />{" "}
               Register
             </Typography>

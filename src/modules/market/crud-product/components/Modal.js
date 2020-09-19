@@ -14,7 +14,7 @@ import EditIcon from "@material-ui/icons/Edit";
 import PersonAddIcon from "@material-ui/icons/PersonAdd";
 
 const Modal = (props) => {
-  
+
   const [open, setOpen] = useState(false);
   const [formSubmitted, setFormSubmitted] = useState(false);
   const [dataProduct, setDataProduct] = useState({});
@@ -57,13 +57,13 @@ const Modal = (props) => {
                 handleClose={handleClose}
               />
             ) : (
-              <FormUpdateProduct
-                update={props.newProduct}
-                dataProduct={props.dataProduct}
-                submitUpdate={updateSubmitted}
-                handleClose={handleClose}
-              />
-            )}
+                <FormUpdateProduct
+                  update={props.newProduct}
+                  dataProduct={props.dataProduct}
+                  submitUpdate={updateSubmitted}
+                  handleClose={handleClose}
+                />
+              )}
           </DialogContent>
           <DialogActions></DialogActions>
         </Dialog>

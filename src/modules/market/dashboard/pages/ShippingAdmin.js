@@ -16,17 +16,17 @@ import { makeStyles } from "@material-ui/core/styles";
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
-    height:'425px',
+    height: '425px',
     maxHeight: '425px',
-    minWidth:'660px',
+    minWidth: '660px',
     display: 'grid',
     gridTemplateColumns: '10fr 4fr'
   },
-  col1:{
-    padding:theme.spacing(2)
+  col1: {
+    padding: theme.spacing(2)
   },
-  scroll:{
-    overflowY:'scroll',
+  scroll: {
+    overflowY: 'scroll',
     height: '425px'
   },
   sectionProduct: {
@@ -54,22 +54,22 @@ const useStyles = makeStyles((theme) => ({
     minWidth: 650,
     padding: theme.spacing(1)
   },
-  btn:{
+  btn: {
     marginBottom: theme.spacing(2)
   },
 }));
 
 function createData(name, stock, precio, cat,) {
-    return { name, stock, precio, cat, };
-  }
-  
-  const rows = [
-    createData('Camisa Amarrila', 40, 25.000, 'Ropa'),
-    createData('Zapatillas Nike', 20, 50.000, 'Zapatos'),
-    createData('Zapatos de Cuero', 100, 16.000, 'Zapatos'),
-    createData('Jeans Capri', 30, 35.000, 'Ropa'),
-    createData('Zapatos Addidas', 70, 70.000, 'Zapatos'),
-  ];
+  return { name, stock, precio, cat, };
+}
+
+const rows = [
+  createData('Camisa Amarrila', 40, 25.000, 'Ropa'),
+  createData('Zapatillas Nike', 20, 50.000, 'Zapatos'),
+  createData('Zapatos de Cuero', 100, 16.000, 'Zapatos'),
+  createData('Jeans Capri', 30, 35.000, 'Ropa'),
+  createData('Zapatos Addidas', 70, 70.000, 'Zapatos'),
+];
 
 export default function ShippingAdmin() {
   const classes = useStyles();
@@ -79,7 +79,7 @@ export default function ShippingAdmin() {
         <Grid item xs={12} md={12} className={classes.col1}>
           <Grid container className={classes.scroll} justify="center" spacing={1} col={1}>
             <Grid item>
-            <section className={classes.sectionProduct}>
+              <section className={classes.sectionProduct}>
                 <div className={classes.flex}>
                   <div className={classes.sectionTitle}>
                     <h2 className={classes.title}>Por Revisar</h2>
@@ -115,7 +115,7 @@ export default function ShippingAdmin() {
               </TableContainer>
             </Grid>
             <Grid item >
-            <section className={classes.sectionProduct}>
+              <section className={classes.sectionProduct}>
                 <div className={classes.flex}>
                   <div className={classes.sectionTitle}>
                     <h2 className={classes.title}>Envios Completados</h2>
@@ -154,8 +154,8 @@ export default function ShippingAdmin() {
         </Grid>
         <Grid item xs={12} className={classes.col1}>
           <div>
-          <Button variant="contained" color="secondary" size="large" className={classes.btn}>
-            Devoluciones
+            <Button variant="contained" color="secondary" size="large" className={classes.btn}>
+              Devoluciones
           </Button>
           </div>
 

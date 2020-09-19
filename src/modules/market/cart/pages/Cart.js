@@ -12,10 +12,10 @@ const useStyles = makeStyles((theme) => ({
   gridContainer: {
     padding: "2em",
   },
-  gridSection:{
-    display:"grid",
+  gridSection: {
+    display: "grid",
     gridTemplateColumns: "6fr 2fr",
-    gridGap:"1.4em",
+    gridGap: "1.4em",
   }
 }));
 
@@ -53,15 +53,15 @@ const Cart = () => {
             {productsInCart.length !== 0 ? (
               showAllProductsInCart(productsInCart)
             ) : (
-              <EmptyCart />
-            )}
+                <EmptyCart />
+              )}
           </div>
           <div>
-          <div className="cart-pedido">
-          <h3>Resumen del Pedido:</h3>
-            {productsInCart.length !== 0 ? (
-              <Subtotal productsInCart={productsInCart} total={total} />
-            ) : null}
+            <div className="cart-pedido">
+              <h3>Resumen del Pedido:</h3>
+              {productsInCart.length !== 0 ? (
+                <Subtotal productsInCart={productsInCart} total={total} />
+              ) : null}
             </div>
           </div>
         </section>

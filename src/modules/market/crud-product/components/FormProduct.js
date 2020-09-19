@@ -91,7 +91,7 @@ const FormProduct = ({ submitUpdate, newProduct, handleClose }) => {
         data.featured = selectedFeatured;
         data.category = selectedCategory;
         data.brand = selectedBrand;
-        
+
         // Mandar producto a la BD  
         await addProduct({
           "name": data.name,

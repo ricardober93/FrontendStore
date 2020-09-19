@@ -9,6 +9,7 @@ export const messagesSpanish = {
     profile: "Perfil",
     shopping_history: 'Historial de compras',
     payment_methods: "Métodos de pago",
+    dashboard: "Dashboard",
     log_out: "Cerrar Sesión",
     log_in: "Iniciar Sesión"
   },
@@ -44,6 +45,13 @@ export const messagesSpanish = {
     cart: "Carrito",
     empty: "¡Su carrito está vacío!",
     back: "Volver",
+    question: "¿Por que medio desea notificar el pedido?",
+    question_email: "En caso de ser por email, debe completar el campo anterior",
+    button_wpp: "Whatsapp",
+    button_email: "Email",
+    send_address: "Envio a Domicilio",
+    branch_office: "Retiro en Sucursal",
+    obligatory: "Campos obligatorios",
     see_more: "Ver más",
     delete_question: "¿Desea eliminar el producto del carrito?",
     buy_question: "¿Desea comprar el producto?",
@@ -64,6 +72,10 @@ export const messagesSpanish = {
   },
   search: {
     placeholder: "Buscar...",
+  },
+  product_detail: {
+    products_random: "Otros productos",
+    commentaries: "Opiniones",
   },
 
   panel_products: {

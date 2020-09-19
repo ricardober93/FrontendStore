@@ -10,23 +10,23 @@ const useStyles = makeStyles((theme) => ({
     height: "100%",
     width: "100vw",
   },
-  Column2:{
-      display:'grid',
-      height:'100%',
-      width: '100%',
-      alignSelf:'start'
+  Column2: {
+    display: 'grid',
+    height: '100%',
+    width: '100%',
+    alignSelf: 'start'
   },
-  main:{
-    padding:"1em"
+  main: {
+    padding: "1em"
   }
 }));
-export default function Dashboard({children}) {
-    const classes = useStyles();
+export default function Dashboard({ children }) {
+  const classes = useStyles();
   return (
     <section className={classes.gridContainer}>
       <Sidebar />
       <div className={classes.Column2}>
-      <main className={classes.main}> {children} </main>
+        <main className={classes.main}> {children} </main>
       </div>
     </section >
   );

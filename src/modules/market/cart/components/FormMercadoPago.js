@@ -34,14 +34,14 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const FormMercadoPago = ({handleClose, open, total, productsInCart}) => {
-    
+const FormMercadoPago = ({ handleClose, open, total, productsInCart }) => {
+
     const classes = useStyles();
     const user = useSelector((state) => state.user.user);
     const [modalStyle] = useState(getModalStyle);
     const [cardNumber, setCardNumber] = useState('4170068810108020');
     const [paymentMethodId, setPaymentMethodId] = useState(null);
-    
+
     useEffect(() => {
         payment();
     }, [])
@@ -59,38 +59,36 @@ const FormMercadoPago = ({handleClose, open, total, productsInCart}) => {
         },
         validationSchema: Yup.object({
             cardholderName: Yup.string()
-            .required('Requerido'),
+                .required('Requerido'),
             email: Yup.string()
-            .email('Debe ser un email valido')
-            .required('Requerido'),
+                .email('Debe ser un email valido')
+                .required('Requerido'),
             cardExpirationMonth: Yup.number()
-            .min(1, 'Elige un mes valido')
-            .max(12, 'Elige un mes valido')
-            .required('Requerido'),
+                .min(1, 'Elige un mes valido')
+                .max(12, 'Elige un mes valido')
+                .required('Requerido'),
             cardExpirationYear: Yup.number()
-            .required('Requerido')
-            .min(20, 'Elige un anio valido')
-            .max(99, 'Elige un anio valido'),
+                .required('Requerido')
+                .min(20, 'Elige un anio valido')
+                .max(99, 'Elige un anio valido'),
             securityCode: Yup.number()
-            .required('Requerido')
-            .min(100, 'Codigo invalido')
-            .max(9999, 'Codigo invalido'),
+                .required('Requerido')
+                .min(100, 'Codigo invalido')
+                .max(9999, 'Codigo invalido'),
             docNumber: Yup.number()
-            .required('Requerido')
-            .max(1000000, 'Documento invalido')
-            .max(99999999, 'Documento invalido'),
+                .required('Requerido')
+                .max(1000000, 'Documento invalido')
+                .max(99999999, 'Documento invalido'),
         }),
         onSubmit: async (values) => {
             let form_mp = values
             form_mp.paymentMethodId = paymentMethodId
-            console.log('form_mp',form_mp)
-            
+            console.log('form_mp', form_mp)
 
-
-            if(!paymentMethodId){
+            if (!paymentMethodId) {
                 alert('tarjeta invalida')
             }
-            
+
             let data = {
                 products: productsInCart,
                 total,
@@ -100,12 +98,12 @@ const FormMercadoPago = ({handleClose, open, total, productsInCart}) => {
             console.log(data);
             await newCart(data);
             handleClose()
-          try {
-          } catch (error) {
-            console.error(error);
-          }
+            try {
+            } catch (error) {
+                console.error(error);
+            }
         }
-      })
+    })
 
     const payment = async () => {
         window.Mercadopago.setPublishableKey("TEST-d64731c0-34e1-4e79-b669-4a36a31f713e");
@@ -116,7 +114,7 @@ const FormMercadoPago = ({handleClose, open, total, productsInCart}) => {
         setCardNumber(e.target.value);
         let cardnumber = e.target.value;
         if (cardnumber.length >= 6) {
-            let bin = cardnumber.substring(0,6);
+            let bin = cardnumber.substring(0, 6);
             window.Mercadopago.getPaymentMethod({
                 "bin": bin
             }, setPaymentMethod);
@@ -133,9 +131,9 @@ const FormMercadoPago = ({handleClose, open, total, productsInCart}) => {
 
     const body = (
         <div style={modalStyle} className={classes.paper}>
-       
-        <form onSubmit={formik.handleSubmit}>
-            <Grid container className={classes.div} spacing={3}>
+
+            <form onSubmit={formik.handleSubmit}>
+                <Grid container className={classes.div} spacing={3}>
                     <Grid xs={12} sm={6}>
                         <InputLabel className={classes.textInput}><strong>Nombre y Apellido</strong></InputLabel>
                         <InputForm
@@ -145,7 +143,7 @@ const FormMercadoPago = ({handleClose, open, total, productsInCart}) => {
                             value={formik.values.cardholderName}
                         />
                         {formik.touched.cardholderName && formik.errors.cardholderName ? (
-                        <div>{formik.errors.cardholderName}</div>
+                            <div>{formik.errors.cardholderName}</div>
                         ) : null}
                     </Grid>
                     <Grid xs={12} sm={6}>
@@ -158,7 +156,7 @@ const FormMercadoPago = ({handleClose, open, total, productsInCart}) => {
                             value={formik.values.email}
                         />
                         {formik.touched.email && formik.errors.email ? (
-                        <div>{formik.errors.email}</div>
+                            <div>{formik.errors.email}</div>
                         ) : null}
                     </Grid>
                     <Grid xs={12} sm={12}>
@@ -178,7 +176,7 @@ const FormMercadoPago = ({handleClose, open, total, productsInCart}) => {
                             value={formik.values.securityCode}
                         />
                         {formik.touched.securityCode && formik.errors.securityCode ? (
-                        <div>{formik.errors.securityCode}</div>
+                            <div>{formik.errors.securityCode}</div>
                         ) : null}
                     </Grid>
                     <Grid xs={6} sm={4}>
@@ -190,7 +188,7 @@ const FormMercadoPago = ({handleClose, open, total, productsInCart}) => {
                             value={formik.values.cardExpirationMonth}
                         />
                         {formik.touched.cardExpirationMonth && formik.errors.cardExpirationMonth ? (
-                        <div>{formik.errors.cardExpirationMonth}</div>
+                            <div>{formik.errors.cardExpirationMonth}</div>
                         ) : null}
                     </Grid>
                     <Grid xs={6} sm={4}>
@@ -202,7 +200,7 @@ const FormMercadoPago = ({handleClose, open, total, productsInCart}) => {
                             value={formik.values.cardExpirationYear}
                         />
                         {formik.touched.cardExpirationYear && formik.errors.cardExpirationYear ? (
-                        <div>{formik.errors.cardExpirationYear}</div>
+                            <div>{formik.errors.cardExpirationYear}</div>
                         ) : null}
                     </Grid>
                     <Grid xs={12} sm={6}>
@@ -226,18 +224,18 @@ const FormMercadoPago = ({handleClose, open, total, productsInCart}) => {
                             value={formik.values.docNumber}
                         />
                         {formik.touched.docNumber && formik.errors.docNumber ? (
-                        <div>{formik.errors.docNumber}</div>
+                            <div>{formik.errors.docNumber}</div>
                         ) : null}
                     </Grid>
                     <Grid xs={12} sm={12}>
                         <Button type='submit'>Pagar</Button>
                     </Grid>
-            </Grid>
-        </form>
+                </Grid>
+            </form>
         </div>
     );
 
-    return ( 
+    return (
         <div>
             <Modal
                 open={open}
@@ -250,5 +248,5 @@ const FormMercadoPago = ({handleClose, open, total, productsInCart}) => {
         </div>
     );
 }
- 
+
 export default FormMercadoPago;

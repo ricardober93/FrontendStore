@@ -142,22 +142,22 @@ const ModalChangeLogo = (props) => {
             {props.booleanSuccess ? (
               <Alert type={"success"} content={msgValidation} />
             ) : (
-              <Grid
-                container
-                spacing={2}
-                style={{ marginBottom: 2, padding: 10 }}
-              >
-                <Grid container spacing={2}>
-                  <Grid item xs={12}>
-                    <Input
-                      type="file"
-                      name="avatar"
-                      onChange={(e) => onChangeAvatar(e)}
-                    />
+                <Grid
+                  container
+                  spacing={2}
+                  style={{ marginBottom: 2, padding: 10 }}
+                >
+                  <Grid container spacing={2}>
+                    <Grid item xs={12}>
+                      <Input
+                        type="file"
+                        name="avatar"
+                        onChange={(e) => onChangeAvatar(e)}
+                      />
+                    </Grid>
                   </Grid>
                 </Grid>
-              </Grid>
-            )}
+              )}
             <br />
             <Grid style={{ marginLeft: "right" }}>
               {!logoSubmitted ? (
